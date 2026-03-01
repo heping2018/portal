@@ -4,100 +4,238 @@
     "products": "Products",
     "news": "News",
     "certifications": "Certifications",
-    "about": "About Us",
+    "about": "About",
     "contact": "Contact",
     "admin": "Admin",
     "login": "Login",
     "welcome": "Welcome, {name}",
     "logout": "Logout"
   },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "seconds": "seconds",
+    "milliseconds": "milliseconds"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {currentPage} of {totalPages}"
+  },
   "hero": {
-    "title": "Driving the Future with Innovative Technology",
-    "subtitle": "We are dedicated to providing cutting-edge and reliable industrial automation solutions to our global clients, propelling your business into the next era of efficiency.",
+    "title": "Innovative Technology for the Future",
+    "subtitle": "We are committed to providing cutting-edge and reliable industrial automation solutions to global customers.",
     "cta": "Explore Our Products"
   },
   "bento": {
     "loading": "Loading featured products...",
-    "no_products": "No featured products to display yet."
+    "no_products": "No featured products to display."
   },
   "product": {
-    "title": "Product Center",
-    "subtitle": "Explore our diverse line of industrial automation products and find the perfect solution for your specific needs.",
-    "search_placeholder": "Search by product name, model, or category...",
+    "title": "Products",
+    "subtitle": "Explore our diverse industrial automation product line.",
+    "search_placeholder": "Search products...",
     "loading": "Loading products...",
-    "no_products_found": "No products found matching your criteria.",
+    "no_products_found": "No products found.",
     "previous": "Previous",
     "next": "Next",
-    "fetch_error": "Failed to load products. Please try again later."
+    "fetch_error": "Failed to load products."
   },
   "news": {
     "title": "News & Updates",
-    "subtitle": "Stay informed about our latest innovations, industry insights, and company news.",
+    "subtitle": "Stay informed about our latest innovations.",
     "loading": "Loading news...",
-    "error": "Failed to load news. Please try again later.",
-    "no_articles": "No news articles have been published yet."
+    "error": "Failed to load news.",
+    "no_articles": "No news available."
   },
   "certifications": {
-    "title": "Our Certifications & Awards",
-    "subtitle": "Our commitment to quality, security, and innovation is recognized by industry authorities.",
-    "issuer": "Issuer",
+    "title": "Certifications & Honors",
+    "subtitle": "Our commitment to quality is recognized by industry authorities.",
+    "issuer": "Issuing Authority",
     "issue_date": "Issue Date",
     "verify": "Verify Certificate",
-    "loading": "Loading certifications...",
-    "error": "Failed to load certifications. Please try again later.",
-    "no_certificates": "No certification information is available yet."
+    "loading": "Loading certificates...",
+    "error": "Failed to load certificates.",
+    "no_certificates": "No certificates available."
   },
   "about": {
     "title": "About Maxunitech",
-    "subtitle": "Your trusted partner in industrial automation."
+    "subtitle": "Your trusted industrial automation partner."
   },
   "login": {
     "title": "Admin Login",
     "subtitle": "Welcome back, please enter your credentials",
     "username": "Username",
     "password": "Password",
-    "username_placeholder": "Please enter your username",
-    "password_placeholder": "Please enter your password",
+    "username_placeholder": "Enter username",
+    "password_placeholder": "Enter password",
     "submit": "Login",
     "no_account": "Don't have an account?",
     "forgot_password": "Forgot password?",
-    "error_login_failed": "Login failed, please check your credentials."
+    "error_login_failed": "Login failed. Please check your credentials."
+  },
+  "register": {
+    "title": "Register",
+    "subtitle": "Create your new account",
+    "username": "Username",
+    "username_placeholder": "Enter username",
+    "nickname": "Nickname",
+    "nickname_placeholder": "Enter nickname",
+    "password": "Password",
+    "password_placeholder": "Enter password",
+    "confirm_password": "Confirm Password",
+    "confirm_password_placeholder": "Re-enter password",
+    "email": "Email",
+    "email_placeholder": "Enter email",
+    "mobile": "Mobile",
+    "mobile_placeholder": "Enter mobile number",
+    "submit": "Register",
+    "have_account": "Already have an account? Login",
+    "password_mismatch": "Passwords do not match",
+    "failed": "Registration failed"
+  },
+  "forgot_password": {
+    "title": "Forgot Password",
+    "subtitle": "Reset your password via SMS",
+    "mobile": "Mobile",
+    "mobile_placeholder": "Enter mobile number",
+    "submit": "Send Code",
+    "sms_sent": "Verification code sent to your mobile",
+    "sms_sent_btn": "Code Sent",
+    "failed": "Failed to send code",
+    "back_to_login": "Back to Login"
+  },
+  "reset_password": {
+    "title": "Reset Password",
+    "subtitle": "Enter verification code and new password",
+    "mobile": "Mobile",
+    "mobile_placeholder": "Enter mobile number",
+    "code": "Verification Code",
+    "code_placeholder": "Enter verification code",
+    "new_password": "New Password",
+    "password_placeholder": "Enter new password",
+    "confirm_password": "Confirm Password",
+    "confirm_password_placeholder": "Re-enter new password",
+    "submit": "Reset Password",
+    "password_mismatch": "Passwords do not match",
+    "success": "Password reset successfully, please login",
+    "failed": "Reset failed",
+    "back_to_login": "Back to Login"
+  },
+  "sms_login": {
+    "title": "SMS Login",
+    "subtitle": "Quick login with mobile verification",
+    "mobile": "Mobile",
+    "mobile_required": "Please enter mobile number",
+    "code": "Verification Code",
+    "send_code": "Send Code",
+    "submit": "Login",
+    "send_failed": "Failed to send code",
+    "failed": "Login failed",
+    "password_login": "Password Login"
+  },
+  "auth_callback": {
+    "processing": "Processing login...",
+    "invalid_params": "Invalid authorization parameters",
+    "failed": "Login failed"
+  },
+  "auth_config": {
+    "title": "Authentication Configuration",
+    "auth_type_section": "Authentication Type",
+    "general_section": "General Settings",
+    "jwt_section": "JWT Configuration",
+    "oauth2_section": "OAuth2 Configuration",
+    "single_device_login": "Enable Single Device Login (SSO)",
+    "session_timeout": "Session Timeout",
+    "jwt_secret": "JWT Secret",
+    "jwt_expiration": "JWT Expiration",
+    "oauth2_provider": "OAuth2 Provider",
+    "oauth2_client_id": "Client ID",
+    "oauth2_client_secret": "Client Secret",
+    "oauth2_redirect_uri": "Redirect URI",
+    "load_failed": "Failed to load configuration",
+    "save_success": "Configuration saved successfully",
+    "save_failed": "Failed to save configuration",
+    "switch_success": "Authentication type switched successfully",
+    "switch_failed": "Failed to switch authentication type",
+    "toggle_sso_success": "SSO setting updated successfully",
+    "toggle_sso_failed": "Failed to update SSO setting"
   },
   "admin": {
-    "title": "Admin Control Center",
-    "welcome": "Welcome to the Maxunitech Admin Panel.",
+    "title": "Admin Dashboard",
+    "welcome": "Welcome to Maxunitech Admin Portal.",
     "product_management": "Product Management",
-    "product_management_desc": "Manage all your product information here.",
-    "news_management": "News & Updates Management",
-    "news_management_desc": "Publish and update company news and updates.",
+    "product_management_desc": "Manage all product information.",
+    "news_management": "News Management",
+    "news_management_desc": "Publish and update company news.",
     "certificate_management": "Certificate Management",
-    "certificate_management_desc": "Upload and manage all company certifications.",
+    "certificate_management_desc": "Upload and manage company certificates.",
     "user_management": "User Management",
-    "user_management_desc": "Manage admin user accounts and permissions."
+    "user_management_desc": "Manage admin user accounts and permissions.",
+    "auth_config_management": "Auth Configuration",
+    "auth_config_management_desc": "Configure authentication methods and security settings."
   },
-  "user_management": {
+  "admin_user": {
     "title": "User Management",
-    "add_user": "Add User",
-    "search_placeholder": "Search by username, nickname, or email...",
-    "search": "Search",
-    "no_users": "No users found",
+    "add": "Add User",
+    "loading": "Loading users...",
+    "fetch_error": "Failed to load users.",
+    "save_error": "Failed to save user.",
+    "delete_error": "Failed to delete user.",
+    "confirm_delete": "Are you sure you want to delete this user?",
+    "edit_title": "Edit User",
+    "add_title": "Add User",
     "table": {
-      "id": "User ID",
       "username": "Username",
-      "nickname": "Nickname",
       "email": "Email",
       "role": "Role",
-      "registration_date": "Registration Date",
-      "status": "Status",
       "actions": "Actions"
     },
-    "status": {
-      "active": "Active",
-      "inactive": "Inactive"
+    "form": {
+      "username": "Username",
+      "email": "Email",
+      "role": "Role",
+      "password": "Password"
     },
     "actions": {
       "edit": "Edit",
-      "delete": "Delete"
+      "delete": "Delete",
+      "save": "Save"
     }
-  }
-}
+  },
+  "admin_product": {
+    "title": "Product Management",
+    "add": "Add Product",
+    "loading": "Loading products...",
+    "fetch_error": "Failed to load products.",
+    "save_error": "Failed to save product.",
+    "delete_error": "Failed to delete product.",
+    "confirm_delete": "Are you sure you want to delete this product?",
+    "edit_title": "Edit Product",
+    "add_title": "Add Product",
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "actions": "Actions"
+    },
+    "form": {
+      "name_en": "Name (English)",
+      "description_en": "Description (English)",
+      "name_zh": "Name (Chinese)",
+      "description_zh": "Description (Chinese)"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save"
+    }
+  },
+  "admin_news": {
+    "title": "News Management",
+    "add": "Add News",
+    "loading": "Loading news...",
+    "fetch_error": "Failed to load news.",
+    "save_error": "Failed to save news.",
+    "d

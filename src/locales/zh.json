@@ -11,6 +11,14 @@
     "welcome": "欢迎, {name}",
     "logout": "退出"
   },
+  "common": {
+    "loading": "加载中...",
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "seconds": "秒",
+    "milliseconds": "毫秒"
+  },
   "pagination": {
     "previous": "上一页",
     "next": "下一页",
@@ -68,6 +76,93 @@
     "forgot_password": "忘记密码？",
     "error_login_failed": "登录失败，请检查您的凭据。"
   },
+  "register": {
+    "title": "用户注册",
+    "subtitle": "创建您的新账户",
+    "username": "用户名",
+    "username_placeholder": "请输入用户名",
+    "nickname": "昵称",
+    "nickname_placeholder": "请输入昵称",
+    "password": "密码",
+    "password_placeholder": "请输入密码",
+    "confirm_password": "确认密码",
+    "confirm_password_placeholder": "请再次输入密码",
+    "email": "邮箱",
+    "email_placeholder": "请输入邮箱",
+    "mobile": "手机号",
+    "mobile_placeholder": "请输入手机号",
+    "submit": "注 册",
+    "have_account": "已有账户？立即登录",
+    "password_mismatch": "两次输入的密码不一致",
+    "failed": "注册失败，请稍后重试"
+  },
+  "forgot_password": {
+    "title": "忘记密码",
+    "subtitle": "通过手机短信重置您的密码",
+    "mobile": "手机号",
+    "mobile_placeholder": "请输入手机号",
+    "submit": "发送验证码",
+    "sms_sent": "验证码已发送到您的手机",
+    "sms_sent_btn": "验证码已发送",
+    "failed": "发送失败，请稍后重试",
+    "back_to_login": "返回登录"
+  },
+  "reset_password": {
+    "title": "重置密码",
+    "subtitle": "请输入验证码和新密码",
+    "mobile": "手机号",
+    "mobile_placeholder": "请输入手机号",
+    "code": "验证码",
+    "code_placeholder": "请输入验证码",
+    "new_password": "新密码",
+    "password_placeholder": "请输入新密码",
+    "confirm_password": "确认密码",
+    "confirm_password_placeholder": "请再次输入新密码",
+    "submit": "重置密码",
+    "password_mismatch": "两次输入的密码不一致",
+    "success": "密码重置成功，请登录",
+    "failed": "重置失败，请稍后重试",
+    "back_to_login": "返回登录"
+  },
+  "sms_login": {
+    "title": "短信登录",
+    "subtitle": "使用手机验证码快速登录",
+    "mobile": "手机号",
+    "mobile_required": "请输入手机号",
+    "code": "验证码",
+    "send_code": "发送验证码",
+    "submit": "登 录",
+    "send_failed": "发送失败",
+    "failed": "登录失败",
+    "password_login": "密码登录"
+  },
+  "auth_callback": {
+    "processing": "正在处理登录...",
+    "invalid_params": "无效的授权参数",
+    "failed": "登录失败"
+  },
+  "auth_config": {
+    "title": "认证配置管理",
+    "auth_type_section": "认证方式",
+    "general_section": "常规设置",
+    "jwt_section": "JWT 配置",
+    "oauth2_section": "OAuth2 配置",
+    "single_device_login": "启用单设备登录（单点登录）",
+    "session_timeout": "会话超时时间",
+    "jwt_secret": "JWT 密钥",
+    "jwt_expiration": "JWT 过期时间",
+    "oauth2_provider": "OAuth2 提供商",
+    "oauth2_client_id": "客户端 ID",
+    "oauth2_client_secret": "客户端密钥",
+    "oauth2_redirect_uri": "回调地址",
+    "load_failed": "加载配置失败",
+    "save_success": "配置保存成功",
+    "save_failed": "配置保存失败",
+    "switch_success": "认证方式切换成功",
+    "switch_failed": "认证方式切换失败",
+    "toggle_sso_success": "单点登录设置成功",
+    "toggle_sso_failed": "单点登录设置失败"
+  },
   "admin": {
     "title": "后台管理中心",
     "welcome": "欢迎来到 Maxunitech 管理后台。",
@@ -78,7 +173,9 @@
     "certificate_management": "资质证书管理",
     "certificate_management_desc": "上传和管理公司的各类资质证书。",
     "user_management": "用户管理",
-    "user_management_desc": "管理后台用户账户和权限。"
+    "user_management_desc": "管理后台用户账户和权限。",
+    "auth_config_management": "认证配置",
+    "auth_config_management_desc": "配置系统认证方式和安全设置。"
   },
   "admin_user": {
     "title": "用户管理",

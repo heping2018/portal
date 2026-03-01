@@ -10,6 +10,11 @@ import HomeView from '../views/HomeView.vue';
 import ProductView from '../views/ProductView.vue';
 import ProductDetailView from '../views/ProductDetailView.vue';
 import LoginView from '../views/LoginView.vue';
+import RegisterView from '../views/RegisterView.vue';
+import ForgotPasswordView from '../views/ForgotPasswordView.vue';
+import ResetPasswordView from '../views/ResetPasswordView.vue';
+import SmsLoginView from '../views/SmsLoginView.vue';
+import AuthCallbackView from '../views/AuthCallbackView.vue';
 import CertificateView from '../views/CertificateView.vue';
 import NewsView from '../views/NewsView.vue';
 import NewsDetailView from '../views/NewsDetailView.vue';
@@ -21,6 +26,7 @@ import AdminUserView from '../views/AdminUserView.vue';
 import AdminProductView from '../views/AdminProductView.vue';
 import AdminNewsView from '../views/AdminNewsView.vue';
 import AdminCertificateView from '../views/AdminCertificateView.vue';
+import AdminAuthConfigView from '../views/AdminAuthConfigView.vue';
 
 const routes = [
   {
@@ -69,6 +75,31 @@ const routes = [
         name: 'LoginView',
         component: LoginView
       },
+      {
+        path: 'register',
+        name: 'RegisterView',
+        component: RegisterView
+      },
+      {
+        path: 'forgot-password',
+        name: 'ForgotPasswordView',
+        component: ForgotPasswordView
+      },
+      {
+        path: 'reset-password',
+        name: 'ResetPasswordView',
+        component: ResetPasswordView
+      },
+      {
+        path: 'sms-login',
+        name: 'SmsLoginView',
+        component: SmsLoginView
+      },
+      {
+        path: 'auth/callback',
+        name: 'AuthCallbackView',
+        component: AuthCallbackView
+      },
     ]
   },
 
@@ -89,20 +120,25 @@ const routes = [
         name: 'AdminUserView',
         component: AdminUserView
       },
-       {
+      {
         path: 'products',
         name: 'AdminProductView',
         component: AdminProductView
       },
-       {
+      {
         path: 'news',
         name: 'AdminNewsView',
         component: AdminNewsView
       },
-       {
+      {
         path: 'certificates',
         name: 'AdminCertificateView',
         component: AdminCertificateView
+      },
+      {
+        path: 'auth-config',
+        name: 'AdminAuthConfigView',
+        component: AdminAuthConfigView
       },
     ]
   }
