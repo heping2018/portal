@@ -1,0 +1,93 @@
+{
+  "greeting": "¡Hola, bienvenido a nuestra aplicación!",
+  "language": "Idioma",
+  "product": {
+    "title": "Nuestros Productos",
+    "subtitle": "Explore nuestra innovadora gama de soluciones inteligentes.",
+    "search_placeholder": "Buscar por palabra clave...",
+    "view_details": "Ver Detalles",
+    "no_products_found": "No se encontraron productos. Por favor, intente una búsqueda diferente.",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "fetch_error": "Error al obtener los productos. Por favor, inténtelo de nuevo.",
+    "loading": "Cargando productos..."
+  },
+  "product_detail": {
+    "back_to_products": "Volver a Productos",
+    "loading": "Cargando detalles del producto...",
+    "no_id_provided": "No se proporcionó ID de producto.",
+    "not_found": "Lo sentimos, el producto que busca no se pudo encontrar.",
+    "fetch_error": "Ocurrió un error al obtener los detalles del producto.",
+    "specifications": "Especificaciones",
+    "downloads": "Descargas Relacionadas"
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "subtitle": "Acceda a su cuenta para continuar.",
+    "username": "Usuario",
+    "username_placeholder": "Ingrese su usuario",
+    "password": "Contraseña",
+    "password_placeholder": "Ingrese su contraseña",
+    "loading": "Iniciando sesión...",
+    "submit": "Iniciar Sesión",
+    "no_account": "¿No tiene una cuenta? Regístrese",
+    "forgot_password": "¿Olvidó su contraseña?"
+  },
+  "nav": {
+    "home": "Inicio",
+    "products": "Productos",
+    "news": "Noticias",
+    "certifications": "Certificaciones",
+    "about": "Sobre Nosotros",
+    "welcome": "Bienvenido, {name}",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión"
+  },
+  "certifications": {
+    "title": "Nuestras Certificaciones",
+    "subtitle": "Estamos comprometidos con los más altos estándares de calidad y seguridad.",
+    "loading": "Cargando certificaciones...",
+    "error": "Error al cargar las certificaciones. Por favor, inténtelo de nuevo más tarde.",
+    "no_certificates": "No hay certificaciones para mostrar en este momento.",
+    "issuer": "Emisor",
+    "issue_date": "Fecha de Emisión",
+    "verify": "Verificar Certificado"
+  },
+  "news": {
+    "title": "Noticias y Actualizaciones",
+    "subtitle": "Manténgase al día con nuestros últimos anuncios y artículos.",
+    "loading": "Cargando noticias...",
+    "error": "Error al cargar las noticias. Por favor, inténtelo de nuevo más tarde.",
+    "no_articles": "No hay artículos de noticias disponibles en este momento.",
+    "read_more": "Leer Más"
+  },
+  "news_detail": {
+    "loading": "Cargando artículo...",
+    "no_id_provided": "No se proporcionó ID de artículo.",
+    "not_found": "Lo sentimos, el artículo que busca no se pudo encontrar.",
+    "back_to_news": "Volver a Noticias",
+    "published_on": "Publicado el"
+  },
+  "hero": {
+    "title": "Innovar. Integrar. Inspirar.",
+    "subtitle": "Pioneros en la próxima generación de tecnología inteligente para conectar y empoderar al mundo.",
+    "cta": "Descubra Nuestras Soluciones"
+  },
+  "bento": {
+    "item1_title": "Automotriz Inteligente",
+    "item1_desc": "Sistemas inteligentes para los vehículos del mañana.",
+    "item2_title": "Análisis con IA",
+    "item2_desc": "Desbloquee conocimientos con nuestras plataformas de IA de vanguardia.",
+    "item3_title": "Hogar Conectado",
+    "item3_desc": "Integre su vida a la perfección con nuestro ecosistema de hogar inteligente.",
+    "item4_title": "IoT Industrial",
+    "item4_desc": "Soluciones robustas y escalables para la Industria 4.0.",
+    "loading": "Cargando productos...",
+    "error_fetching": "Error al obtener los productos. Por favor, inténtelo de nuevo.",
+    "no_products": "No hay productos destacados disponibles en este momento."
+  },
+  "about": {
+    "title": "Sobre Maxunitech",
+    "subtitle": "Somos arquitectos del futuro, ingenieros de lo imposible y socios en su éxito."
+  }
+}

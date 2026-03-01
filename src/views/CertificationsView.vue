@@ -1,0 +1,135 @@
+<script setup>
+import { useI18n } from 'vue-i18n';
+import { useCertifications } from '../composables/useCertifications.js';
+
+const { t } = useI18n();
+const { certifications, loading, error } = useCertifications();
+
+const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
+</script>
+
+<template>
+  <div class="certifications-view">
+    <header class="view-header">
+      <h1>{{ t('certifications.title') }}</h1>
+      <p class="subtitle">{{ t('certifications.subtitle') }}</p>
+    </header>
+
+    <div v-if="loading" class="state-feedback">
+      <p>{{ t('certifications.loading') }}</p>
+    </div>
+
+    <div v-else-if="error" class="state-feedback error">
+      <p>{{ t(error) }}</p>
+    </div>
+
+    <div v-else-if="certifications.length > 0" class="certifications-grid">
+      <div v-for="cert in certifications" :key="cert.id" class="certification-card">
+        <h3 class="card-title">{{ cert.nameEn }}</h3>
+        <p class="card-issuer">{{ t('certifications.issuer') }}: {{ cert.issuingAuthority }}</p>
+        <p class="card-date">{{ t('certifications.issue_date') }}: {{ formatDate(cert.issueDate) }}</p>
+        <!-- Verification link can be added later if available in the API -->
+        <!-- <a :href="cert.verifyLink" class="card-verify-link">{{ t('certifications.verify') }} &rarr;</a> -->
+      </div>
+    </div>
+
+    <div v-else class="state-feedback">
+      <p>{{ t('certifications.no_certificates') }}</p>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.certifications-view {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #f0f0f0;
+}
+
+.view-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.view-header h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  background: linear-gradient(45deg, #00c3ff, #9cffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: #a0c3e6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.state-feedback {
+  text-align: center;
+  padding: 5rem 0;
+  font-size: 1.2rem;
+  color: #a0c3e6;
+}
+.state-feedback.error {
+  color: #ff6b6b;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.certification-card {
+  background: rgba(0, 20, 40, 0.6);
+  border: 1px solid rgba(0, 195, 255, 0.25);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.certification-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 195, 255, 0.6);
+  box-shadow: 0 10px 25px rgba(0, 25, 45, 0.5);
+}
+
+.card-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.card-issuer, .card-date {
+  font-size: 1rem;
+  color: #a0c3e6;
+  margin-bottom: 0.75rem;
+}
+
+.card-verify-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #00c3ff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.card-verify-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+</style>

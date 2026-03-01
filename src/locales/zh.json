@@ -1,0 +1,196 @@
+{
+  "nav": {
+    "home": "首页",
+    "products": "产品中心",
+    "news": "新闻动态",
+    "certifications": "资质证书",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "admin": "后台管理",
+    "login": "登录",
+    "welcome": "欢迎, {name}",
+    "logout": "退出"
+  },
+  "pagination": {
+    "previous": "上一页",
+    "next": "下一页",
+    "page": "第 {currentPage} 页 / 共 {totalPages} 页"
+  },
+  "hero": {
+    "title": "驱动未来的创新技术",
+    "subtitle": "我们致力于为全球客户提供最前沿、最可靠的工业自动化解决方案，推动您的业务进入下一个高效时代。",
+    "cta": "探索我们的产品"
+  },
+  "bento": {
+    "loading": "正在加载特色产品...",
+    "no_products": "暂无特色产品展示。"
+  },
+  "product": {
+    "title": "产品中心",
+    "subtitle": "探索我们多样化的工业自动化产品线，找到满足您特定需求的完美解决方案。",
+    "search_placeholder": "搜索产品名称、型号或类别...",
+    "loading": "正在加载产品列表...",
+    "no_products_found": "未找到符合条件的产品。",
+    "previous": "上一页",
+    "next": "下一页",
+    "fetch_error": "加载产品失败，请稍后重试。"
+  },
+  "news": {
+    "title": "新闻与动态",
+    "subtitle": "了解我们的最新创新、行业见解和公司动态。",
+    "loading": "正在加载新闻...",
+    "error": "加载新闻失败，请稍后重试。",
+    "no_articles": "暂无新闻发布。"
+  },
+  "certifications": {
+    "title": "我们的资质与荣誉",
+    "subtitle": "我们对质量、安全和创新的承诺，得到了行业权威机构的广泛认可。",
+    "issuer": "颁发机构",
+    "issue_date": "颁发日期",
+    "verify": "验证证书",
+    "loading": "正在加载证书列表...",
+    "error": "加载证书失败，请稍后重试。",
+    "no_certificates": "暂无资质证书信息。"
+  },
+  "about": {
+    "title": "关于 Maxunitech",
+    "subtitle": "我们是您值得信赖的工业自动化合作伙伴。"
+  },
+  "login": {
+    "title": "管理员登录",
+    "subtitle": "欢迎回来，请输入您的凭据",
+    "username": "用户名",
+    "password": "密码",
+    "username_placeholder": "请输入用户名",
+    "password_placeholder": "请输入密码",
+    "submit": "登 录",
+    "no_account": "还没有账户？",
+    "forgot_password": "忘记密码？",
+    "error_login_failed": "登录失败，请检查您的凭据。"
+  },
+  "admin": {
+    "title": "后台管理中心",
+    "welcome": "欢迎来到 Maxunitech 管理后台。",
+    "product_management": "产品管理",
+    "product_management_desc": "在这里管理您的所有产品信息。",
+    "news_management": "新闻与动态管理",
+    "news_management_desc": "发布和更新公司的新闻与动态。",
+    "certificate_management": "资质证书管理",
+    "certificate_management_desc": "上传和管理公司的各类资质证书。",
+    "user_management": "用户管理",
+    "user_management_desc": "管理后台用户账户和权限。"
+  },
+  "admin_user": {
+    "title": "用户管理",
+    "add": "新增用户",
+    "loading": "正在加载用户...",
+    "fetch_error": "加载用户列表失败。",
+    "save_error": "保存用户失败。",
+    "delete_error": "删除用户失败。",
+    "confirm_delete": "您确定要删除此用户吗？",
+    "edit_title": "编辑用户",
+    "add_title": "新增用户",
+    "table": {
+      "username": "用户名",
+      "email": "电子邮箱",
+      "role": "角色",
+      "actions": "操作"
+    },
+    "form": {
+      "username": "用户名",
+      "email": "电子邮箱",
+      "role": "角色",
+      "password": "密码"
+    },
+    "actions": {
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存"
+    }
+  },
+  "admin_product": {
+    "title": "产品管理",
+    "add": "新增产品",
+    "loading": "正在加载产品...",
+    "fetch_error": "加载产品列表失败。",
+    "save_error": "保存产品失败。",
+    "delete_error": "删除产品失败。",
+    "confirm_delete": "您确定要删除此产品吗？",
+    "edit_title": "编辑产品",
+    "add_title": "新增产品",
+    "table": {
+      "name": "产品名称",
+      "description": "描述",
+      "actions": "操作"
+    },
+    "form": {
+      "name_en": "产品名称 (英文)",
+      "description_en": "产品描述 (英文)",
+      "name_zh": "产品名称 (中文)",
+      "description_zh": "产品描述 (中文)"
+    },
+    "actions": {
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存"
+    }
+  },
+  "admin_news": {
+    "title": "新闻与动态管理",
+    "add": "新增新闻",
+    "loading": "正在加载新闻...",
+    "fetch_error": "加载新闻列表失败。",
+    "save_error": "保存新闻失败。",
+    "delete_error": "删除新闻失败。",
+    "confirm_delete": "您确定要删除此新闻条目吗？",
+    "edit_title": "编辑新闻",
+    "add_title": "新增新闻",
+    "table": {
+      "title": "标题",
+      "author": "作者",
+      "publish_date": "发布日期",
+      "actions": "操作"
+    },
+    "form": {
+      "title_en": "标题 (英文)",
+      "content_en": "内容 (英文)",
+      "title_zh": "标题 (中文)",
+      "content_zh": "内容 (中文)",
+      "author": "作者",
+      "publish_date": "发布日期"
+    },
+    "actions": {
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存"
+    }
+  },
+  "admin_certificate": {
+    "title": "资质证书管理",
+    "add": "新增证书",
+    "loading": "正在加载证书...",
+    "fetch_error": "加载证书列表失败。",
+    "save_error": "保存证书失败。",
+    "delete_error": "删除证书失败。",
+    "confirm_delete": "您确定要删除此证书吗？",
+    "edit_title": "编辑证书",
+    "add_title": "新增证书",
+    "table": {
+      "name": "证书名称",
+      "issuing_org": "颁发机构",
+      "issue_date": "颁发日期",
+      "actions": "操作"
+    },
+    "form": {
+      "name_en": "证书名称 (英文)",
+      "name_zh": "证书名称 (中文)",
+      "issuing_org": "颁发机构",
+      "issue_date": "颁发日期"
+    },
+    "actions": {
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存"
+    }
+  }
+}

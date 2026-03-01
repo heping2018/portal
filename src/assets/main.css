@@ -1,0 +1,59 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding/border are included in the total width/height */
+}
+
+body {
+  background-color: #000B18; /* Set a consistent background */
+  color: rgba(255, 255, 255, 0.87);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+}
+
+a {
+  text-decoration: none;
+  color: #00AEEF;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #008fbf;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d2a42; /* Dark blue track, matching the theme */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00a8e8;
+  border-radius: 10px;
+  border: 2px solid #0d2a42; /* Creates padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00c0ff; /* Lighter blue on hover */
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

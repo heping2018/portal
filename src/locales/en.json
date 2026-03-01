@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "news": "News",
+    "certifications": "Certifications",
+    "about": "About Us",
+    "contact": "Contact",
+    "admin": "Admin",
+    "login": "Login",
+    "welcome": "Welcome, {name}",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Driving the Future with Innovative Technology",
+    "subtitle": "We are dedicated to providing cutting-edge and reliable industrial automation solutions to our global clients, propelling your business into the next era of efficiency.",
+    "cta": "Explore Our Products"
+  },
+  "bento": {
+    "loading": "Loading featured products...",
+    "no_products": "No featured products to display yet."
+  },
+  "product": {
+    "title": "Product Center",
+    "subtitle": "Explore our diverse line of industrial automation products and find the perfect solution for your specific needs.",
+    "search_placeholder": "Search by product name, model, or category...",
+    "loading": "Loading products...",
+    "no_products_found": "No products found matching your criteria.",
+    "previous": "Previous",
+    "next": "Next",
+    "fetch_error": "Failed to load products. Please try again later."
+  },
+  "news": {
+    "title": "News & Updates",
+    "subtitle": "Stay informed about our latest innovations, industry insights, and company news.",
+    "loading": "Loading news...",
+    "error": "Failed to load news. Please try again later.",
+    "no_articles": "No news articles have been published yet."
+  },
+  "certifications": {
+    "title": "Our Certifications & Awards",
+    "subtitle": "Our commitment to quality, security, and innovation is recognized by industry authorities.",
+    "issuer": "Issuer",
+    "issue_date": "Issue Date",
+    "verify": "Verify Certificate",
+    "loading": "Loading certifications...",
+    "error": "Failed to load certifications. Please try again later.",
+    "no_certificates": "No certification information is available yet."
+  },
+  "about": {
+    "title": "About Maxunitech",
+    "subtitle": "Your trusted partner in industrial automation."
+  },
+  "login": {
+    "title": "Admin Login",
+    "subtitle": "Welcome back, please enter your credentials",
+    "username": "Username",
+    "password": "Password",
+    "username_placeholder": "Please enter your username",
+    "password_placeholder": "Please enter your password",
+    "submit": "Login",
+    "no_account": "Don't have an account?",
+    "forgot_password": "Forgot password?",
+    "error_login_failed": "Login failed, please check your credentials."
+  },
+  "admin": {
+    "title": "Admin Control Center",
+    "welcome": "Welcome to the Maxunitech Admin Panel.",
+    "product_management": "Product Management",
+    "product_management_desc": "Manage all your product information here.",
+    "news_management": "News & Updates Management",
+    "news_management_desc": "Publish and update company news and updates.",
+    "certificate_management": "Certificate Management",
+    "certificate_management_desc": "Upload and manage all company certifications.",
+    "user_management": "User Management",
+    "user_management_desc": "Manage admin user accounts and permissions."
+  },
+  "user_management": {
+    "title": "User Management",
+    "add_user": "Add User",
+    "search_placeholder": "Search by username, nickname, or email...",
+    "search": "Search",
+    "no_users": "No users found",
+    "table": {
+      "id": "User ID",
+      "username": "Username",
+      "nickname": "Nickname",
+      "email": "Email",
+      "role": "Role",
+      "registration_date": "Registration Date",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  }
+}

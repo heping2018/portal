@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "firebase": {
+      "command": "./node_modules/.bin/firebase",
+      "args": [
+        "experimental:mcp"
+      ]
+    },
+   "chrome-devtools": {
+      "command": "./node_modules/.bin/chrome-devtools-mcp",
+      "args": [
+        "--no-usage-statistics",
+        "--no-performance-crux"
+      ],
+      "env": {
+        "CHROME_PATH": "chromium"
+      }
+    }
+  }
+}
