@@ -1,0 +1,45 @@
+{
+  "admin_user": {
+    "export": "导出Excel",
+    "import": "导入用户",
+    "batch_delete": "批量删除",
+    "import_title": "导入用户",
+    "download_template": "下载导入模板",
+    "select_file": "选择文件",
+    "update_support": "支持更新已存在的用户",
+    "change_password_title": "修改密码",
+    "import_success": "导入成功！成功 {success} 条，失败 {failed} 条",
+    "import_error": "导入失败",
+    "export_error": "导出失败",
+    "template_error": "下载模板失败",
+    "password_changed": "密码修改成功",
+    "password_mismatch": "两次输入的密码不一致",
+    "confirm_batch_delete": "确定要删除选中的 {count} 个用户吗？",
+    "status_active": "启用",
+    "status_inactive": "禁用",
+    "table": {
+      "username": "用户名",
+      "email": "电子邮箱",
+      "role": "角色",
+      "status": "状态",
+      "actions": "操作"
+    },
+    "form": {
+      "username": "用户名",
+      "email": "电子邮箱",
+      "role": "角色",
+      "password": "密码",
+      "new_password": "新密码",
+      "confirm_password": "确认密码"
+    },
+    "actions": {
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存",
+      "change_password": "改密",
+      "enable": "启用",
+      "disable": "禁用"
+    },
+    "password_placeholder_edit": "留空则不修改密码"
+  }
+}

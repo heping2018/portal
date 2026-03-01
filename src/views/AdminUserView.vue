@@ -4,6 +4,15 @@
 
     <div class="controls">
       <button class="add-button" @click="openModal()">{{ t('admin_user.add') }}</button>
+      <button class="export-button" @click="handleExport">{{ t('admin_user.export') }}</button>
+      <button class="import-button" @click="showImportModal = true">{{ t('admin_user.import') }}</button>
+      <button 
+        class="batch-delete-button" 
+        @click="handleBatchDelete"
+        :disabled="selectedUsers.length === 0"
+      >
+        {{ t('admin_user.batch_delete') }} ({{ selectedUsers.length }})
+      </button>
     </div>
 
     <div v-if="loading" class="loading-indicator">{{ t('admin_user.loading') }}</div>
@@ -13,19 +22,46 @@
       <table>
         <thead>
           <tr>
+            <th>
+              <input 
+                type="checkbox" 
+                @change="toggleSelectAll"
+                :checked="isAllSelected"
+              >
+            </th>
             <th>{{ t('admin_user.table.username') }}</th>
             <th>{{ t('admin_user.table.email') }}</th>
             <th>{{ t('admin_user.table.role') }}</th>
+            <th>{{ t('admin_user.table.status') }}</th>
             <th>{{ t('admin_user.table.actions') }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="user in users" :key="user.id">
+            <td>
+              <input 
+                type="checkbox" 
+                v-model="selectedUsers"
+                :value="user.id"
+              >
+            </td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.role }}</td>
+            <td>
+              <span :class="['status-badge', user.status === 1 ? 'active' : 'inactive']">
+                {{ user.status === 1 ? t('admin_user.status_active') : t('admin_user.status_inactive') }}
+              </span>
+            </td>
             <td class="action-buttons">
               <button class="edit-btn" @click="openModal(user)">{{ t('admin_user.actions.edit') }}</button>
+              <button class="password-btn" @click="openPasswordModal(user)">{{ t('admin_user.actions.change_password') }}</button>
+              <button 
+                :class="['status-btn', user.status === 1 ? 'disable-btn' : 'enable-btn']"
+                @click="handleToggleStatus(user)"
+              >
+                {{ user.status === 1 ? t('admin_user.actions.disable') : t('admin_user.actions.enable') }}
+              </button>
               <button class="delete-btn" @click="removeUser(user.id)">{{ t('admin_user.actions.delete') }}</button>
             </td>
           </tr>
@@ -59,10 +95,68 @@
           </div>
           <div class="form-group">
             <label>{{ t('admin_user.form.password') }}</label>
-            <input type="password" v-model="currentUser.password" :placeholder="currentUser.id ? 'Leave blank to keep current password' : ''" :required="!currentUser.id">
+            <input 
+              type="password" 
+              v-model="currentUser.password" 
+              :placeholder="currentUser.id ? t('admin_user.password_placeholder_edit') : ''"
+              :required="!currentUser.id"
+            >
           </div>
           <button type="submit" class="save-button">{{ t('admin_user.actions.save') }}</button>
         </form>
+      </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div v-if="showPasswordModal" class="modal" @click="closePasswordModal">
+      <div class="modal-content" @click.stop>
+        <span class="close" @click="closePasswordModal">&times;</span>
+        <h2>{{ t('admin_user.change_password_title') }}</h2>
+        <form @submit.prevent="handleChangePassword">
+          <div class="form-group">
+            <label>{{ t('admin_user.form.username') }}</label>
+            <input :value="passwordUser.username" disabled>
+          </div>
+          <div class="form-group">
+            <label>{{ t('admin_user.form.new_password') }}</label>
+            <input type="password" v-model="newPassword" required>
+          </div>
+          <div class="form-group">
+            <label>{{ t('admin_user.form.confirm_password') }}</label>
+            <input type="password" v-model="confirmPassword" required>
+          </div>
+          <button type="submit" class="save-button">{{ t('admin_user.actions.save') }}</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div v-if="showImportModal" class="modal" @click="showImportModal = false">
+      <div class="modal-content" @click.stop>
+        <span class="close" @click="showImportModal = false">&times;</span>
+        <h2>{{ t('admin_user.import_title') }}</h2>
+        <div class="import-section">
+          <button class="template-button" @click="handleDownloadTemplate">
+            {{ t('admin_user.download_template') }}
+          </button>
+          <div class="form-group">
+            <label>{{ t('admin_user.select_file') }}</label>
+            <input type="file" @change="handleFileSelect" accept=".xlsx,.xls">
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" v-model="importUpdateSupport">
+              {{ t('admin_user.update_support') }}
+            </label>
+          </div>
+          <button 
+            class="import-button" 
+            @click="handleImport"
+            :disabled="!importFile"
+          >
+            {{ t('admin_user.import') }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -71,7 +165,19 @@
 <script setup>
 import { ref, reactive, onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { getUserPage, createUser, updateUser, deleteUser } from '../services/userAdminService';
+import { 
+  getUserPage, 
+  createUser, 
+  updateUser, 
+  deleteUser,
+  batchDeleteUsers,
+  getUserDetail,
+  updateUserPassword,
+  updateUserStatus,
+  exportUserExcel,
+  getImportTemplate,
+  importUsers
+} from '../services/userAdminService';
 
 const { t } = useI18n();
 
@@ -81,6 +187,16 @@ const loading = ref(true);
 const error = ref(null);
 const showModal = ref(false);
 const currentUser = ref({});
+const selectedUsers = ref([]);
+
+const showPasswordModal = ref(false);
+const passwordUser = ref({});
+const newPassword = ref('');
+const confirmPassword = ref('');
+
+const showImportModal = ref(false);
+const importFile = ref(null);
+const importUpdateSupport = ref(false);
 
 const searchParams = reactive({
   pageNo: 1,
@@ -88,6 +204,10 @@ const searchParams = reactive({
 });
 
 const totalPages = computed(() => Math.ceil(total.value / searchParams.pageSize));
+
+const isAllSelected = computed(() => {
+  return users.value.length > 0 && selectedUsers.value.length === users.value.length;
+});
 
 const fetchUsers = async () => {
   loading.value = true;
@@ -99,300 +219,4 @@ const fetchUsers = async () => {
   } catch (err) {
     error.value = t('admin_user.fetch_error');
     console.error('Failed to fetch users:', err);
-  } finally {
-    loading.value = false;
-  }
-};
-
-const openModal = (user = {}) => {
-  currentUser.value = { ...user };
-  // Clear password for security when editing
-  if (currentUser.value.id) {
-    currentUser.value.password = '';
-  }
-  showModal.value = true;
-};
-
-const closeModal = () => {
-  showModal.value = false;
-  currentUser.value = {};
-}
-
-const saveUser = async () => {
-  try {
-    const userData = { ...currentUser.value };
-    // Do not send the password if it is empty during an update
-    if (userData.id && !userData.password) {
-      delete userData.password;
-    }
-
-    if (userData.id) {
-      await updateUser(userData);
-    } else {
-      await createUser(userData);
-    }
-    closeModal();
-    fetchUsers(); // Refresh list
-  } catch (err) {
-    error.value = t('admin_user.save_error');
-    console.error('Failed to save user:', err);
-  }
-};
-
-const removeUser = async (id) => {
-  if (!confirm(t('admin_user.confirm_delete'))) return;
-  try {
-    await deleteUser(id);
-    fetchUsers(); // Refresh list
-  } catch (err) {
-    error.value = t('admin_user.delete_error');
-    console.error('Failed to delete user:', err);
-  }
-};
-
-const prevPage = () => {
-  if (searchParams.pageNo > 1) {
-    searchParams.pageNo--;
-    fetchUsers();
-  }
-}
-
-const nextPage = () => {
-  if (searchParams.pageNo < totalPages.value) {
-    searchParams.pageNo++;
-    fetchUsers();
-  }
-}
-
-onMounted(fetchUsers);
-</script>
-
-<style scoped>
-:root {
-  --glow-blue: #00BFFF;
-  --border-blue: rgba(0, 150, 255, 0.2);
-  --text-primary: #E0EFFF;
-  --text-secondary: #B0C4DE;
-  --bg-dark-transparent: rgba(13, 21, 42, 0.7);
-}
-
-.admin-view {
-  color: var(--text-primary);
-}
-
-h1 {
-  color: var(--glow-blue);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.controls {
-  margin-bottom: 2rem;
-  text-align: right;
-}
-
-.add-button, .save-button {
-  border: 1px solid var(--border-blue);
-  background: var(--bg-dark-transparent);
-  color: var(--text-secondary);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: box-shadow 0.3s, color 0.3s, transform 0.3s;
-  font-weight: bold;
-}
-
-.add-button:hover, .save-button:hover {
-  color: var(--glow-blue);
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
-  transform: translateY(-2px);
-}
-
-.loading-indicator, .error-indicator {
-  text-align: center;
-  font-size: 1.2rem;
-  padding: 3rem 0;
-  color: var(--text-secondary);
-}
-
-.error-indicator {
-  color: #ff6b6b;
-}
-
-.table-container {
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin-bottom: 2rem;
-  border: 1px solid var(--border-blue);
-  border-radius: 8px;
-  background-color: var(--bg-dark-transparent);
-}
-
-th, td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid var(--border-blue);
-}
-
-thead th {
-  color: var(--glow-blue);
-  font-weight: bold;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-tbody tr {
-  transition: background-color 0.3s;
-}
-
-tbody tr:hover {
-  background-color: rgba(0, 191, 255, 0.05);
-}
-
-td.action-buttons {
-  white-space: nowrap;
-}
-
-.action-buttons button {
-  border: 1px solid var(--border-blue);
-  background: transparent;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  color: var(--text-secondary);
-  transition: all 0.3s;
-}
-
-.action-buttons button:hover {
-  color: var(--glow-blue);
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
-  border-color: var(--glow-blue);
-}
-
-.edit-btn {
-  margin-right: 8px;
-}
-
-.delete-btn:hover {
-    color: #ff6b6b;
-    border-color: #ff6b6b;
-    box-shadow: 0 0 10px rgba(255, 107, 107, 0.4);
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  gap: 1rem;
-}
-
-.pagination button {
-  border: 1px solid var(--border-blue);
-  background: transparent;
-  color: var(--text-secondary);
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-}
-
-.pagination button:hover:not(:disabled) {
-  background-color: rgba(0, 191, 255, 0.1);
-  color: var(--glow-blue);
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
-}
-
-.pagination button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-/* Modal */
-.modal { 
-  position: fixed; 
-  z-index: 100; 
-  left: 0; top: 0; 
-  width: 100%; height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  width: 90%;
-  max-width: 500px;
-  padding: 32px;
-  position: relative;
-  background-color: var(--bg-dark-transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 16px;
-  border: 1px solid var(--border-blue);
-  box-shadow: 0 0 25px rgba(0, 191, 255, 0.2);
-}
-
-.close {
-  color: var(--text-secondary);
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.close:hover, .close:focus {
-  color: var(--glow-blue);
-}
-
-.modal-content h2 {
-  text-align: center;
-  color: var(--glow-blue);
-  margin-bottom: 2rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: .5rem;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  background-color: rgba(13, 21, 42, 0.8);
-  border: 1px solid var(--border-blue);
-  border-radius: 8px;
-  color: var(--text-primary);
-  font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: var(--glow-blue);
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-}
-</style>
+  } fina
