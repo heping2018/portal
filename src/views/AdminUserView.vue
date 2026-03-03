@@ -219,4 +219,172 @@ const fetchUsers = async () => {
   } catch (err) {
     error.value = t('admin_user.fetch_error');
     console.error('Failed to fetch users:', err);
-  } fina
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(fetchUsers);
+
+const openModal = async (user = null) => {
+  if (user) {
+    const userDetail = await getUserDetail(user.id);
+    currentUser.value = { ...userDetail };
+    currentUser.value.password = '';
+  } else {
+    currentUser.value = { username: '', email: '', role: '', password: '' };
+  }
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
+  currentUser.value = {};
+};
+
+const saveUser = async () => {
+  try {
+    if (currentUser.value.id) {
+      await updateUser(currentUser.value);
+    } else {
+      await createUser(currentUser.value);
+    }
+    fetchUsers();
+    closeModal();
+  } catch (err) {
+    console.error('Failed to save user:', err);
+  }
+};
+
+const removeUser = async (id) => {
+  if (confirm(t('admin_user.confirm_delete'))) {
+    try {
+      await deleteUser(id);
+      fetchUsers();
+    } catch (err) {
+      console.error('Failed to delete user:', err);
+    }
+  }
+};
+
+const openPasswordModal = (user) => {
+  passwordUser.value = user;
+  newPassword.value = '';
+  confirmPassword.value = '';
+  showPasswordModal.value = true;
+};
+
+const closePasswordModal = () => {
+  showPasswordModal.value = false;
+  passwordUser.value = {};
+};
+
+const handleChangePassword = async () => {
+  if (newPassword.value !== confirmPassword.value) {
+    alert(t('admin_user.password_mismatch'));
+    return;
+  }
+  try {
+    await updateUserPassword({ id: passwordUser.value.id, password: newPassword.value });
+    closePasswordModal();
+  } catch (err) {
+    console.error('Failed to change password:', err);
+  }
+};
+
+const handleToggleStatus = async (user) => {
+  try {
+    const newStatus = user.status === 1 ? 0 : 1;
+    await updateUserStatus({ id: user.id, status: newStatus });
+    fetchUsers();
+  } catch (err) {
+    console.error('Failed to toggle user status:', err);
+  }
+};
+
+const handleExport = async () => {
+  try {
+    await exportUserExcel(searchParams);
+  } catch (err) {
+    console.error('Failed to export users:', err);
+  }
+};
+
+const handleDownloadTemplate = async () => {
+  try {
+    await getImportTemplate();
+  } catch (err) {
+    console.error('Failed to download template:', err);
+  }
+};
+
+const handleFileSelect = (event) => {
+  importFile.value = event.target.files[0];
+};
+
+const handleImport = async () => {
+  if (!importFile.value) {
+    alert(t('admin_user.select_file_to_import'));
+    return;
+  }
+  try {
+    await importUsers(importFile.value, importUpdateSupport.value);
+    showImportModal.value = false;
+    fetchUsers();
+  } catch (err) {
+    console.error('Failed to import users:', err);
+  }
+};
+
+const handleBatchDelete = async () => {
+  if (selectedUsers.value.length === 0) {
+    alert(t('admin_user.select_users_to_delete'));
+    return;
+  }
+  if (confirm(t('admin_user.confirm_batch_delete', { count: selectedUsers.value.length }))) {
+    try {
+      await batchDeleteUsers(selectedUsers.value);
+      selectedUsers.value = [];
+      fetchUsers();
+    } catch (err) {
+      console.error('Failed to batch delete users:', err);
+    }
+  }
+};
+
+const toggleSelectAll = (event) => {
+  if (event.target.checked) {
+    selectedUsers.value = users.value.map(user => user.id);
+  } else {
+    selectedUsers.value = [];
+  }
+};
+
+const prevPage = () => {
+  if (searchParams.pageNo > 1) {
+    searchParams.pageNo--;
+    fetchUsers();
+  }
+};
+
+const nextPage = () => {
+  if (searchParams.pageNo < totalPages.value) {
+    searchParams.pageNo++;
+    fetchUsers();
+  }
+};
+</script>
+
+<style scoped>
+@import '../assets/admin-view.css';
+
+.edit-btn { background: linear-gradient(45deg, #3b82f6, #60a5fa); }
+.password-btn { background: linear-gradient(45deg, #f97316, #fb923c); }
+.status-btn.enable-btn { background: linear-gradient(45deg, #22c55e, #4ade80); }
+.status-btn.disable-btn { background: linear-gradient(45deg, #f43f5e, #f87171); }
+.delete-btn { background: linear-gradient(45deg, #ef4444, #f87171); }
+
+.action-buttons button:hover {
+  filter: brightness(1.2);
+}
+</style>

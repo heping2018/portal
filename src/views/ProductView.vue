@@ -1,5 +1,5 @@
-<script setup>
-import { computed, onMounted, ref, watch } from 'vue';
+ha<script setup>
+import { computed, onMounted, ref, watch, nextTick } from 'vue'; // Import nextTick
 import { useI18n } from 'vue-i18n';
 import { useProducts } from '../composables/useProducts.js';
 import VanillaTilt from 'vanilla-tilt';
@@ -40,7 +40,7 @@ onMounted(() => {
 watch(products, (newProducts) => {
   if (newProducts.length > 0) {
     // Use nextTick to ensure the DOM is updated before initializing tilt
-    onMounted(() => {
+    nextTick(() => {
         initializeTilt();
     });
   }

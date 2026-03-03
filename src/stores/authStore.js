@@ -12,10 +12,21 @@ export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = computed(() => !!accessToken.value);
 
   function setTokens(newAccessToken, newRefreshToken) {
-    accessToken.value = newAccessToken;
-    refreshToken.value = newRefreshToken;
-    localStorage.setItem('accessToken', newAccessToken);
-    localStorage.setItem('refreshToken', newRefreshToken);
+    if (newAccessToken) {
+      accessToken.value = newAccessToken;
+      localStorage.setItem('accessToken', newAccessToken);
+    } else {
+      accessToken.value = null;
+      localStorage.removeItem('accessToken');
+    }
+
+    if (newRefreshToken) {
+      refreshToken.value = newRefreshToken;
+      localStorage.setItem('refreshToken', newRefreshToken);
+    } else {
+      refreshToken.value = null;
+      localStorage.removeItem('refreshToken');
+    }
   }
 
   function resetLoginState() {
@@ -27,12 +38,20 @@ export const useAuthStore = defineStore('auth', () => {
     isLoading.value = true;
     error.value = null;
     try {
-      const data = await apiLogin(username, password);
-      setTokens(data.accessToken, data.refreshToken);
-      await fetchPermissionInfo();
-      return true;
+      // `response` is the object { code, msg, data: { accessToken, ... } }
+      const response = await apiLogin(username, password);
+      
+      // CORRECTLY extract the tokens from the inner `data` object
+      if (response && response.code === 0 && response.data && response.data.accessToken) {
+        setTokens(response.data.accessToken, response.data.refreshToken);
+        await fetchPermissionInfo();
+        return true;
+      } else {
+        throw new Error(response.msg || 'Login failed: Invalid response from server.');
+      }
     } catch (e) {
       error.value = e.message || 'An unknown error occurred';
+      setTokens(null, null); // Ensure any partial state is cleared
       return false;
     } finally {
       isLoading.value = false;
@@ -47,23 +66,29 @@ export const useAuthStore = defineStore('auth', () => {
       localStorage.setItem('user', JSON.stringify(user.value));
     } catch (e) {
       console.error("Failed to fetch user info:", e);
+      // If fetching user info fails due to auth error, trigger logout
+      if (e.message.includes('401')) {
+        logout();
+      }
     }
   }
 
   async function logout() {
-    if (accessToken.value) {
+    const tokenBeforeLogout = accessToken.value;
+    
+    // Clear client state immediately for responsive UI
+    setTokens(null, null);
+    user.value = null;
+    localStorage.removeItem('user');
+
+    // Attempt to call backend logout only if a token was present
+    if (tokenBeforeLogout) {
       try {
-        await apiLogout();
+        await apiLogout(); 
       } catch (e) {
-        console.error("API logout failed, clearing client-side state anyway.", e);
+        console.error("API logout call failed, but client state is already cleared.", e);
       }
     }
-    accessToken.value = null;
-    refreshToken.value = null;
-    user.value = null;
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('user');
   }
 
   async function tryToResumeSession() {

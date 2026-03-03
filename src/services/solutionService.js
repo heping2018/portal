@@ -1,8 +1,8 @@
 import request from '../utils/request';
 
-const API_BASE_URL = 'app-api/public/certificate';
+const API_BASE_URL = 'app-api/public/solution';
 
-export const getCertificates = (params) => {
+export const getSolutionList = (params) => {
   return request({
     url: `${API_BASE_URL}/list`,
     method: 'get',

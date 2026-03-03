@@ -1,165 +1,98 @@
 import request from '../utils/request';
 
-/**
- * Fetches a paginated list of users from the backend.
- * @param {object} params - Parameters for pagination and filtering.
- * @returns {Promise<object>} - A promise that resolves to the user list and total count.
- */
-export const getUserPage = (params) => {
-  return request({
-    url: '/admin-api/system/user/page',
-    method: 'get',
-    params,
-  });
-};
+const API_BASE_URL = 'admin-api/system/user';
 
-/**
- * Gets user details by ID.
- * @param {number} id - The user ID.
- * @returns {Promise<object>} - A promise that resolves to the user detail data.
- */
-export const getUserDetail = (id) => {
+export const createUser = (data) => {
   return request({
-    url: '/admin-api/system/user/get',
-    method: 'get',
-    params: { id },
-  });
-};
-
-/**
- * Gets a simple list of all users (for dropdowns, etc.).
- * @returns {Promise<object>} - A promise that resolves to the simplified user list.
- */
-export const getUserSimpleList = () => {
-  return request({
-    url: '/admin-api/system/user/list-all-simple',
-    method: 'get',
-  });
-};
-
-/**
- * Creates a new user.
- * @param {object} userData - The data for the new user.
- * @returns {Promise<object>} - A promise that resolves to the newly created user data.
- */
-export const createUser = (userData) => {
-  return request({
-    url: '/admin-api/system/user/create',
+    url: `${API_BASE_URL}/create`,
     method: 'post',
-    data: userData,
+    data,
   });
 };
 
-/**
- * Updates an existing user.
- * @param {object} userData - The user data to update. Must include the user's ID.
- * @returns {Promise<object>} - A promise that resolves to the updated user data.
- */
-export const updateUser = (userData) => {
+export const updateUser = (data) => {
   return request({
-    url: '/admin-api/system/user/update',
+    url: `${API_BASE_URL}/update`,
     method: 'put',
-    data: userData,
+    data,
   });
 };
 
-/**
- * Deletes a user by their ID.
- * @param {number} id - The ID of the user to delete.
- * @returns {Promise<object>} - A promise that resolves upon successful deletion.
- */
 export const deleteUser = (id) => {
   return request({
-    url: '/admin-api/system/user/delete',
+    url: `${API_BASE_URL}/delete`,
     method: 'delete',
     params: { id },
   });
 };
 
-/**
- * Batch deletes users by their IDs.
- * @param {number[]} ids - The array of user IDs to delete.
- * @returns {Promise<object>} - A promise that resolves upon successful deletion.
- */
-export const batchDeleteUsers = (ids) => {
+export const updateUserPassword = (data) => {
   return request({
-    url: '/admin-api/system/user/delete-list',
-    method: 'delete',
-    params: { ids },
-  });
-};
-
-/**
- * Updates a user's password.
- * @param {number} id - The user ID.
- * @param {string} password - The new password.
- * @returns {Promise<object>} - A promise that resolves upon successful update.
- */
-export const updateUserPassword = (id, password) => {
-  return request({
-    url: '/admin-api/system/user/update-password',
+    url: `${API_BASE_URL}/update-password`,
     method: 'put',
-    data: { id, password },
+    data,
   });
 };
 
-/**
- * Updates a user's status (enable/disable).
- * @param {number} id - The user ID.
- * @param {number} status - The status (0-disabled, 1-enabled).
- * @returns {Promise<object>} - A promise that resolves upon successful update.
- */
-export const updateUserStatus = (id, status) => {
+export const updateUserStatus = (data) => {
   return request({
-    url: '/admin-api/system/user/update-status',
+    url: `${API_BASE_URL}/update-status`,
     method: 'put',
-    data: { id, status },
+    data,
   });
 };
 
-/**
- * Exports users to Excel file.
- * @param {object} params - Filter parameters for export.
- * @returns {Promise<object>} - A promise that resolves with the file download.
- */
+export const getUserPage = (params) => {
+  return request({
+    url: `${API_BASE_URL}/page`,
+    method: 'get',
+    params,
+  });
+};
+
+export const getUserDetail = (id) => {
+  return request({
+    url: `${API_BASE_URL}/get`,
+    method: 'get',
+    params: { id },
+  });
+};
+
 export const exportUserExcel = (params) => {
   return request({
-    url: '/admin-api/system/user/export-excel',
+    url: `${API_BASE_URL}/export-excel`,
     method: 'get',
     params,
     responseType: 'blob',
   });
 };
 
-/**
- * Gets the import template for users.
- * @returns {Promise<object>} - A promise that resolves with the template file download.
- */
 export const getImportTemplate = () => {
   return request({
-    url: '/admin-api/system/user/get-import-template',
+    url: `${API_BASE_URL}/get-import-template`,
     method: 'get',
     responseType: 'blob',
   });
 };
 
-/**
- * Imports users from an Excel file.
- * @param {File} file - The Excel file to import.
- * @param {boolean} updateSupport - Whether to support updating existing users.
- * @returns {Promise<object>} - A promise that resolves with the import result.
- */
-export const importUsers = (file, updateSupport = false) => {
+export const importUsers = (file, updateSupport) => {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('updateSupport', updateSupport);
-  
   return request({
-    url: '/admin-api/system/user/import',
+    url: `${API_BASE_URL}/import`,
     method: 'post',
     data: formData,
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
+};
+
+export const batchDeleteUsers = (ids) => {
+    return request({
+        url: `${API_BASE_URL}/batch-delete`,
+        method: 'delete',
+        params: { ids: ids.join(',') }, // assuming the backend expects a comma-separated string
+    });
 };

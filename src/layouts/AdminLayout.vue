@@ -10,6 +10,9 @@
         <router-link to="/admin/products">{{ t('admin.product_management') }}</router-link>
         <router-link to="/admin/news">{{ t('admin.news_management') }}</router-link>
         <router-link to="/admin/certificates">{{ t('admin.certificate_management') }}</router-link>
+        <router-link to="/admin/categories">{{ t('admin.category_management') }}</router-link>
+        <router-link to="/admin/dictionary">{{ t('admin.dictionary_management') }}</router-link>
+        <router-link to="/admin/files">{{ t('admin.file_management') }}</router-link>
       </nav>
     </aside>
     <div class="main-content">

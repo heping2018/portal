@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { getProductsPage } from '../services/productService';
+import { getProductList } from '../services/productService'; // Corrected import
 import { useRouter } from 'vue-router';
 import VanillaTilt from 'vanilla-tilt';
 
@@ -32,7 +32,8 @@ const getLocalizedField = (item, field) => {
 const fetchFeaturedProducts = async () => {
   try {
     loading.value = true;
-    const response = await getProductsPage(1, 4); // Fetch 4 products
+    // Corrected function call to match the service definition
+    const response = await getProductList({ pageNo: 1, pageSize: 4 }); 
     products.value = response.list || [];
     
     await nextTick();
@@ -147,12 +148,12 @@ onMounted(fetchFeaturedProducts);
   color: #ff6b6b;
 }
 
+/* New, cleaned up Grid Definition */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 250px);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 260px);
   gap: 1.5rem;
-  height: 515px; /* 250px * 2 + 1.5rem gap */
 }
 
 .bento-item {
@@ -219,34 +220,10 @@ onMounted(fetchFeaturedProducts);
   text-overflow: ellipsis;
 }
 
-/* Grid layout definitions */
-.main-item {
-  grid-column: 1 / 3; /* Span 2 columns */
-  grid-row: 1 / 3;    /* Span 2 rows */
-}
-
-.side-item-1 {
-  grid-column: 3 / 4;
-  grid-row: 1 / 2;
-}
-
-.side-item-2 {
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
-  display: none; /* Hide for now */
-}
-
-/* A three-product layout is often more balanced */
-.bento-grid {
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  height: auto;
-  grid-auto-rows: 250px;
-}
-
+/* New, cleaned up Grid Layout */
 .main-item {
   grid-column: 1 / 3;
-  grid-row: 1 / 3; /* Span 2 rows */
+  grid-row: 1 / 3;
 }
 
 .side-item-1 {
@@ -255,28 +232,40 @@ onMounted(fetchFeaturedProducts);
 }
 
 .side-item-2 {
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
-  display: block; /* Show this one */
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
 }
 
 .side-item-3 {
-  display: none; /* Hide the 4th item */
+  grid-column: 3 / 5;
+  grid-row: 2 / 3;
 }
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .bento-grid {
-     grid-template-columns: 1fr; /* Stack on smaller screens */
+     grid-template-columns: repeat(2, 1fr);
      grid-template-rows: auto;
      height: auto;
   }
-  .main-item, .side-item-1, .side-item-2 {
-    grid-column: 1 / 2;
+  .main-item {
+    grid-column: 1 / 3;
     grid-row: auto;
-    height: 300px;
+    height: 350px;
   }
-  .side-item-3 { display: none; }
+  .side-item-1, .side-item-2, .side-item-3 {
+    grid-column: span 1;
+    grid-row: auto;
+    height: 250px;
+  }
 }
 
+@media (max-width: 576px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-item, .side-item-1, .side-item-2, .side-item-3 {
+        grid-column: 1 / 2;
+    }
+}
 </style>

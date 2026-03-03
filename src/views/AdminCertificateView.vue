@@ -80,7 +80,7 @@ const fetchCertificates = async () => {
   error.value = null;
   try {
     const response = await getCertificatePage();
-    certificates.value = response;
+    certificates.value = response.list;
   } catch (err) {
     error.value = t('admin_certificate.fetch_error');
     console.error('Failed to fetch certificates:', err);

@@ -15,6 +15,8 @@
 - [产品下载资源管理](#产品下载资源管理)
 - [证书管理](#证书管理)
 - [证书类别管理](#证书类别管理)
+- [管理后台 - 证书管理](#管理后台---证书管理)
+- [管理后台 - 证书类别管理](#管理后台---证书类别管理)
 - [新闻管理](#新闻管理)
 - [新闻类别管理](#新闻类别管理)
 - [部门管理](#部门管理)
@@ -23,6 +25,7 @@
 - [字典管理](#字典管理)
 - [文件管理](#文件管理)
 - [国际化](#国际化)
+- [公司信息](#公司信息)
 
 ---
 
@@ -746,17 +749,21 @@ interface UserImportRespVO {
 
 ## 产品模块
 
+产品模块提供产品信息查询功能，支持多语言（中文、英语、葡萄牙语、西班牙语）。
+
+**基础路径**: `/app-api/public/product`
+
+**认证要求**: 公开 API（无需认证）
+
+**特性**:
+- 多语言支持：根据 `Accept-Language` 请求头自动返回对应语言内容
+- 缓存优化：响应被缓存以提升性能
+
+---
+
 ### 获取产品列表
 
-**Endpoint**: `GET /products`
-
-**认证要求**: Public
-
-#### 请求参数
-
-| 位置 | 字段名 | 类型 | 必填 | 说明 |
-|:-----|:-------|:-----|:-----|:-----|
-| Query | keyword | string | 否 | 搜索关键词 |
+**Endpoint**: `GET /app-api/public/product/list`
 
 #### 响应数据
 
@@ -765,20 +772,32 @@ interface ProductVO {
   id: number;
   code: string;              // 产品编码
   category: string;          // 产品分类
-  titleZh: string;           // 产品名称（中文）
-  titleEn: string;           // 产品名称（英文）
-  titlePt: string;           // 产品名称（葡萄牙语）
-  titleEs: string;           // 产品名称（西班牙语）
-  descriptionZh: string;     // 产品描述（中文）
-  descriptionEn: string;     // 产品描述（英文）
-  descriptionPt: string;     // 产品描述（葡萄牙语）
-  descriptionEs: string;     // 产品描述（西班牙语）
+  title: string;             // 产品标题（根据请求语言自动返回）
+  description: string;       // 产品描述（根据请求语言自动返回）
   imageUrl: string;          // 图片 URL
-  active: boolean;           // 是否启用
-  specIds: string;           // 规格 ID 列表（逗号分隔）
-  downloadIds: string;       // 下载资源 ID 列表（逗号分隔）
-  createTime: string;        // 创建时间
-  updateTime: string;        // 更新时间
+  specs: ProductSpecVO[];    // 产品规格列表
+  downloads: ProductDownloadVO[];  // 下载资源列表
+}
+
+interface ProductSpecVO {
+  id: number;
+  specKey: string;           // 规格键（如 voltage, current）
+  specValue: string;         // 规格值（如 220V, 5A）
+  specUnit: string;          // 规格单位（如 V, A, mm）
+  specType: string;          // 规格类型
+  required: boolean;         // 是否必填
+  sortOrder: number;         // 排序
+}
+
+interface ProductDownloadVO {
+  id: number;
+  title: string;             // 资源标题
+  description: string;       // 资源描述
+  fileUrl: string;           // 下载 URL
+  fileType: string;          // 文件类型（pdf, doc, xlsx 等）
+  fileSize: number;          // 文件大小（字节）
+  downloadCount: number;     // 下载次数
+  sortOrder: number;         // 排序
 }
 ```
 
@@ -796,7 +815,18 @@ interface ProductVO {
       "title": "智能控制器",
       "description": "高性能工业级智能控制器",
       "imageUrl": "https://cdn.example.com/product1.jpg",
-      "active": true
+      "specs": [
+        {
+          "id": 1,
+          "specKey": "voltage",
+          "specValue": "220V",
+          "specUnit": "V",
+          "specType": "electrical",
+          "required": true,
+          "sortOrder": 1
+        }
+      ],
+      "downloads": []
     }
   ]
 }
@@ -804,11 +834,25 @@ interface ProductVO {
 
 ---
 
+### 根据类别获取产品列表
+
+**Endpoint**: `GET /app-api/public/product/category/{category}`
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Path | category | string | 是 | 产品类别（如 electronics） |
+
+#### 响应数据
+
+`ProductVO[]`
+
+---
+
 ### 获取产品详情
 
-**Endpoint**: `GET /products/{id}`
-
-**认证要求**: Public
+**Endpoint**: `GET /app-api/public/product/{id}`
 
 #### 请求参数
 
@@ -818,111 +862,19 @@ interface ProductVO {
 
 #### 响应数据
 
-同 `ProductVO`
+`ProductVO`
 
 ---
 
-### 获取产品分页列表
+### 搜索产品
 
-**Endpoint**: GET /products/page
-
-**认证要求**: Public
+**Endpoint**: `GET /app-api/public/product/search`
 
 #### 请求参数
 
 | 位置 | 字段名 | 类型 | 必填 | 说明 |
 |:-----|:-------|:-----|:-----|:-----|
-| Query | pageNo | number | 是 | 页码（从 1 开始，默认 1） |
-| Query | pageSize | number | 是 | 每页数量（默认 20） |
-| Query | category | string | 否 | 产品类别 |
-| Query | keyword | string | 否 | 搜索关键词 |
-| Query | specKey | string | 否 | 规格键（用于过滤） |
-| Query | specValue | string | 否 | 规格值（用于过滤） |
-
-#### 响应数据
-
-interface PageResult<ProductVO> {
-  total: number;
-  list: ProductVO[];
-}
-
----
-
-### 获取产品完整详情
-
-**Endpoint**: GET /products/{id}/detail
-
-**认证要求**: Public
-
-#### 请求参数
-
-| 位置 | 字段名 | 类型 | 必填 | 说明 |
-|:-----|:-------|:-----|:-----|:-----|
-| Path | id | number | 是 | 产品 ID |
-
-#### 响应数据
-
-interface ProductDetailVO {
-  id: number;
-  code: string;
-  category: string;
-  titleZh: string;
-  titleEn: string;
-  titlePt: string;
-  titleEs: string;
-  descriptionZh: string;
-  descriptionEn: string;
-  descriptionPt: string;
-  descriptionEs: string;
-  imageUrl: string;
-  active: boolean;
-  specs: ProductSpecVO[];
-  downloads: ProductDownloadVO[];
-  createTime: string;
-  updateTime: string;
-}
-
-interface ProductSpecVO {
-  id: number;
-  productId: number;
-  specKey: string;
-  specValue: string;
-  specUnit: string;
-  specType: string;
-  required: boolean;
-  sortOrder: number;
-}
-
-interface ProductDownloadVO {
-  id: number;
-  productId: number;
-  title: string;
-  fileType: string;
-  resourceType: string;
-  fileSize: number;
-  downloadUrl: string;
-  language: string;
-  downloadCount: number;
-  active: boolean;
-  sortOrder: number;
-}
-
----
-
-
-### 按规格筛选产品
-
-**Endpoint**: `GET /products/filter`
-
-**认证要求**: Public
-
-#### 请求参数
-
-| 位置 | 字段名 | 类型 | 必填 | 说明 |
-|:-----|:-------|:-----|:-----|:-----|
-| Query | category | string | 否 | 产品分类 |
-| Query | specKey | string | 否 | 规格键 |
-| Query | specValue | string | 否 | 规格值 |
+| Query | keyword | string | 是 | 搜索关键词（根据当前语言搜索标题和描述）|
 
 #### 响应数据
 
@@ -932,7 +884,7 @@ interface ProductDownloadVO {
 
 ### 获取类别树
 
-**Endpoint**: `GET /categories`
+**Endpoint**: `GET /app-api/categories`
 
 **认证要求**: Public
 
@@ -958,7 +910,7 @@ interface ProductCategoryDO {
 
 ### 按层级获取类别
 
-**Endpoint**: `GET /categories/by-level`
+**Endpoint**: `GET /app-api/categories/by-level`
 
 **认证要求**: Public
 
@@ -976,7 +928,7 @@ interface ProductCategoryDO {
 
 ### 获取产品规格列表
 
-**Endpoint**: `GET /products/{productId}/specs`
+**Endpoint**: `GET /app-api/products/{productId}/specs`
 
 **认证要求**: Public
 
@@ -1007,7 +959,7 @@ interface ProductSpecDO {
 
 ### 按类型获取规格
 
-**Endpoint**: `GET /products/{productId}/specs/type/{specType}`
+**Endpoint**: `GET /app-api/products/{productId}/specs/type/{specType}`
 
 **认证要求**: Public
 
@@ -1026,7 +978,7 @@ interface ProductSpecDO {
 
 ### 获取必填规格
 
-**Endpoint**: `GET /products/{productId}/specs/required/{specType}`
+**Endpoint**: `GET /app-api/products/{productId}/specs/required/{specType}`
 
 **认证要求**: Public
 
@@ -1047,7 +999,7 @@ interface ProductSpecDO {
 
 ### 获取产品下载列表
 
-**Endpoint**: `GET /products/{productId}/downloads`
+**Endpoint**: `GET /app-api/products/{productId}/downloads`
 
 **认证要求**: Public
 
@@ -1082,7 +1034,7 @@ interface ProductDownloadDO {
 
 ### 按语言获取下载资源
 
-**Endpoint**: `GET /products/{productId}/downloads/language/{language}`
+**Endpoint**: `GET /app-api/products/{productId}/downloads/language/{language}`
 
 **认证要求**: Public
 
@@ -1101,7 +1053,7 @@ interface ProductDownloadDO {
 
 ### 按文件类型获取下载资源
 
-**Endpoint**: `GET /products/{productId}/downloads/file-type/{fileType}`
+**Endpoint**: `GET /app-api/products/{productId}/downloads/file-type/{fileType}`
 
 **认证要求**: Public
 
@@ -1120,7 +1072,7 @@ interface ProductDownloadDO {
 
 ### 按资源类型获取下载资源
 
-**Endpoint**: `GET /products/{productId}/downloads/resource-type/{resourceType}`
+**Endpoint**: `GET /app-api/products/{productId}/downloads/resource-type/{resourceType}`
 
 **认证要求**: Public
 
@@ -1139,7 +1091,7 @@ interface ProductDownloadDO {
 
 ### 下载文件
 
-**Endpoint**: `GET /products/{productId}/downloads/file/{downloadId}`
+**Endpoint**: `GET /app-api/products/{productId}/downloads/file/{downloadId}`
 
 **认证要求**: Public
 
@@ -1158,73 +1110,83 @@ interface ProductDownloadDO {
 
 ## 证书管理
 
+证书模块提供公司资质和认证信息查询功能，支持多语言。
+
+**基础路径**: `/app-api/public/certificate`
+
+**认证要求**: 公开 API（无需认证）
+
+**特性**:
+- 多语言支持：根据 `Accept-Language` 请求头自动返回对应语言内容
+- 缓存优化：响应被缓存以提升性能
+
+---
+
 ### 获取证书列表
 
-**Endpoint**: `GET /certificates`
-
-**认证要求**: Public
-
-#### 请求参数
-
-| 位置 | 字段名 | 类型 | 必填 | 说明 |
-|:-----|:-------|:-----|:-----|:-----|
-| Query | categoryId | number | 否 | 类别 ID |
+**Endpoint**: `GET /app-api/public/certificate/list`
 
 #### 响应数据
 
 ```typescript
 interface CertificateVO {
   id: number;
-  code: string;
-  nameZh: string;
-  nameEn: string;
-  namePt: string;
-  nameEs: string;
-  issuingAuthority: string;    // 发证机构
-  certificateNumber: string;   // 证书编号
-  issueDate: string;           // 发证日期
-  expiryDate: string;          // 过期日期
-  categoryId: number;
-  imageUrl: string;
-  hasFile: boolean;
-  fileId: string;           // 证书文件 ID（用于下载）
-  sortOrder: number;
-  active: boolean;
-  descriptionZh: string;    // 证书描述（中文）
-  descriptionEn: string;    // 证书描述（英文）
-  descriptionPt: string;    // 证书描述（葡萄牙语）
-  descriptionEs: string;    // 证书描述（西班牙语）
-          // 过期状态
-  createTime: string;
-  updateTime: string;
+  code: string;                    // 证书代码
+  name: string;                    // 证书名称（根据请求语言自动返回）
+  description: string;             // 证书描述（根据请求语言自动返回）
+  issuingAuthority: string;        // 颁发机构
+  certificateNumber: string;       // 证书编号
+  issueDate: string;               // 颁发日期（ISO 8601）
+  expiryDate: string;              // 到期日期（ISO 8601）
+  categoryId: number;              // 证书类别 ID
+  categoryName: string;            // 证书类别名称（多语言）
+  imageUrl: string;                // 证书图片 URL
+  fileUrl: string;                 // 证书文件 URL
+  expiryStatus: string;            // 到期状态: VALID/EXPIRING_SOON/EXPIRED
+  daysUntilExpiry: number;         // 距到期天数（负数表示已过期）
+  sortOrder: number;               // 排序
+}
+```
+
+#### 响应示例
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "id": 1,
+      "code": "CERT001",
+      "name": "ISO 9001 质量管理体系认证",
+      "description": "国际标准化组织质量管理体系认证",
+      "issuingAuthority": "SGS",
+      "certificateNumber": "CN-001234",
+      "issueDate": "2020-01-15",
+      "expiryDate": "2025-01-15",
+      "categoryId": 1,
+      "categoryName": "质量认证",
+      "imageUrl": "https://cdn.example.com/cert1.jpg",
+      "fileUrl": "https://cdn.example.com/cert1.pdf",
+      "expiryStatus": "VALID",
+      "daysUntilExpiry": 350,
+      "sortOrder": 1
+    }
+  ]
 }
 ```
 
 ---
 
-### 获取有效证书列表
+### 根据类别获取证书列表
 
-**Endpoint**: `GET /certificates/valid`
-
-**认证要求**: Public
-
-#### 响应数据
-
-`CertificateVO[]`
-
----
-
-### 获取即将到期证书
-
-**Endpoint**: `GET /certificates/expiring`
-
-**认证要求**: Public
+**Endpoint**: `GET /app-api/public/certificate/category/{categoryId}`
 
 #### 请求参数
 
 | 位置 | 字段名 | 类型 | 必填 | 说明 |
 |:-----|:-------|:-----|:-----|:-----|
-| Query | days | number | 否 | 天数（默认 30） |
+| Path | categoryId | number | 是 | 证书类别 ID |
 
 #### 响应数据
 
@@ -1234,9 +1196,7 @@ interface CertificateVO {
 
 ### 获取证书详情
 
-**Endpoint**: `GET /certificates/{id}`
-
-**认证要求**: Public
+**Endpoint**: `GET /app-api/public/certificate/{id}`
 
 #### 请求参数
 
@@ -1250,13 +1210,27 @@ interface CertificateVO {
 
 ---
 
+### 获取有效证书列表
+
+**Endpoint**: `GET /app-api/public/certificate/valid`
+
+#### 说明
+
+获取所有未过期的证书（到期日期在今天及之后）。
+
+#### 响应数据
+
+`CertificateVO[]`
+
+---
+
 
 
 ---
 
 ### 下载证书文件
 
-**Endpoint**: GET /certificates/{id}/download
+**Endpoint**: GET /app-api/certificates/{id}/download
 
 **认证要求**: Public
 
@@ -1275,7 +1249,7 @@ interface CertificateVO {
 
 ### 获取证书类别列表
 
-**Endpoint**: `GET /certificates/categories`
+**Endpoint**: `GET /app-api/certificates/categories`
 
 **认证要求**: Public
 
@@ -1285,14 +1259,8 @@ interface CertificateVO {
 interface CertificateCategoryVO {
   id: number;
   code: string;
-  nameZh: string;
-  nameEn: string;
-  namePt: string;
-  nameEs: string;
-  descriptionZh: string;
-  descriptionEn: string;
-  descriptionPt: string;
-  descriptionEs: string;
+  name: string;              // 类别名称（多语言）
+  description: string;       // 类别描述（多语言）
   sortOrder: number;
   active: boolean;
   iconUrl: string;
@@ -1303,11 +1271,9 @@ interface CertificateCategoryVO {
 
 ---
 
-## 新闻管理
+### 获取证书类别详情
 
-### 获取新闻列表
-
-**Endpoint**: `GET /news`
+**Endpoint**: `GET /app-api/certificates/categories/{id}`
 
 **认证要求**: Public
 
@@ -1315,7 +1281,31 @@ interface CertificateCategoryVO {
 
 | 位置 | 字段名 | 类型 | 必填 | 说明 |
 |:-----|:-------|:-----|:-----|:-----|
-| Query | categoryId | number | 否 | 类别 ID |
+| Path | id | number | 是 | 类别 ID |
+
+#### 响应数据
+
+`CertificateCategoryVO`
+
+---
+
+## 新闻管理
+
+新闻模块提供企业新闻资讯查询功能，支持多语言。
+
+**基础路径**: `/app-api/public/news`
+
+**认证要求**: 公开 API（无需认证）
+
+**特性**:
+- 多语言支持：根据 `Accept-Language` 请求头自动返回对应语言内容
+- 缓存优化：响应被缓存以提升性能
+
+---
+
+### 获取新闻列表
+
+**Endpoint**: `GET /app-api/public/news/list`
 
 #### 响应数据
 
@@ -1323,28 +1313,129 @@ interface CertificateCategoryVO {
 interface NewsVO {
   id: number;
   code: string;
-  titleZh: string;
-  titleEn: string;
-  titlePt: string;
-  titleEs: string;
-  summaryZh: string;
-  summaryEn: string;
-  summaryPt: string;
-  summaryEs: string;
-  source: string;
-  author: string;
-  publishDate: string;
-  categoryId: number;
-  categoryName: string;
-  thumbnailUrl: string;
-  featured: boolean;
-  pinned: boolean;
-  viewCount: number;
-  externalUrl: string;
-  sortOrder: number;
-  active: boolean;
-  createTime: string;
-  updateTime: string;
+  title: string;             // 新闻标题（根据请求语言自动返回）
+  summary: string;           // 新闻摘要（根据请求语言自动返回）
+  source: string;            // 新闻来源
+  author: string;            // 作者
+  publishDate: string;       // 发布日期（ISO 8601）
+  categoryId: number;        // 类别 ID
+  categoryName: string;      // 类别名称（多语言）
+  thumbnailUrl: string;      // 缩略图 URL
+  featured: boolean;         // 是否特色
+  pinned: boolean;           // 是否置顶
+  viewCount: number;         // 浏览次数
+  externalUrl: string;       // 外部链接 URL
+  sortOrder: number;         // 排序
+}
+```
+
+#### 响应示例
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "id": 1,
+      "code": "NEWS001",
+      "title": "合力科技发布新一代智能控制器",
+      "summary": "合力科技今日正式发布新一代工业级智能控制器产品...",
+      "source": "合力科技官网",
+      "author": "市场部",
+      "publishDate": "2024-01-15T10:00:00",
+      "categoryId": 1,
+      "categoryName": "产品发布",
+      "thumbnailUrl": "https://cdn.example.com/news1-thumb.jpg",
+      "featured": true,
+      "pinned": false,
+      "viewCount": 1250,
+      "externalUrl": null,
+      "sortOrder": 1
+    }
+  ]
+}
+```
+
+---
+
+### 根据类别获取新闻列表
+
+**Endpoint**: `GET /app-api/public/news/category/{categoryId}`
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Path | categoryId | number | 是 | 新闻类别 ID |
+
+#### 响应数据
+
+`NewsVO[]`
+
+---
+
+### 获取新闻详情
+
+**Endpoint**: `GET /app-api/public/news/{id}`
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Path | id | number | 是 | 新闻 ID |
+
+#### 响应数据
+
+```typescript
+interface NewsDetailVO {
+  id: number;
+  code: string;
+  title: string;             // 新闻标题（多语言）
+  summary: string;           // 新闻摘要（多语言）
+  content: string;           // 新闻内容（多语言，富文本）
+  source: string;            // 新闻来源
+  author: string;            // 作者
+  publishDate: string;       // 发布日期（ISO 8601）
+  categoryId: number;        // 类别 ID
+  categoryName: string;      // 类别名称（多语言）
+  imageUrl: string;          // 图片 URL
+  thumbnailUrl: string;      // 缩略图 URL
+  featured: boolean;         // 是否特色
+  pinned: boolean;           // 是否置顶
+  viewCount: number;         // 浏览次数
+  externalUrl: string;       // 外部链接 URL
+  createTime: string;        // 创建时间
+  updateTime: string;        // 更新时间
+}
+```
+
+#### 响应示例
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "id": 1,
+    "code": "NEWS001",
+    "title": "合力科技发布新一代智能控制器",
+    "summary": "合力科技今日正式发布新一代工业级智能控制器产品...",
+    "content": "<p>合力科技今日正式发布新一代工业级智能控制器产品。该产品采用最新技术...</p>",
+    "source": "合力科技官网",
+    "author": "市场部",
+    "publishDate": "2024-01-15T10:00:00",
+    "categoryId": 1,
+    "categoryName": "产品发布",
+    "imageUrl": "https://cdn.example.com/news1.jpg",
+    "thumbnailUrl": "https://cdn.example.com/news1-thumb.jpg",
+    "featured": true,
+    "pinned": false,
+    "viewCount": 1251,
+    "externalUrl": null,
+    "createTime": "2024-01-15T09:30:00",
+    "updateTime": "2024-01-15T10:00:00"
+  }
 }
 ```
 
@@ -1352,9 +1443,7 @@ interface NewsVO {
 
 ### 获取特色新闻
 
-**Endpoint**: `GET /news/featured`
-
-**认证要求**: Public
+**Endpoint**: `GET /app-api/public/news/featured`
 
 #### 响应数据
 
@@ -1364,9 +1453,7 @@ interface NewsVO {
 
 ### 获取置顶新闻
 
-**Endpoint**: `GET /news/pinned`
-
-**认证要求**: Public
+**Endpoint**: `GET /app-api/public/news/pinned`
 
 #### 响应数据
 
@@ -1374,11 +1461,9 @@ interface NewsVO {
 
 ---
 
-### 获取最近新闻
+### 获取最新新闻
 
-**Endpoint**: `GET /news/recent`
-
-**认证要求**: Public
+**Endpoint**: `GET /app-api/public/news/recent`
 
 #### 请求参数
 
@@ -1392,29 +1477,19 @@ interface NewsVO {
 
 ---
 
-### 获取新闻详情
+### 搜索新闻
 
-**Endpoint**: `GET /news/{id}`
-
-**认证要求**: Public
+**Endpoint**: `GET /app-api/public/news/search`
 
 #### 请求参数
 
 | 位置 | 字段名 | 类型 | 必填 | 说明 |
 |:-----|:-------|:-----|:-----|:-----|
-| Path | id | number | 是 | 新闻 ID |
+| Query | keyword | string | 是 | 搜索关键词（根据当前语言搜索标题和摘要）|
 
 #### 响应数据
 
-```typescript
-interface NewsDetailVO extends NewsVO {
-  contentZh: string;
-  contentEn: string;
-  contentPt: string;
-  contentEs: string;
-  category: NewsCategoryVO;
-}
-```
+`NewsVO[]`
 
 ---
 
@@ -1422,7 +1497,7 @@ interface NewsDetailVO extends NewsVO {
 
 ### 获取新闻类别列表
 
-**Endpoint**: `GET /news/categories`
+**Endpoint**: `GET /app-api/news/categories`
 
 **认证要求**: Public
 
@@ -1432,14 +1507,8 @@ interface NewsDetailVO extends NewsVO {
 interface NewsCategoryVO {
   id: number;
   code: string;
-  nameZh: string;
-  nameEn: string;
-  namePt: string;
-  nameEs: string;
-  descriptionZh: string;
-  descriptionEn: string;
-  descriptionPt: string;
-  descriptionEs: string;
+  name: string;              // 类别名称（多语言）
+  description: string;       // 类别描述（多语言）
   sortOrder: number;
   active: boolean;
   iconUrl: string;
@@ -1452,7 +1521,7 @@ interface NewsCategoryVO {
 
 ### 获取新闻类别详情
 
-**Endpoint**: `GET /news/categories/{id}`
+**Endpoint**: `GET /app-api/news/categories/{id}`
 
 **认证要求**: Public
 
@@ -2826,3 +2895,659 @@ interface LocaleSwitchResponse {
 | 版本 | 日期 | 说明 |
 |------|------|------|
 | 1.0.0 | 2026-02-26 | 初始版本，基于静态代码分析生成 |
+
+
+
+## 管理后台 - 证书管理
+
+### 创建证书
+
+**Endpoint**: `POST /admin-api/product/certificate/create`
+
+**认证要求**: JWT + `product:certificate:create` 权限
+
+#### 请求体
+
+```typescript
+interface CertificateSaveReqVO {
+  id?: number;
+  code: string;
+  nameZh: string;
+  nameEn?: string;
+  namePt?: string;
+  nameEs?: string;
+  descriptionZh?: string;
+  descriptionEn?: string;
+  descriptionPt?: string;
+  descriptionEs?: string;
+  issuingAuthority?: string;
+  certificateNumber: string;
+  issueDate?: string;
+  expiryDate?: string;
+  categoryId?: number;
+  filePath?: string;
+  fileUrl?: string;
+  imageUrl?: string;
+  sortOrder?: number;
+  active?: boolean;
+}
+```
+
+#### 响应数据
+
+```typescript
+{
+  code: 0;
+  msg: "操作成功";
+  data: number;
+}
+```
+
+---
+
+### 修改证书
+
+**Endpoint**: `PUT /admin-api/product/certificate/update`
+
+**认证要求**: JWT + `product:certificate:update` 权限
+
+#### 请求体
+
+同 `CertificateSaveReqVO`（需包含 `id` 字段）
+
+#### 响应数据
+
+```typescript
+{
+  code: 0;
+  msg: "操作成功";
+  data: true;
+}
+```
+
+---
+
+### 删除证书
+
+**Endpoint**: `DELETE /admin-api/product/certificate/delete`
+
+**认证要求**: JWT + `product:certificate:delete` 权限
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 证书 ID |
+
+#### 响应数据
+
+```typescript
+{
+  code: 0;
+  msg: "操作成功";
+  data: true;
+}
+```
+
+---
+
+### 获取证书详情
+
+**Endpoint**: `GET /admin-api/product/certificate/get`
+
+**认证要求**: JWT + `product:certificate:query` 权限
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 证书 ID |
+
+#### 响应数据
+
+```typescript
+interface CertificateRespVO {
+  id: number;
+  code: string;
+  nameZh: string;
+  nameEn: string;
+  namePt: string;
+  nameEs: string;
+  descriptionZh: string;
+  descriptionEn: string;
+  descriptionPt: string;
+  descriptionEs: string;
+  issuingAuthority: string;
+  certificateNumber: string;
+  issueDate: string;
+  expiryDate: string;
+  expiryStatus: string;
+  categoryId: number;
+  categoryName: string;
+  filePath: string;
+  fileUrl: string;
+  imageUrl: string;
+  sortOrder: number;
+  active: boolean;
+  createTime: string;
+  updateTime: string;
+}
+```
+
+---
+
+### 获取证书分页列表
+
+**Endpoint**: `GET /admin-api/product/certificate/page`
+
+**认证要求**: JWT + `product:certificate:query` 权限
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | pageNo | number | 是 | 页码 |
+| Query | pageSize | number | 是 | 每页数量 |
+| Query | code | string | 否 | 证书代码 |
+| Query | nameZh | string | 否 | 证书名称 |
+| Query | categoryId | number | 否 | 类别 ID |
+| Query | issuingAuthority | string | 否 | 颁发机构 |
+| Query | active | boolean | 否 | 是否启用 |
+| Query | expiryDateStart | string | 否 | 到期日期开始 |
+| Query | expiryDateEnd | string | 否 | 到期日期结束 |
+| Query | expiryStatus | string | 否 | 到期状态 |
+
+#### 响应数据
+
+```typescript
+interface PageResult<CertificateRespVO> {
+  total: number;
+  list: CertificateRespVO[];
+}
+```
+
+---
+
+### 获取证书列表
+
+**Endpoint**: `GET /admin-api/product/certificate/list`
+
+**认证要求**: JWT + `product:certificate:query` 权限
+
+#### 响应数据
+
+`CertificateRespVO[]`
+
+---
+
+### 获取即将到期的证书
+
+**Endpoint**: `GET /admin-api/product/certificate/expiring`
+
+**认证要求**: JWT + `product:certificate:query` 权限
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | days | number | 否 | 天数（默认 30） |
+
+#### 响应数据
+
+`CertificateRespVO[]`
+
+---
+
+### 获取已过期的证书
+
+**Endpoint**: `GET /admin-api/product/certificate/expired`
+
+**认证要求**: JWT + `product:certificate:query` 权限
+
+#### 响应数据
+
+`CertificateRespVO[]`
+
+---
+
+## 管理后台 - 证书类别管理
+
+### 创建证书类别
+
+**Endpoint**: `POST /admin-api/product/certificate-category/create`
+
+**认证要求**: JWT + `product:certificate-category:create` 权限
+
+#### 请求体
+
+```typescript
+interface CertificateCategorySaveReqVO {
+  id?: number;
+  code: string;
+  nameZh: string;
+  nameEn?: string;
+  namePt?: string;
+  nameEs?: string;
+  descriptionZh?: string;
+  descriptionEn?: string;
+  descriptionPt?: string;
+  descriptionEs?: string;
+  iconUrl?: string;
+  sortOrder?: number;
+  active?: boolean;
+}
+```
+
+#### 响应数据
+
+```typescript
+{
+  code: 0;
+  msg: "操作成功";
+  data: number;
+}
+```
+
+---
+
+### 修改证书类别
+
+**Endpoint**: `PUT /admin-api/product/certificate-category/update`
+
+**认证要求**: JWT + `product:certificate-category:update` 权限
+
+#### 请求体
+
+同 `CertificateCategorySaveReqVO`（需包含 `id` 字段）
+
+#### 响应数据
+
+```typescript
+{
+  code: 0;
+  msg: "操作成功";
+  data: true;
+}
+```
+
+---
+
+### 删除证书类别
+
+**Endpoint**: `DELETE /admin-api/product/certificate-category/delete`
+
+**认证要求**: JWT + `product:certificate-category:delete` 权限
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 类别 ID |
+
+#### 响应数据
+
+```typescript
+{
+  code: 0;
+  msg: "操作成功";
+  data: true;
+}
+```
+
+---
+
+### 获取证书类别详情
+
+**Endpoint**: `GET /admin-api/product/certificate-category/get`
+
+**认证要求**: JWT + `product:certificate-category:query` 权限
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 类别 ID |
+
+#### 响应数据
+
+```typescript
+interface CertificateCategoryRespVO {
+  id: number;
+  code: string;
+  nameZh: string;
+  nameEn: string;
+  namePt: string;
+  nameEs: string;
+  descriptionZh: string;
+  descriptionEn: string;
+  descriptionPt: string;
+  descriptionEs: string;
+  iconUrl: string;
+  sortOrder: number;
+  active: boolean;
+  createTime: string;
+  updateTime: string;
+}
+```
+
+---
+
+### 获取证书类别分页列表
+
+**Endpoint**: `GET /admin-api/product/certificate-category/page`
+
+**认证要求**: JWT + `product:certificate-category:query` 权限
+
+#### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | pageNo | number | 是 | 页码 |
+| Query | pageSize | number | 是 | 每页数量 |
+| Query | code | string | 否 | 类别代码 |
+| Query | nameZh | string | 否 | 类别名称 |
+| Query | active | boolean | 否 | 是否启用 |
+
+#### 响应数据
+
+```typescript
+interface PageResult<CertificateCategoryRespVO> {
+  total: number;
+  list: CertificateCategoryRespVO[];
+}
+```
+
+---
+
+### 获取证书类别列表
+
+**Endpoint**: `GET /admin-api/product/certificate-category/list`
+
+**认证要求**: JWT + `product:certificate-category:query` 权限
+
+#### 响应数据
+
+`CertificateCategoryRespVO[]`
+
+---
+
+## 公司信息
+
+公司信息模块提供关于 Maxunitech（合力科技）的企业信息，包括公司介绍、企业文化、发展历程和成员公司。
+
+**基础路径**: `/app-api/public/company/about`
+
+**认证要求**: 公开 API（无需认证）
+
+**特性**:
+- 多语言支持：中文、英语、葡萄牙语、西班牙语
+- 缓存优化：响应被缓存 1 小时
+
+---
+
+### 获取导航菜单
+
+获取"关于"章节的导航菜单项。
+
+**Endpoint**: `GET /app-api/public/company/about/navigation`
+
+#### 响应数据
+
+```typescript
+interface NavigationItemVO {
+  key: string;        // 导航键（profile/culture/history/members）
+  label: string;      // 导航标签（多语言）
+  path: string;       // 导航路径
+  icon: string;       // 图标名称
+}
+```
+
+#### 响应示例
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "key": "profile",
+      "label": "公司介绍",
+      "path": "/about/profile",
+      "icon": "company"
+    },
+    {
+      "key": "culture",
+      "label": "企业文化",
+      "path": "/about/culture",
+      "icon": "culture"
+    },
+    {
+      "key": "history",
+      "label": "发展历程",
+      "path": "/about/history",
+      "icon": "history"
+    },
+    {
+      "key": "members",
+      "label": "成员企业",
+      "path": "/about/members",
+      "icon": "team"
+    }
+  ]
+}
+```
+
+---
+
+### 获取公司介绍
+
+获取公司简介信息。
+
+**Endpoint**: `GET /app-api/public/company/about/profile`
+
+#### 响应数据
+
+```typescript
+interface CompanyPageVO {
+  title: string;      // 页面标题（多语言）
+  content: string;    // 页面内容（多语言，富文本）
+  imageUrl: string;   // 配图 URL
+}
+```
+
+#### 响应示例
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "title": "合力科技",
+    "content": "<p>合力科技是一家致力于为客户提供高品质产品和服务的综合性企业集团。</p>",
+    "imageUrl": "/images/company/profile.jpg"
+  }
+}
+```
+
+---
+
+### 获取公司文化
+
+获取企业文化和价值观信息。
+
+**Endpoint**: `GET /app-api/public/company/about/culture`
+
+#### 响应数据
+
+`CompanyPageVO`
+
+#### 响应示例
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "title": "企业文化",
+    "content": "<h3>我们的使命</h3><p>以科技创新为驱动，为客户提供卓越的产品和服务。</p>",
+    "imageUrl": "/images/company/culture.jpg"
+  }
+}
+```
+
+---
+
+### 获取历史时间线
+
+获取公司发展历程的里程碑列表。
+
+**Endpoint**: `GET /app-api/public/company/about/history`
+
+#### 响应数据
+
+```typescript
+interface CompanyHistoryVO {
+  milestones: MilestoneVO[];
+}
+
+interface MilestoneVO {
+  id: number;              // 里程碑 ID
+  date: string;            // 里程碑日期（ISO 8601）
+  title: string;           // 标题（多语言）
+  description: string;     // 描述（多语言）
+  imageUrl: string;        // 配图 URL
+  sort: number;            // 排序
+}
+```
+
+#### 响应示例
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "milestones": [
+      {
+        "id": 1,
+        "date": "2010-01-01",
+        "title": "公司成立",
+        "description": "合力科技正式成立，开启创业征程。",
+        "imageUrl": "/images/company/history/2010.jpg",
+        "sort": 0
+      },
+      {
+        "id": 2,
+        "date": "2015-06-15",
+        "title": "新产品线发布",
+        "description": "成功发布新一代产品，获得市场广泛认可。",
+        "imageUrl": "/images/company/history/2015.jpg",
+        "sort": 1
+      },
+      {
+        "id": 3,
+        "date": "2020-03-01",
+        "title": "国际化战略启动",
+        "description": "启动国际化战略，拓展海外市场。",
+        "imageUrl": "/images/company/history/2020.jpg",
+        "sort": 2
+      },
+      {
+        "id": 4,
+        "date": "2024-01-01",
+        "title": "成为行业领导者",
+        "description": "凭借卓越的产品和服务，成为行业领先企业。",
+        "imageUrl": "/images/company/history/2024.jpg",
+        "sort": 3
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 获取成员公司列表
+
+获取成员企业信息列表。
+
+**Endpoint**: `GET /app-api/public/company/about/members`
+
+#### 响应数据
+
+```typescript
+interface CompanyMemberVO {
+  id: number;              // 成员公司 ID
+  memberName: string;      // 成员公司名称（多语言）
+  logoUrl: string;         // Logo URL
+  description: string;     // 公司描述（多语言）
+  websiteUrl: string;      // 官网链接
+  sort: number;            // 排序
+}
+```
+
+#### 响应示例
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "id": 1,
+      "memberName": "合力智能制造",
+      "logoUrl": "/images/member/manufacturing.jpg",
+      "description": "专注于智能制造解决方案，提供先进的生产设备和技术服务。",
+      "websiteUrl": "https://manufacturing.maxunitech.com",
+      "sort": 0
+    },
+    {
+      "id": 2,
+      "memberName": "合力新能源",
+      "logoUrl": "/images/member/energy.jpg",
+      "description": "致力于新能源技术开发，提供清洁能源解决方案。",
+      "websiteUrl": "https://energy.maxunitech.com",
+      "sort": 1
+    },
+    {
+      "id": 3,
+      "memberName": "合力国际贸易",
+      "logoUrl": "/images/member/trade.jpg",
+      "description": "专业从事进出口贸易，连接全球市场。",
+      "websiteUrl": "https://trade.maxunitech.com",
+      "sort": 2
+    }
+  ]
+}
+```
+
+---
+
+### 多语言支持
+
+公司信息 API 支持通过以下方式切换语言：
+
+1. **Accept-Language 请求头**:
+   ```
+   Accept-Language: en
+   ```
+
+2. **Cookie（PORTAL_LOCALE）**:
+   ```
+   PORTAL_LOCALE=en
+   ```
+
+3. **查询参数**（通过切换 API 设置）
+
+**支持的语言代码**:
+
+| 代码 | 语言 |
+|------|------|
+| `zh-CN` 或 `zh` | 中文 |
+| `en` | English |
+| `pt` | Português |
+| `es` | Español |
+
+---
+
+---

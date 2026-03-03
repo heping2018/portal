@@ -18,7 +18,13 @@ import AuthCallbackView from '../views/AuthCallbackView.vue';
 import CertificateView from '../views/CertificateView.vue';
 import NewsView from '../views/NewsView.vue';
 import NewsDetailView from '../views/NewsDetailView.vue';
+
+// About Page Components
 import AboutView from '../views/AboutView.vue';
+import ProfileSection from '../views/about/ProfileSection.vue';
+import CultureSection from '../views/about/CultureSection.vue';
+import HistorySection from '../views/about/HistorySection.vue';
+import MembersSection from '../views/about/MembersSection.vue';
 
 // Admin Views
 import AdminDashboardView from '../views/AdminDashboardView.vue';
@@ -27,6 +33,9 @@ import AdminProductView from '../views/AdminProductView.vue';
 import AdminNewsView from '../views/AdminNewsView.vue';
 import AdminCertificateView from '../views/AdminCertificateView.vue';
 import AdminAuthConfigView from '../views/AdminAuthConfigView.vue';
+import AdminCategoryView from '../views/AdminCategoryView.vue';
+import AdminDictionaryView from '../views/AdminDictionaryView.vue';
+import AdminFileView from '../views/AdminFileView.vue';
 
 const routes = [
   {
@@ -67,8 +76,31 @@ const routes = [
       },
       {
         path: 'about',
-        name: 'AboutView',
         component: AboutView,
+        meta: { fullWidth: true }, // Mark this route for full-width layout
+        redirect: '/about/profile',
+        children: [
+          {
+            path: 'profile',
+            name: 'AboutProfile',
+            component: ProfileSection
+          },
+          {
+            path: 'culture',
+            name: 'AboutCulture',
+            component: CultureSection
+          },
+          {
+            path: 'history',
+            name: 'AboutHistory',
+            component: HistorySection
+          },
+          {
+            path: 'members',
+            name: 'AboutMembers',
+            component: MembersSection
+          },
+        ]
       },
       {
         path: 'login',
@@ -107,7 +139,7 @@ const routes = [
   {
     path: '/admin',
     component: AdminLayout,
-    // meta: { requiresAuth: true }, // Temporarily disabled for preview
+    meta: { requiresAuth: true }, // Enable authentication guard
     redirect: '/admin/dashboard', // Redirect /admin to /admin/dashboard
     children: [
       {
@@ -140,6 +172,21 @@ const routes = [
         name: 'AdminAuthConfigView',
         component: AdminAuthConfigView
       },
+      {
+        path: 'categories',
+        name: 'AdminCategoryView',
+        component: AdminCategoryView
+      },
+      {
+        path: 'dictionary',
+        name: 'AdminDictionaryView',
+        component: AdminDictionaryView
+      },
+      {
+        path: 'files',
+        name: 'AdminFileView',
+        component: AdminFileView
+      },
     ]
   }
 ];
@@ -149,14 +196,21 @@ const router = createRouter({
   routes,
 });
 
-// Temporarily disabled for preview
-// router.beforeEach((to, from, next) => {
-//   const authStore = useAuthStore();
-//   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-//     next({ name: 'LoginView' });
-//   } else {
-//     next();
-//   }
-// });
+// Navigation Guard
+router.beforeEach((to, from, next) => {
+  // Lazily get the store only when the guard is executed
+  const authStore = useAuthStore();
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    // If route requires auth and user is not logged in, redirect to login
+    next({ name: 'LoginView', query: { redirect: to.fullPath } });
+  } else if (to.name === 'LoginView' && authStore.isAuthenticated) {
+    // If user is already logged in and tries to visit login page, redirect them away
+    next({ name: 'AdminDashboard' }); 
+  } else {
+    // Otherwise, allow navigation
+    next();
+  }
+});
 
 export default router;

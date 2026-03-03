@@ -1,51 +1,51 @@
 import request from '../utils/request';
 
-const API_BASE_URL = '/admin-api/product';
+const API_BASE_URL = '/admin-api/product/certificate-category';
 
-export const getProductPage = (params) => {
+export const getCategoryPage = (params) => {
   return request({
     url: `${API_BASE_URL}/page`,
     method: 'get',
-    params,
+    params
   });
 };
 
-export const getProductList = (params) => {
+export const getCategoryList = (params) => {
   return request({
     url: `${API_BASE_URL}/list`,
     method: 'get',
-    params,
+    params
   });
 };
 
-export const getProductDetail = (id) => {
+export const getCategoryDetail = (id) => {
   return request({
     url: `${API_BASE_URL}/get`,
     method: 'get',
-    params: { id },
+    params: { id }
   });
 };
 
-export const createProduct = (data) => {
+export const createCategory = (data) => {
   return request({
     url: `${API_BASE_URL}/create`,
     method: 'post',
-    data,
+    data
   });
 };
 
-export const updateProduct = (data) => {
+export const updateCategory = (data) => {
   return request({
     url: `${API_BASE_URL}/update`,
     method: 'put',
-    data,
+    data
   });
 };
 
-export const deleteProduct = (id) => {
+export const deleteCategory = (id) => {
   return request({
     url: `${API_BASE_URL}/delete`,
     method: 'delete',
-    params: { id },
+    params: { id }
   });
 };

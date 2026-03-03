@@ -1,19 +1,34 @@
 import request from '../utils/request';
 
-// As per api.md, this endpoint returns a simple array of certificates.
+const API_BASE_URL = '/admin-api/product/certificate';
+
 export const getCertificatePage = (params) => {
   return request({
-    url: '/certificates',
+    url: `${API_BASE_URL}/page`,
     method: 'get',
     params,
   });
 };
 
-// NOTE: The following admin endpoints are not explicitly defined in api.md.
-// They are assumed based on the application's existing structure.
+export const getCertificateList = (params) => {
+  return request({
+    url: `${API_BASE_URL}/list`,
+    method: 'get',
+    params,
+  });
+};
+
+export const getCertificateDetail = (id) => {
+  return request({
+    url: `${API_BASE_URL}/get`,
+    method: 'get',
+    params: { id },
+  });
+};
+
 export const createCertificate = (data) => {
   return request({
-    url: '/admin-api/certificate/create',
+    url: `${API_BASE_URL}/create`,
     method: 'post',
     data,
   });
@@ -21,7 +36,7 @@ export const createCertificate = (data) => {
 
 export const updateCertificate = (data) => {
   return request({
-    url: '/admin-api/certificate/update',
+    url: `${API_BASE_URL}/update`,
     method: 'put',
     data,
   });
@@ -29,7 +44,23 @@ export const updateCertificate = (data) => {
 
 export const deleteCertificate = (id) => {
   return request({
-    url: `/admin-api/certificate/delete?id=${id}`,
+    url: `${API_BASE_URL}/delete`,
     method: 'delete',
+    params: { id },
+  });
+};
+
+export const getExpiringCertificates = (days) => {
+  return request({
+    url: `${API_BASE_URL}/expiring`,
+    method: 'get',
+    params: { days },
+  });
+};
+
+export const getExpiredCertificates = () => {
+  return request({
+    url: `${API_BASE_URL}/expired`,
+    method: 'get',
   });
 };

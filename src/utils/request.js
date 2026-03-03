@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useAuthStore } from '../stores/authStore';
+import i18n from '../i18n';
+import router from '../router';
 
 const service = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api', // Restore the correct base URL
   timeout: 10000,
 });
 
@@ -10,10 +12,16 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     const authStore = useAuthStore();
-    // Only add auth token for admin-api routes, which require authentication
-    if (authStore.token && config.url.startsWith('/admin-api')) {
-      config.headers['Authorization'] = `Bearer ${authStore.token}`;
+    
+    if (authStore.accessToken) {
+      config.headers['Authorization'] = `Bearer ${authStore.accessToken}`;
     }
+
+    const locale = i18n.global.locale.value;
+    if (locale) {
+      config.headers['Accept-Language'] = locale === 'zh' ? 'zh-CN' : locale;
+    }
+
     return config;
   },
   (error) => {
@@ -25,26 +33,43 @@ service.interceptors.request.use(
 // Response interceptor
 service.interceptors.response.use(
   (response) => {
-    // Check if the request was for a public endpoint (e.g., /products, /certificates)
-    const isPublicEndpoint = !response.config.url.startsWith('/admin-api');
-
-    if (isPublicEndpoint) {
-      // For public endpoints, the data is typically returned directly by the server.
-      // We bypass the structured response check and return the data as is.
-      return response.data;
-    }
-
-    // For protected /admin-api endpoints, we expect the { code, data, message } structure.
     const res = response.data;
-    if (res.code !== 0) {
-      console.error('API Error for admin endpoint:', res.message || 'Unknown error');
-      return Promise.reject(new Error(res.message || 'Error'));
+
+    if (typeof res.code !== 'undefined' && res.code !== 0) {
+      console.error('API Error:', res.msg || 'Unknown error code');
+
+      if (res.code === 401) {
+        setTimeout(() => {
+          const authStore = useAuthStore();
+          authStore.logout();
+          if (router.currentRoute.value.path !== '/login') {
+            router.push('/login');
+          }
+        }, 0);
+      }
+      
+      return Promise.reject(new Error(res.msg || 'API Error'));
     }
+
+    if (response.config.url && response.config.url.includes('admin-api/system/auth/login')) {
+      return res;
+    }
+
     return res.data;
   },
   (error) => {
-    console.error('Response interceptor error:', error.message);
-    // Let the caller's .catch() block handle the error.
+    console.error('Network or other interceptor error:', error.message);
+
+   if (error.response && error.response.status === 401) {
+        setTimeout(() => {
+            const authStore = useAuthStore();
+            authStore.logout();
+            if (router.currentRoute.value.path !== '/login') {
+                router.push('/login');
+            }
+        }, 0);
+    }
+
     return Promise.reject(error);
   }
 );

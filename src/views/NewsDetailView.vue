@@ -1,8 +1,8 @@
-<script setup>
+hao<script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import { getNewsById } from '../services/newsService';
+import { getNews } from '../services/newsService'; // Corrected import
 
 const { t, locale } = useI18n();
 const route = useRoute();
@@ -13,6 +13,13 @@ const error = ref(null);
 
 const articleId = computed(() => route.params.id);
 
+// Helper for localized fields
+const getLocalizedField = (item, field) => {
+  if (!item) return '';
+  const lang = locale.value.startsWith('zh') ? 'Zh' : 'En';
+  return item[`${field}${lang}`] || item[`${field}En`] || '';
+};
+
 const fetchArticle = async () => {
   if (!articleId.value) {
     error.value = t('news_detail.no_id_provided');
@@ -22,7 +29,7 @@ const fetchArticle = async () => {
 
   try {
     loading.value = true;
-    article.value = await getNewsById(articleId.value);
+    article.value = await getNews(articleId.value); // Corrected function call
   } catch (err) {
     error.value = t('news_detail.not_found');
     console.error('Failed to fetch article:', err);
@@ -59,13 +66,13 @@ onMounted(() => {
 
     <article v-if="article" class="article-card">
       <div class="article-header">
-        <h1 class="article-title">{{ article.titleEn }}</h1>
+        <h1 class="article-title">{{ getLocalizedField(article, 'title') }}</h1>
         <p class="article-meta">{{ t('news_detail.published_on') }} {{ formatDate(article.createTime) }}</p>
       </div>
       <div class="article-image-container" v-if="article.picUrl">
-        <img :src="article.picUrl" :alt="article.titleEn" class="article-image">
+        <img :src="article.picUrl" :alt="getLocalizedField(article, 'title')" class="article-image">
       </div>
-      <div class="article-body" v-html="article.contentEn"></div>
+      <div class="article-body" v-html="getLocalizedField(article, 'content')"></div>
     </article>
   </div>
 </template>

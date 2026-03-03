@@ -1,51 +1,36 @@
-
-# Blueprint
+# Project Blueprint
 
 ## Overview
 
-This document outlines the project structure, design, and features of the application. It serves as a single source of truth for the project's current state.
+This project is a Vue.js application designed for a company's web presence. It includes features for displaying products, news, and company information. The application supports multiple languages and has an admin section for managing content.
 
-## Project Outline
+## Implemented Features
 
-### Style and Design
+### Styling and Design
 
-- **Styling:** Scoped styles within Single File Components (SFCs).
-- **Layout:** Standard layout with a navigation bar, main content area, and footer.
-- **Colors:** A modern color palette with a mix of vibrant and neutral colors.
-- **Typography:** Clean and readable fonts with a clear hierarchy.
-- **Iconography:** Use of icons to enhance user understanding and navigation.
+*   **Responsive Layout:** The application is designed to be responsive and work on both mobile and web.
+*   **Modern Aesthetics:** The UI incorporates modern design elements, including a blurred background navbar, utility-first CSS, and a clean, spaced-out layout.
+*   **Scoped Styles:** Components use scoped styles to prevent CSS conflicts.
 
 ### Features
 
-- **Authentication:** User login and logout functionality.
-- **Product Catalog:** Display a list of products with details.
-- **News Feed:** A section to display the latest news and updates.
-- **Certificate Viewer:** A page to view company certifications.
-- **Internationalization (i18n):** Support for multiple languages.
-- **Admin Dashboard:** A central hub for managing site content.
-- **User Management:** Full CRUD functionality for users.
-- **Product Management:** Full CRUD functionality for products.
-- **News Management:** Full CRUD functionality for news articles.
-- **Certificate Management:** Full CRUD functionality for certificates.
+*   **Internationalization (i18n):** The application supports English, Spanish, Portuguese, and Chinese languages.
+*   **Product Showcase:** Users can view a list of products and see detailed information for each product.
+*   **News Section:** The application displays news articles.
+*   **Certifications:** The application has a section to display company certifications.
+*   **About Us Page:** The "About Us" page is composed of multiple sections, including company history, culture, and team members.
+*   **Admin Dashboard:** A protected admin dashboard exists for managing application content.
+*   **Authentication:**
+    *   Users can log in to access protected routes.
+    *   The authentication state is managed using Pinia.
+    *   The UI correctly displays "Login" or "Logout" based on the user's authentication status.
+*   **Backend Configuration:** The Vite development server is configured to proxy API requests to the correct backend address.
 
-## Current Task: Implement User Management Functionality
+## Current Task: Update Backend Address
 
 ### Plan
 
-1.  **Create User Admin Service:** Build a service to handle all user data operations (CRUD) using mock data.
-2.  **Implement User Management UI:** Replace the placeholder UI in `AdminUserView.vue` with a functional interface for adding, editing, and deleting users.
-3.  **Document Changes:** Update this blueprint to reflect the completed functionality.
-
-### Steps Completed
-
-- **`src/services/userAdminService.js`:**
-    - Created a new service file to manage user data.
-    - Implemented mock functions: `getUserPage`, `createUser`, `updateUser`, and `deleteUser` to simulate backend interactions.
-- **`src/views/AdminUserView.vue`:**
-    - Replaced the static, non-functional view with a dynamic user management interface.
-    - Integrated `userAdminService.js` to perform CRUD operations.
-    - Added a modal for creating and editing user information.
-    - Implemented delete functionality with a confirmation dialog.
-    - Added pagination to handle large sets of user data.
-- **`blueprint.md`:**
-    - Updated the blueprint to document the full implementation of the user management feature, resolving the previously non-functional UI components.
+1.  **Analyze the Request:** The user requested to change the backend API address.
+2.  **Locate Configuration:** The backend address is configured in the `vite.config.ts` file within the `server.proxy` settings.
+3.  **Update Configuration:** The `target` property of the proxy configuration was updated from `http://localhost:8080` to `https://unstruggling-remona-actionably.ngrok-free.dev`.
+4.  **Verify the Change:** The application will now forward API requests to the new backend address.

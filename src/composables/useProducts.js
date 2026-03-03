@@ -1,5 +1,5 @@
 import { reactive, ref, watch } from 'vue';
-import { getProductsPage } from '../services/productService';
+import { getProductList } from '../services/productService'; // Corrected import
 import { debounce } from 'lodash-es';
 
 export function useProducts() {
@@ -25,7 +25,7 @@ export function useProducts() {
         pageSize: pagination.pageSize,
         ...(filters.keyword && { keyword: filters.keyword }),
       };
-      const data = await getProductsPage(params);
+      const data = await getProductList(params); // Corrected function call
       products.value = data.list || [];
       pagination.total = data.total || 0;
     } catch (err) {

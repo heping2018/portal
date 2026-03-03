@@ -1,52 +1,51 @@
 import request from '../utils/request';
 
-/**
- * Fetches a paginated list of news from the backend.
- * @param {object} params - Parameters for pagination and filtering.
- * @returns {Promise<object>} - A promise that resolves to the news list and total count.
- */
+const API_BASE_URL = '/admin-api/news';
+
 export const getNewsPage = (params) => {
   return request({
-    url: '/news',
+    url: `${API_BASE_URL}/page`,
     method: 'get',
     params,
   });
 };
 
-/**
- * Creates a new news article.
- * @param {object} newsData - The data for the new news article.
- * @returns {Promise<object>} - A promise that resolves to the newly created news data.
- */
-export const createNews = (newsData) => {
+export const getNewsList = (params) => {
   return request({
-    url: '/news',
+    url: `${API_BASE_URL}/list`,
+    method: 'get',
+    params,
+  });
+};
+
+export const getNewsDetail = (id) => {
+  return request({
+    url: `${API_BASE_URL}/get`,
+    method: 'get',
+    params: { id },
+  });
+};
+
+export const createNews = (data) => {
+  return request({
+    url: `${API_BASE_URL}/create`,
     method: 'post',
-    data: newsData,
+    data,
   });
 };
 
-/**
- * Updates an existing news article.
- * @param {object} newsData - The news data to update. Must include the news article's ID.
- * @returns {Promise<object>} - A promise that resolves to the updated news data.
- */
-export const updateNews = (newsData) => {
+export const updateNews = (data) => {
   return request({
-    url: `/news/${newsData.id}`,
+    url: `${API_BASE_URL}/update`,
     method: 'put',
-    data: newsData,
+    data,
   });
 };
 
-/**
- * Deletes a news article by its ID.
- * @param {number} id - The ID of the news article to delete.
- * @returns {Promise<object>} - A promise that resolves upon successful deletion.
- */
 export const deleteNews = (id) => {
   return request({
-    url: `/news/${id}`,
+    url: `${API_BASE_URL}/delete`,
     method: 'delete',
+    params: { id },
   });
 };
