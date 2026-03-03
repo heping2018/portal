@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-const API_BASE_URL = 'app-api/public/news';
+const API_BASE_URL = '/app-api/public/news';
 
 export const getNewsList = (params) => {
   return request({
@@ -12,7 +12,7 @@ export const getNewsList = (params) => {
 
 export const getNews = (id) => {
   return request({
-    url: `${API_BASE_URL}/${id}`, // FIX: Use path parameter instead of query string
+    url: `${API_BASE_URL}/${id}`,
     method: 'get',
   });
 };

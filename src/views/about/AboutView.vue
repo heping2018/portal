@@ -72,8 +72,8 @@ const initializePage = async () => {
   let navItems: NavigationItem[] = [];
   try {
     const response = await getAboutNavigation();
-    if (response && response.code === 0 && Array.isArray(response.data)) {
-      navItems = response.data;
+    if (response && response.code === 0 && Array.isArray(response)) {
+      navItems = response;
     } else {
       throw new Error('Invalid or failed API response for navigation');
     }

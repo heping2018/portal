@@ -15,10 +15,9 @@ const fetchCertificates = async () => {
   try {
     // The service returns an object like { code, msg, data: [...] }
     const response = await getCertificates();
-    
     // The actual list of certificates is in response.data
-    if (response && Array.isArray(response.data)) {
-      certificates.value = response.data.map((cert, index) => {
+    if (response && Array.isArray(response)) {
+      certificates.value = response.map((cert, index) => {
         // This logic is for a bento grid layout
         if (index === 0 || index === 4) cert.class = 'wide';
         if (index === 3) cert.class = 'tall';

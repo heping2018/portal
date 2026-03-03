@@ -16,9 +16,7 @@
           class="member-col"
         >
           <el-card shadow="hover" class="member-card">
-            <div class="member-logo-wrapper">
-              <img :src="member.logoUrl" :alt="getLocalizedField(member, 'memberName') + ' Logo'" class="member-logo" />
-            </div>
+            
             <div class="member-info">
               <h3 class="member-name">{{ getLocalizedField(member, 'memberName') }}</h3>
               <p class="member-description">{{ getLocalizedField(member, 'description') }}</p>
@@ -64,15 +62,17 @@ const error = ref<Error | null>(null);
 const getLocalizedField = (item: CompanyMember, field: 'memberName' | 'description') => {
   if (!item) return '';
   const lang = locale.value.startsWith('zh') ? 'Zh' : 'En';
-  return item[`${field}${lang}`] || item[`${field}En`] || '';
+  return item[`${field}`] || '';
 };
 
 const fetchMembers = async () => {
   try {
     loading.value = true;
     const response = await getCompanyMembers();
-    if (response.data && Array.isArray(response.data)) {
-        members.value = response.data;
+    console.log(response)
+    if (response&& Array.isArray(response)) {
+        members.value = response;
+        console.log(members)
     }
   } catch (err) {
     error.value = err as Error;

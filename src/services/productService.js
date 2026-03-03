@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-const API_BASE_URL = 'app-api/public/product';
+const API_BASE_URL = '/app-api/public/product';
 
 export const getProductList = (params) => {
   return request({
@@ -12,8 +12,7 @@ export const getProductList = (params) => {
 
 export const getProductDetail = (id) => {
   return request({
-    url: `${API_BASE_URL}/get`,
+    url: `${API_BASE_URL}/${id}`,
     method: 'get',
-    params: { id },
   });
 };

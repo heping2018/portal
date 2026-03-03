@@ -82,7 +82,7 @@ const totalPages = computed(() => {
       <router-link v-for="product in products" :key="product.id" :to="`/products/${product.id}`" class="bento-item" :style="{ '--bg-image': `url(${product.imageUrl || 'https://via.placeholder.com/400x300'})` }">
         <div class="item-content">
           <h3>{{ product.titleEn }}</h3>
-          <p class="category-label">{{ product.category || 'Uncategorized' }}</p>
+          <p class="category-label">{{ product.description || 'Uncategorized' }}</p>
         </div>
       </router-link>
     </div>

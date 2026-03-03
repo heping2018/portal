@@ -47,14 +47,14 @@ const error = ref<Error | null>(null);
 const getLocalizedField = (item: CultureData, field: 'title' | 'content') => {
   if (!item) return '';
   const lang = locale.value.startsWith('zh') ? 'Zh' : 'En';
-  return item[`${field}${lang}`] || item[`${field}En`] || '';
+  return item[`${field}`] || '';
 };
 
 const fetchCulture = async () => {
   try {
     loading.value = true;
     const response = await getCompanyCulture();
-    culture.value = response.data;
+    culture.value = response;
   } catch (err) {
     error.value = err as Error;
     console.error('Failed to fetch company culture:', err);

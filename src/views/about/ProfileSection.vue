@@ -48,14 +48,14 @@ const error = ref<Error | null>(null);
 const getLocalizedField = (item: ProfileData, field: 'title' | 'content') => {
   if (!item) return '';
   const lang = locale.value.startsWith('zh') ? 'Zh' : 'En';
-  return item[`${field}${lang}`] || item[`${field}En`] || '';
+  return item[`${field}`] || '';
 };
 
 const fetchProfile = async () => {
   try {
     loading.value = true;
     const response = await getCompanyProfile(); 
-    profile.value = response.data;
+    profile.value = response;
   } catch (err) {
     error.value = err as Error;
     console.error('Failed to fetch company profile:', err);

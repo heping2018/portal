@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-const API_BASE_URL = '/admin-api/product';
+const API_BASE_URL = '/admin-api/product/product';
 
 export const getProductPage = (params) => {
   return request({

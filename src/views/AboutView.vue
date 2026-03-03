@@ -45,7 +45,7 @@ const navigation = ref<NavigationItemVO[]>([]);
 const fetchNavigation = async () => {
   try {
     const response = await getCompanySections(); // Corrected function call
-    navigation.value = response.data;
+    navigation.value = response || [];
   } catch (error) {
     console.error('Failed to fetch about page navigation:', error);
     navigation.value = []; // Clear navigation on error

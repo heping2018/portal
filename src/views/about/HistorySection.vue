@@ -54,7 +54,7 @@ const error = ref<Error | null>(null);
 const getLocalizedField = (item: MilestoneEvent, field: 'title' | 'description') => {
   if (!item) return '';
   const lang = locale.value.startsWith('zh') ? 'Zh' : 'En';
-  return item[`${field}${lang}`] || item[`${field}En`] || '';
+  return item[`${field}`] || '';
 };
 
 const sortedHistory = computed(() => {
@@ -66,8 +66,8 @@ const fetchHistory = async () => {
   try {
     loading.value = true;
     const response = await getCompanyHistory();
-    if (response.data && Array.isArray(response.data.milestones)) {
-      history.value = response.data.milestones;
+    if (response && Array.isArray(response.milestones)) {
+      history.value = response.milestones;
     }
   } catch (err) {
     error.value = err as Error;

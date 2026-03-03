@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-const API_BASE_URL = 'admin-api/system/auth';
+const API_BASE_URL = '/admin-api/system/auth';
 
 export const login = (username, password) => {
   return request({

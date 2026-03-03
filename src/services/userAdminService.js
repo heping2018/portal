@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-const API_BASE_URL = 'admin-api/system/user';
+const API_BASE_URL = '/admin-api/system/user';
 
 export const createUser = (data) => {
   return request({

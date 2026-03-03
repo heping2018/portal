@@ -14,7 +14,7 @@ const error = ref(null);
 const getLocalizedField = (item, field) => {
   if (!item) return 'N/A';
   const lang = locale.value.startsWith('zh') ? 'Zh' : 'En';
-  return item[`${field}${lang}`] || item[`${field}En`] || 'N/A';
+  return item[`${field}`]|| 'N/A';
 };
 
 onMounted(async () => {
@@ -54,7 +54,7 @@ onMounted(async () => {
 
     <div v-else-if="product" class="detail-card">
       <div class="product-gallery">
-        <img :src="product.imageUrl || 'https://via.placeholder.com/600x400'" :alt="getLocalizedField(product, 'title')" class="main-product-image">
+        <img :src="product.imageUrl || 'https://via.placeholder.com/600x400'" :alt="getLocalizedField(product, 'imageUrl')" class="main-product-image">
       </div>
       <div class="product-info">
         <h1 class="title">{{ getLocalizedField(product, 'title') }}</h1>

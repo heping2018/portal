@@ -3700,6 +3700,147 @@ interface ProductCategoryDO {
 
 ---
 
+### 管理后台 - 产品管理
+
+产品管理模块提供产品的增删改查功能，需要管理员权限。
+
+**基础路径**: `/admin-api/product/product`
+
+**认证要求**: JWT
+
+---
+
+#### 创建产品
+
+**Endpoint**: `POST /admin-api/product/product`
+
+**权限**: `product:product:create`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Body | code | string | 是 | 产品代码 |
+| Body | category | string | 是 | 产品类别 |
+| Body | titleZh | string | 是 | 产品名称（中文） |
+| Body | titleEn | string | 否 | 产品名称（英文） |
+| Body | titlePt | string | 否 | 产品名称（葡萄牙语） |
+| Body | titleEs | string | 否 | 产品名称（西班牙语） |
+| Body | descriptionZh | string | 是 | 产品描述（中文） |
+| Body | descriptionEn | string | 否 | 产品描述（英文） |
+| Body | descriptionPt | string | 否 | 产品描述（葡萄牙语） |
+| Body | descriptionEs | string | 否 | 产品描述（西班牙语） |
+| Body | imageUrl | string | 否 | 产品图片URL |
+| Body | active | boolean | 否 | 是否启用（默认true） |
+
+##### 响应数据
+
+```typescript
+number // 新创建的产品ID
+```
+
+---
+
+#### 更新产品
+
+**Endpoint**: `PUT /admin-api/product/product`
+
+**权限**: `product:product:update`
+
+##### 请求参数
+
+同【创建产品】，需额外提供 `id` 字段。
+
+##### 响应数据
+
+```typescript
+boolean // true表示更新成功
+```
+
+---
+
+#### 删除产品
+
+**Endpoint**: `DELETE /admin-api/product/product?id={id}`
+
+**权限**: `product:product:delete`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 产品ID |
+
+##### 响应数据
+
+```typescript
+boolean // true表示删除成功
+```
+
+---
+
+#### 获取产品详情
+
+**Endpoint**: `GET /admin-api/product/product?id={id}`
+
+**权限**: `product:product:query`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 产品ID |
+
+##### 响应数据
+
+```typescript
+interface ProductRespVO {
+  id: number;
+  code: string;
+  category: string;
+  titleZh: string;
+  titleEn: string;
+  titlePt: string;
+  titleEs: string;
+  descriptionZh: string;
+  descriptionEn: string;
+  descriptionPt: string;
+  descriptionEs: string;
+  imageUrl: string;
+  active: boolean;
+  createTime: string;
+  updateTime: string;
+}
+```
+
+---
+
+#### 获取产品分页列表
+
+**Endpoint**: `GET /admin-api/product/product/page`
+
+**权限**: `product:product:query`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | category | string | 否 | 产品类别 |
+| Query | keyword | string | 否 | 搜索关键词 |
+| Query | pageNo | number | 是 | 页码 |
+| Query | pageSize | number | 是 | 每页数量 |
+
+##### 响应数据
+
+```typescript
+interface PageResult<ProductRespVO> {
+  total: number;
+  list: ProductRespVO[];
+}
+```
+
+---
+
 ## 产品规格管理
 
 ### 获取产品规格列表
@@ -7043,5 +7184,517 @@ interface QualitySystemVO {
 ```
 
 ---
+
+### 管理后台 - 研发中心管理
+
+研发中心管理模块提供研发中心信息的增删改查功能，需要管理员权限。
+
+**基础路径**: `/admin-api/admin/rd`
+
+**认证要求**: JWT
+
+---
+
+#### 创建研发中心信息
+
+**Endpoint**: `POST /admin-api/admin/rd/center`
+
+**权限**: `product:rd-center:create`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Body | code | string | 是 | 编码 |
+| Body | nameZh | string | 是 | 中文名称 |
+| Body | nameEn | string | 否 | 英文名称 |
+| Body | namePt | string | 否 | 葡萄牙语名称 |
+| Body | nameEs | string | 否 | 西班牙语名称 |
+| Body | introductionZh | string | 是 | 中文介绍 |
+| Body | introductionEn | string | 否 | 英文介绍 |
+| Body | introductionPt | string | 否 | 葡萄牙语介绍 |
+| Body | introductionEs | string | 否 | 西班牙语介绍 |
+| Body | imageUrl | string | 否 | 图片URL |
+| Body | videoUrl | string | 否 | 视频URL |
+| Body | sortOrder | number | 否 | 排序 |
+| Body | active | boolean | 否 | 是否激活（默认true） |
+
+##### 响应数据
+
+```typescript
+number // 新创建的研发中心ID
+```
+
+---
+
+#### 更新研发中心信息
+
+**Endpoint**: `PUT /admin-api/admin/rd/center`
+
+**权限**: `product:rd-center:update`
+
+##### 请求参数
+
+同【创建研发中心信息】，需额外提供 `id` 字段。
+
+##### 响应数据
+
+```typescript
+boolean // true表示更新成功
+```
+
+---
+
+#### 删除研发中心信息
+
+**Endpoint**: `DELETE /admin-api/admin/rd/center?id={id}`
+
+**权限**: `product:rd-center:delete`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 研发中心ID |
+
+##### 响应数据
+
+```typescript
+boolean // true表示删除成功
+```
+
+---
+
+#### 获取研发中心信息详情
+
+**Endpoint**: `GET /admin-api/admin/rd/center?id={id}`
+
+**权限**: `product:rd-center:query`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 研发中心ID |
+
+##### 响应数据
+
+```typescript
+interface RdCenterInfoDO {
+  id: number;
+  code: string;
+  nameZh: string;
+  nameEn: string;
+  namePt: string;
+  nameEs: string;
+  introductionZh: string;
+  introductionEn: string;
+  introductionPt: string;
+  introductionEs: string;
+  imageUrl: string;
+  videoUrl: string;
+  sortOrder: number;
+  active: boolean;
+  createTime: string;
+  updateTime: string;
+}
+```
+
+---
+
+### 管理后台 - 创新成果管理
+
+创新成果管理模块提供创新成果的增删改查功能，需要管理员权限。
+
+**基础路径**: `/admin-api/admin/rd/innovation`
+
+**认证要求**: JWT
+
+---
+
+#### 创建创新成果
+
+**Endpoint**: `POST /admin-api/admin/rd/innovation`
+
+**权限**: `product:innovation:create`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Body | code | string | 是 | 编码 |
+| Body | titleZh | string | 是 | 中文标题 |
+| Body | titleEn | string | 否 | 英文标题 |
+| Body | titlePt | string | 否 | 葡萄牙语标题 |
+| Body | titleEs | string | 否 | 西班牙语标题 |
+| Body | summaryZh | string | 是 | 中文摘要 |
+| Body | summaryEn | string | 否 | 英文摘要 |
+| Body | summaryPt | string | 否 | 葡萄牙语摘要 |
+| Body | summaryEs | string | 否 | 西班牙语摘要 |
+| Body | contentZh | string | 否 | 中文内容 |
+| Body | contentEn | string | 否 | 英文内容 |
+| Body | contentPt | string | 否 | 葡萄牙语内容 |
+| Body | contentEs | string | 否 | 西班牙语内容 |
+| Body | category | string | 是 | 类别 |
+| Body | imageUrl | string | 否 | 图片URL |
+| Body | videoUrl | string | 否 | 视频URL |
+| Body | patentNumber | string | 否 | 专利号 |
+| Body | publishDate | string | 否 | 发布日期（ISO 8601） |
+| Body | sortOrder | number | 否 | 排序 |
+| Body | active | boolean | 否 | 是否激活（默认true） |
+
+##### 响应数据
+
+```typescript
+number // 新创建的创新成果ID
+```
+
+---
+
+#### 更新创新成果
+
+**Endpoint**: `PUT /admin-api/admin/rd/innovation`
+
+**权限**: `product:innovation:update`
+
+##### 请求参数
+
+同【创建创新成果】，需额外提供 `id` 字段。
+
+##### 响应数据
+
+```typescript
+boolean // true表示更新成功
+```
+
+---
+
+#### 删除创新成果
+
+**Endpoint**: `DELETE /admin-api/admin/rd/innovation?id={id}`
+
+**权限**: `product:innovation:delete`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 创新成果ID |
+
+##### 响应数据
+
+```typescript
+boolean // true表示删除成功
+```
+
+---
+
+#### 获取创新成果详情
+
+**Endpoint**: `GET /admin-api/admin/rd/innovation?id={id}`
+
+**权限**: `product:innovation:query`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 创新成果ID |
+
+##### 响应数据
+
+```typescript
+interface InnovationDO {
+  id: number;
+  code: string;
+  titleZh: string;
+  titleEn: string;
+  titlePt: string;
+  titleEs: string;
+  summaryZh: string;
+  summaryEn: string;
+  summaryPt: string;
+  summaryEs: string;
+  contentZh: string;
+  contentEn: string;
+  contentPt: string;
+  contentEs: string;
+  category: string;
+  imageUrl: string;
+  videoUrl: string;
+  patentNumber: string;
+  publishDate: string;
+  sortOrder: number;
+  active: boolean;
+  createTime: string;
+  updateTime: string;
+}
+```
+
+---
+
+### 管理后台 - 生产基地管理
+
+生产基地管理模块提供生产基地的增删改查功能，需要管理员权限。
+
+**基础路径**: `/admin-api/admin/production/base`
+
+**认证要求**: JWT
+
+---
+
+#### 创建生产基地
+
+**Endpoint**: `POST /admin-api/admin/production/base`
+
+**权限**: `product:production-base:create`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Body | code | string | 是 | 编码 |
+| Body | nameZh | string | 是 | 中文名称 |
+| Body | nameEn | string | 否 | 英文名称 |
+| Body | namePt | string | 否 | 葡萄牙语名称 |
+| Body | nameEs | string | 否 | 西班牙语名称 |
+| Body | locationZh | string | 是 | 中文地址 |
+| Body | locationEn | string | 否 | 英文地址 |
+| Body | locationPt | string | 否 | 葡萄牙语地址 |
+| Body | locationEs | string | 否 | 西班牙语地址 |
+| Body | descriptionZh | string | 是 | 中文描述 |
+| Body | descriptionEn | string | 否 | 英文描述 |
+| Body | descriptionPt | string | 否 | 葡萄牙语描述 |
+| Body | descriptionEs | string | 否 | 西班牙语描述 |
+| Body | areaSize | string | 否 | 面积大小 |
+| Body | employeeCount | number | 否 | 员工数量 |
+| Body | capacityZh | string | 否 | 中文产能 |
+| Body | capacityEn | string | 否 | 英文产能 |
+| Body | capacityPt | string | 否 | 葡萄牙语产能 |
+| Body | capacityEs | string | 否 | 西班牙语产能 |
+| Body | facilitiesZh | string | 否 | 中文设施 |
+| Body | facilitiesEn | string | 否 | 英文设施 |
+| Body | facilitiesPt | string | 否 | 葡萄牙语设施 |
+| Body | facilitiesEs | string | 否 | 西班牙语设施 |
+| Body | imageUrl | string | 否 | 图片URL |
+| Body | videoUrl | string | 否 | 视频URL |
+| Body | sortOrder | number | 否 | 排序 |
+| Body | active | boolean | 否 | 是否激活（默认true） |
+
+##### 响应数据
+
+```typescript
+number // 新创建的生产基地ID
+```
+
+---
+
+#### 更新生产基地
+
+**Endpoint**: `PUT /admin-api/admin/production/base`
+
+**权限**: `product:production-base:update`
+
+##### 请求参数
+
+同【创建生产基地】，需额外提供 `id` 字段。
+
+##### 响应数据
+
+```typescript
+boolean // true表示更新成功
+```
+
+---
+
+#### 删除生产基地
+
+**Endpoint**: `DELETE /admin-api/admin/production/base?id={id}`
+
+**权限**: `product:production-base:delete`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 生产基地ID |
+
+##### 响应数据
+
+```typescript
+boolean // true表示删除成功
+```
+
+---
+
+#### 获取生产基地详情
+
+**Endpoint**: `GET /admin-api/admin/production/base?id={id}`
+
+**权限**: `product:production-base:query`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 生产基地ID |
+
+##### 响应数据
+
+```typescript
+interface ProductionBaseDO {
+  id: number;
+  code: string;
+  nameZh: string;
+  nameEn: string;
+  namePt: string;
+  nameEs: string;
+  locationZh: string;
+  locationEn: string;
+  locationPt: string;
+  locationEs: string;
+  descriptionZh: string;
+  descriptionEn: string;
+  descriptionPt: string;
+  descriptionEs: string;
+  areaSize: string;
+  employeeCount: number;
+  capacityZh: string;
+  capacityEn: string;
+  capacityPt: string;
+  capacityEs: string;
+  facilitiesZh: string;
+  facilitiesEn: string;
+  facilitiesPt: string;
+  facilitiesEs: string;
+  imageUrl: string;
+  videoUrl: string;
+  sortOrder: number;
+  active: boolean;
+  createTime: string;
+  updateTime: string;
+}
+```
+
+---
+
+### 管理后台 - 质量体系管理
+
+质量体系管理模块提供质量体系的增删改查功能，需要管理员权限。
+
+**基础路径**: `/admin-api/admin/quality/system`
+
+**认证要求**: JWT
+
+---
+
+#### 创建质量体系
+
+**Endpoint**: `POST /admin-api/admin/quality/system`
+
+**权限**: `product:quality-system:create`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Body | code | string | 是 | 编码 |
+| Body | nameZh | string | 是 | 中文名称 |
+| Body | nameEn | string | 否 | 英文名称 |
+| Body | namePt | string | 否 | 葡萄牙语名称 |
+| Body | nameEs | string | 否 | 西班牙语名称 |
+| Body | descriptionZh | string | 是 | 中文描述 |
+| Body | descriptionEn | string | 否 | 英文描述 |
+| Body | descriptionPt | string | 否 | 葡萄牙语描述 |
+| Body | descriptionEs | string | 否 | 西班牙语描述 |
+| Body | standard | string | 是 | 标准（如：ISO 9001:2015） |
+| Body | certificateNumber | string | 否 | 证书编号 |
+| Body | imageUrl | string | 否 | 图片URL |
+| Body | documentUrl | string | 否 | 文档URL |
+| Body | sortOrder | number | 否 | 排序 |
+| Body | active | boolean | 否 | 是否激活（默认true） |
+
+##### 响应数据
+
+```typescript
+number // 新创建的质量体系ID
+```
+
+---
+
+#### 更新质量体系
+
+**Endpoint**: `PUT /admin-api/admin/quality/system`
+
+**权限**: `product:quality-system:update`
+
+##### 请求参数
+
+同【创建质量体系】，需额外提供 `id` 字段。
+
+##### 响应数据
+
+```typescript
+boolean // true表示更新成功
+```
+
+---
+
+#### 删除质量体系
+
+**Endpoint**: `DELETE /admin-api/admin/quality/system?id={id}`
+
+**权限**: `product:quality-system:delete`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 质量体系ID |
+
+##### 响应数据
+
+```typescript
+boolean // true表示删除成功
+```
+
+---
+
+#### 获取质量体系详情
+
+**Endpoint**: `GET /admin-api/admin/quality/system?id={id}`
+
+**权限**: `product:quality-system:query`
+
+##### 请求参数
+
+| 位置 | 字段名 | 类型 | 必填 | 说明 |
+|:-----|:-------|:-----|:-----|:-----|
+| Query | id | number | 是 | 质量体系ID |
+
+##### 响应数据
+
+```typescript
+interface QualitySystemDO {
+  id: number;
+  code: string;
+  nameZh: string;
+  nameEn: string;
+  namePt: string;
+  nameEs: string;
+  descriptionZh: string;
+  descriptionEn: string;
+  descriptionPt: string;
+  descriptionEs: string;
+  standard: string;
+  certificateNumber: string;
+  imageUrl: string;
+  documentUrl: string;
+  sortOrder: number;
+  active: boolean;
+  createTime: string;
+  updateTime: string;
+}
+```
 
 ---
