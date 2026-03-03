@@ -26,11 +26,15 @@ This project is a Vue.js application designed for a company's web presence. It i
     *   The UI correctly displays "Login" or "Logout" based on the user's authentication status.
 *   **Backend Configuration:** The Vite development server is configured to proxy API requests to the correct backend address.
 
-## Current Task: Update Backend Address
+## Current Task: Fix Certificate Page & Deploy to GitHub
 
 ### Plan
 
-1.  **Analyze the Request:** The user requested to change the backend API address.
-2.  **Locate Configuration:** The backend address is configured in the `vite.config.ts` file within the `server.proxy` settings.
-3.  **Update Configuration:** The `target` property of the proxy configuration was updated from `http://localhost:8080` to `https://unstruggling-remona-actionably.ngrok-free.dev`.
-4.  **Verify the Change:** The application will now forward API requests to the new backend address.
+1.  **Analyze the Issue:** The "资质证书管理" (Certificate Management) page was not displaying the list of certificates, even though the data was being fetched correctly from the backend. The component was not parsing the API response correctly.
+2.  **Investigate the Code:** Examination of `src/views/AdminCertificateView.vue` revealed that the component was assigning the entire API response object to the `certificates` ref, instead of the `response.data.list` array which contains the actual certificate data.
+3.  **Implement the Fix:** Modified the `fetchCertificates` function in `src/views/AdminCertificateView.vue` to correctly assign `response.data.list` to the `certificates` ref, resolving the data display issue.
+4.  **Push to GitHub:**
+    *   Staged all local changes using `git add .`.
+    *   Committed the changes with the message: "fix: 修复证书管理页面数据显示问题并更新后端API地址".
+    *   Pushed the committed changes to the `main` branch of the remote GitHub repository, using a personal access token for authentication.
+5.  **Verification:** The certificate management page now correctly displays the list of certificates, and the latest code is successfully pushed to the GitHub repository.

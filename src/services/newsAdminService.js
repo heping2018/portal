@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-const API_BASE_URL = '/admin-api/news';
+const API_BASE_URL = '/admin-api/product/news';
 
 export const getNewsPage = (params) => {
   return request({
