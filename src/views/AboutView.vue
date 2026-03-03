@@ -207,7 +207,9 @@ onMounted(fetchNavigation);
 }
 
 .content-area :deep(.timeline-content) {
-  background-color: #1E2D3B;
+  background-color: transparent; /* Changed to transparent for consistency */
+  padding: 0; /* Removing padding to align text directly */
+  box-shadow: none; /* Removing shadow for a flatter look */
 }
 
 .content-area :deep(.event-title) {

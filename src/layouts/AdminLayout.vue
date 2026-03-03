@@ -2,11 +2,12 @@
   <div class="admin-layout">
     <aside class="sidebar">
       <div class="logo">
-        <router-link to="/admin/dashboard">Maxunitech Admin</router-link>
+        <router-link to="/">Maxunitech Admin</router-link>
       </div>
       <nav class="admin-nav">
         <router-link to="/admin/dashboard">{{ t('admin.title') }}</router-link>
         <router-link to="/admin/users">{{ t('user_management.title') }}</router-link>
+        <router-link to="/admin/system/role">{{ t('admin.role_management') }}</router-link>
         <router-link to="/admin/products">{{ t('admin.product_management') }}</router-link>
         <router-link to="/admin/news">{{ t('admin.news_management') }}</router-link>
         <router-link to="/admin/certificates">{{ t('admin.certificate_management') }}</router-link>
@@ -15,7 +16,7 @@
         <router-link to="/admin/files">{{ t('admin.file_management') }}</router-link>
       </nav>
     </aside>
-    <div class="main-content">
+    <div class="main-content-wrapper">
       <header class="admin-header">
         <div class="user-info">
           <span>{{ t('nav.welcome', { name: user?.nickname || 'Admin' }) }}</span>
@@ -48,6 +49,7 @@ const handleLogout = async () => {
 </script>
 
 <style scoped>
+/* Using :root on the component is fine for local scoping CSS variables */
 :root {
   --deep-navy-blue: #0A0F1E;
   --midnight-blue: #0D152A;
@@ -60,49 +62,52 @@ const handleLogout = async () => {
 .admin-layout {
   display: flex;
   height: 100vh;
+  width: 100vw;
   background: linear-gradient(170deg, var(--deep-navy-blue), var(--midnight-blue));
   color: var(--text-primary);
 }
 
-.sidebar, .admin-header, .admin-page-content {
-  background-color: rgba(13, 21, 42, 0.7); /* Slightly transparent dark blue */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--border-blue);
-  border-radius: 16px;
-}
-
 .sidebar {
-  width: 240px;
+  width: 250px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  padding: 16px 0;
+  background-color: rgba(13, 21, 42, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-right: 1px solid var(--border-blue);
+  padding: 0;
+  height: 100vh; /* Make sidebar full height */
 }
 
 .logo {
-  padding: 16px 24px;
+  padding: 20px 24px;
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   border-bottom: 1px solid var(--border-blue);
-}
-.logo a {
   color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.logo a {
+  color: inherit;
   text-decoration: none;
 }
 
 .admin-nav {
   flex-grow: 1;
   padding-top: 16px;
+  overflow-y: auto;
 }
 
 .admin-nav a {
-  display: block;
-  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
   margin: 8px 16px;
   border-radius: 8px;
   position: relative;
@@ -116,18 +121,17 @@ const handleLogout = async () => {
 
 .admin-nav a.router-link-exact-active {
   background-color: rgba(13, 21, 42, 0.9);
-  color: var(--text-primary);
-  font-weight: bold;
-  border-left: 4px solid var(--glow-blue);
-  box-shadow: inset 5px 0 15px -5px rgba(0, 191, 255, 0.3);
+  color: var(--glow-blue);
+  font-weight: 600;
+  border-left-color: var(--glow-blue);
+  box-shadow: inset 3px 0 10px -2px rgba(0, 191, 255, 0.3);
 }
 
-.main-content {
+.main-content-wrapper {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  gap: 16px;
+  height: 100vh; /* Make wrapper full height */
   overflow: hidden;
 }
 
@@ -138,6 +142,8 @@ const handleLogout = async () => {
   padding: 0 24px;
   height: 64px;
   flex-shrink: 0;
+  background-color: rgba(13, 21, 42, 0.5);
+  border-bottom: 1px solid var(--border-blue);
 }
 
 .user-info {
@@ -148,39 +154,46 @@ const handleLogout = async () => {
 
 .logout-button {
   border: 1px solid var(--border-blue);
-  background: rgba(13, 21, 42, 0.5);
+  background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
   font-size: 1rem;
   padding: 8px 16px;
   border-radius: 8px;
-  transition: box-shadow 0.3s, color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .logout-button:hover {
   color: var(--glow-blue);
+  border-color: var(--glow-blue);
   box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
 }
 
 .admin-page-content {
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: auto; /* Enable vertical scrolling for content area */
   padding: 24px;
+  background-color: transparent; /* Content area background */
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar for webkit browsers */
+.admin-nav::-webkit-scrollbar,
 .admin-page-content::-webkit-scrollbar {
   width: 8px;
 }
 
+.admin-nav::-webkit-scrollbar-track,
 .admin-page-content::-webkit-scrollbar-track {
   background: transparent;
 }
 
+.admin-nav::-webkit-scrollbar-thumb,
 .admin-page-content::-webkit-scrollbar-thumb {
   background-color: rgba(0, 191, 255, 0.3);
   border-radius: 4px;
 }
+
+.admin-nav::-webkit-scrollbar-thumb:hover,
 .admin-page-content::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 191, 255, 0.5);
 }

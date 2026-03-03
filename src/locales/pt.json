@@ -1,6 +1,41 @@
 {
   "greeting": "Olá, bem-vindo à nossa aplicação!",
   "language": "Idioma",
+  "nav": {
+    "home": "Início",
+    "products": "Produtos",
+    "news": "Notícias",
+    "certifications": "Certificações",
+    "about": "Sobre Nós",
+    "contact": "Contato",
+    "admin": "Admin",
+    "login": "Login",
+    "welcome": "Bem-vindo, {name}",
+    "logout": "Sair",
+    "rd_center": "Centro de P&D"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar"
+  },
+  "state": {
+    "loading": "Carregando...",
+    "data_loading_failed": "Falha ao carregar dados, por favor, tente novamente."
+  },
+  "rd_center": {
+    "innovations": {
+      "title": "Conquistas de Inovação",
+      "subtitle": "Explorando as fronteiras da tecnologia e da inovação.",
+      "no_results": "Nenhum resultado de inovação para exibir no momento."
+    },
+    "detail": {
+      "back_to_rd_center": "Voltar ao Centro de P&D",
+      "meta_published": "Publicado em: {date}",
+      "not_found": "Inovação não encontrada"
+    }
+  },
   "product": {
     "title": "Nossos Produtos",
     "subtitle": "Explore nossa gama inovadora de soluções inteligentes.",
@@ -10,7 +45,11 @@
     "previous": "Anterior",
     "next": "Próximo",
     "fetch_error": "Erro ao buscar produtos. Por favor, tente novamente.",
-    "loading": "Carregando produtos..."
+    "search_error": "Ocorreu um erro durante a busca. Por favor, tente novamente.",
+    "loading": "Carregando produtos...",
+    "categories": "Categorias",
+    "all_products": "Todos os Produtos",
+    "search": "Buscar"
   },
   "product_detail": {
     "back_to_products": "Voltar aos Produtos",
@@ -29,65 +68,16 @@
     "password": "Senha",
     "password_placeholder": "Digite sua senha",
     "loading": "Entrando...",
-    "submit": "Entrar",
-    "no_account": "Não tem uma conta? Registre-se",
-    "forgot_password": "Esqueceu a senha?"
+    "submit": "Entrar"
   },
-  "nav": {
-    "home": "Início",
-    "products": "Produtos",
-    "news": "Notícias",
-    "certifications": "Certificações",
-    "about": "Sobre Nós",
-    "welcome": "Bem-vindo, {name}",
-    "logout": "Sair",
-    "login": "Entrar"
-  },
-  "certifications": {
-    "title": "Nossas Certificações",
-    "subtitle": "Estamos comprometidos com os mais altos padrões de qualidade e segurança.",
-    "loading": "Carregando certificações...",
-    "error": "Falha ao carregar as certificações. Por favor, tente novamente mais tarde.",
-    "no_certificates": "Nenhuma certificação para exibir no momento.",
-    "issuer": "Emissor",
-    "issue_date": "Data de Emissão",
-    "verify": "Verificar Certificado"
-  },
-  "news": {
-    "title": "Notícias e Atualizações",
-    "subtitle": "Mantenha-se atualizado com nossos últimos anúncios e artigos.",
-    "loading": "Carregando notícias...",
-    "error": "Falha ao carregar as notícias. Por favor, tente novamente mais tarde.",
-    "no_articles": "Nenhum artigo de notícia disponível no momento.",
-    "read_more": "Leia Mais"
-  },
-  "news_detail": {
-    "loading": "Carregando artigo...",
-    "no_id_provided": "Nenhum ID de artigo foi fornecido.",
-    "not_found": "Desculpe, o artigo que você está procurando não foi encontrado.",
-    "back_to_news": "Voltar às Notícias",
-    "published_on": "Publicado em"
-  },
-  "hero": {
-    "title": "Inovar. Integrar. Inspirar.",
-    "subtitle": "Pioneirando a próxima geração de tecnologia inteligente para conectar e capacitar o mundo.",
-    "cta": "Descubra Nossas Soluções"
-  },
-  "bento": {
-    "item1_title": "Automotivo Inteligente",
-    "item1_desc": "Sistemas inteligentes para os veículos do futuro.",
-    "item2_title": "Análise com IA",
-    "item2_desc": "Desvende insights com nossas plataformas de IA de ponta.",
-    "item3_title": "Casa Conectada",
-    "item3_desc": "Integre sua vida perfeitamente com nosso ecossistema de casa inteligente.",
-    "item4_title": "IoT Industrial",
-    "item4_desc": "Soluções robustas e escaláveis para a Indústria 4.0.",
-    "loading": "Carregando produtos...",
-    "error_fetching": "Erro ao buscar produtos. Por favor, tente novamente.",
-    "no_products": "Nenhum produto em destaque disponível no momento."
-  },
-  "about": {
-    "title": "Sobre a Maxunitech",
-    "subtitle": "Somos arquitetos do futuro, engenheiros do impossível e parceiros no seu sucesso."
+  "admin": {
+    "title": "Painel de Controle",
+    "product_management": "Gerenciamento de Produtos",
+    "news_management": "Gerenciamento de Notícias",
+    "certificate_management": "Gerenciamento de Certificados",
+    "category_management": "Gerenciamento de Categorias",
+    "dictionary_management": "Gerenciamento de Dicionário",
+    "file_management": "Gerenciamento de Arquivos",
+    "role_management": "Gerenciamento de Funções"
   }
 }

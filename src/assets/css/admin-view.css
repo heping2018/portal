@@ -1,0 +1,105 @@
+
+.admin-view-container {
+  padding: 24px;
+  background-color: transparent; /* Let the layout's background show through */
+}
+
+.search-card,
+.table-card {
+  border: 1px solid var(--border-blue);
+  background-color: rgba(13, 21, 42, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  overflow: visible; /* For dropdowns etc. */
+}
+
+.table-header-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Override Element Plus default styles for a more integrated look */
+
+:deep(.el-card__header) {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-blue);
+}
+
+:deep(.el-form-item__label) {
+  color: var(--text-secondary);
+}
+
+:deep(.el-input__wrapper),
+:deep(.el-select__wrapper) {
+  background-color: rgba(0,0,0,0.3);
+  box-shadow: none;
+  border: 1px solid var(--border-blue);
+}
+
+:deep(.el-input__inner) {
+  color: var(--text-primary);
+}
+
+:deep(.el-table) {
+  background-color: transparent;
+  --el-table-border-color: var(--border-blue);
+  --el-table-header-bg-color: rgba(0, 191, 255, 0.1);
+  --el-table-tr-bg-color: transparent;
+  --el-table-row-hover-bg-color: rgba(0, 191, 255, 0.05);
+}
+
+:deep(.el-table th) {
+  color: var(--glow-blue);
+}
+
+:deep(.el-table td),
+:deep(.el-table th.is-leaf) {
+  border-bottom: 1px solid var(--border-blue);
+}
+
+:deep(.el-table--border .el-table__inner-wrapper:after),
+:deep(.el-table--border:after),
+:deep(.el-table--border:before),
+:deep(.el-table__inner-wrapper:before) {
+  background-color: var(--border-blue);
+}
+
+:deep(.el-pagination) {
+  margin-top: 24px;
+  justify-content: flex-end;
+  --el-pagination-button-bg-color: rgba(0,0,0,0.3);
+  --el-color-primary: var(--glow-blue);
+  --el-text-color-primary: var(--text-secondary);
+}
+
+:deep(.el-pagination button:disabled) {
+  background-color: rgba(0,0,0,0.2);
+}
+
+:deep(.el-button--primary) {
+  background-color: var(--glow-blue);
+  border-color: var(--glow-blue);
+  color: var(--deep-navy-blue);
+  font-weight: bold;
+}
+:deep(.el-button--primary:hover) {
+  background-color: #33cfff;
+  border-color: #33cfff;
+}
+:deep(.el-button--danger) {
+  background-color: #F56C6C;
+  border-color: #F56C6C;
+}
+:deep(.el-button.is-plain) {
+   --el-button-hover-text-color: var(--glow-blue);
+   --el-button-hover-border-color: var(--glow-blue);
+   --el-button-hover-bg-color: rgba(0, 191, 255, 0.1);
+}

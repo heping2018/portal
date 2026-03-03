@@ -9,7 +9,8 @@
     "admin": "Admin",
     "login": "Login",
     "welcome": "Welcome, {name}",
-    "logout": "Logout"
+    "logout": "Logout",
+    "rd_center": "R&D Center"
   },
   "common": {
     "loading": "Loading...",
@@ -23,6 +24,36 @@
     "previous": "Previous",
     "next": "Next",
     "page": "Page {currentPage} of {totalPages}"
+  },
+  "state": {
+    "loading": "Loading...",
+    "data_loading_failed": "Failed to load data, please try again."
+  },
+  "product": {
+    "title": "Our Products",
+    "subtitle": "Explore our innovative solutions, designed to meet the highest standards of quality and performance.",
+    "search_placeholder": "Search for products...",
+    "loading": "Loading products...",
+    "fetch_error": "Failed to load products. Please try again later.",
+    "search_error": "An error occurred while searching. Please try again.",
+    "no_products_found": "No products found that match your criteria.",
+    "previous": "Previous",
+    "next": "Next",
+    "categories": "Categories",
+    "all_products": "All Products",
+    "search": "Search"
+  },
+  "rd_center": {
+    "innovations": {
+      "title": "Innovation Achievements",
+      "subtitle": "Exploring the frontiers of technology and innovation.",
+      "no_results": "No innovation results to display at the moment."
+    },
+    "detail": {
+      "back_to_rd_center": "Back to R&D Center",
+      "meta_published": "Published on: {date}",
+      "not_found": "Innovation not found"
+    }
   },
   "login": {
     "title": "Admin Login",
@@ -63,6 +94,7 @@
     "product_management": "Product Management",
     "news_management": "News Management",
     "certificate_management": "Certificate Management",
+    "role_management": "Role Management",
     "category_management": "Category Management",
     "dictionary_management": "Dictionary Management",
     "file_management": "File Management"

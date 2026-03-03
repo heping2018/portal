@@ -18,6 +18,8 @@ import AuthCallbackView from '../views/AuthCallbackView.vue';
 import CertificateView from '../views/CertificateView.vue';
 import NewsView from '../views/NewsView.vue';
 import NewsDetailView from '../views/NewsDetailView.vue';
+import RdCenterView from '../views/RdCenterView.vue';
+import InnovationDetailView from '../views/InnovationDetailView.vue';
 
 // About Page Components
 import AboutView from '../views/AboutView.vue';
@@ -36,6 +38,7 @@ import AdminAuthConfigView from '../views/AdminAuthConfigView.vue';
 import AdminCategoryView from '../views/AdminCategoryView.vue';
 import AdminDictionaryView from '../views/AdminDictionaryView.vue';
 import AdminFileView from '../views/AdminFileView.vue';
+import RoleManagement from '../views/admin/system/role/RoleManagement.vue';
 
 const routes = [
   {
@@ -103,6 +106,17 @@ const routes = [
         ]
       },
       {
+        path: 'rd-center',
+        name: 'RdCenterView',
+        component: RdCenterView
+      },
+      {
+        path: 'rd-center/innovations/:id',
+        name: 'InnovationDetail',
+        component: InnovationDetailView,
+        props: true
+      },
+      {
         path: 'login',
         name: 'LoginView',
         component: LoginView
@@ -151,6 +165,11 @@ const routes = [
         path: 'users',
         name: 'AdminUserView',
         component: AdminUserView
+      },
+      {
+        path: 'system/role',
+        name: 'RoleManagement',
+        component: RoleManagement
       },
       {
         path: 'products',

@@ -54,7 +54,8 @@ const error = ref<Error | null>(null);
 const getLocalizedField = (item: MilestoneEvent, field: 'title' | 'description') => {
   if (!item) return '';
   const lang = locale.value.startsWith('zh') ? 'Zh' : 'En';
-  return item[`${field}`] || '';
+  const key = `${field}` as keyof MilestoneEvent;
+  return item[key] as string || item[`${field}En` as keyof MilestoneEvent] as string || '';
 };
 
 const sortedHistory = computed(() => {
@@ -107,17 +108,31 @@ onMounted(fetchHistory);
   padding: 0 1rem;
 }
 
-.timeline-card {
-  border: 1px solid var(--el-border-color-lighter);
-  background-color: var(--el-bg-color-overlay);
-  border-radius: 8px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+/* FINAL, ROBUST FIX */
+
+/* 1. Force the timeline item's content area to be transparent */
+:deep(.el-timeline-item__content) {
+  background-color: transparent !important;
 }
 
-.timeline-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--el-box-shadow-light);
+/* 2. Force the card itself to be transparent and remove its card-like appearance */
+.timeline-card {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
+
+/* 3. Ensure the card body has no padding to mess up alignment */
+.timeline-card :deep(.el-card__body) {
+    padding: 0 !important;
+}
+
+/* 4. Disable hover effects */
+.timeline-card:hover {
+    transform: none;
+    box-shadow: none !important;
+}
+
 
 .event-title {
   font-size: 1.3rem;

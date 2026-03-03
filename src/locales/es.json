@@ -1,6 +1,41 @@
 {
   "greeting": "¡Hola, bienvenido a nuestra aplicación!",
   "language": "Idioma",
+  "nav": {
+    "home": "Inicio",
+    "products": "Productos",
+    "news": "Noticias",
+    "certifications": "Certificaciones",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto",
+    "admin": "Admin",
+    "login": "Iniciar Sesión",
+    "welcome": "Bienvenido, {name}",
+    "logout": "Cerrar Sesión",
+    "rd_center": "Centro de I+D"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar"
+  },
+  "state": {
+    "loading": "Cargando...",
+    "data_loading_failed": "Error al cargar los datos, por favor, inténtelo de nuevo."
+  },
+  "rd_center": {
+    "innovations": {
+      "title": "Logros de Innovación",
+      "subtitle": "Explorando las fronteras de la tecnología y la innovación.",
+      "no_results": "No hay resultados de innovación para mostrar en este momento."
+    },
+    "detail": {
+      "back_to_rd_center": "Volver al Centro de I+D",
+      "meta_published": "Publicado el: {date}",
+      "not_found": "Innovación no encontrada"
+    }
+  },
   "product": {
     "title": "Nuestros Productos",
     "subtitle": "Explore nuestra innovadora gama de soluciones inteligentes.",
@@ -10,7 +45,11 @@
     "previous": "Anterior",
     "next": "Siguiente",
     "fetch_error": "Error al obtener los productos. Por favor, inténtelo de nuevo.",
-    "loading": "Cargando productos..."
+    "search_error": "Ocurrió un error durante la búsqueda. Por favor, inténtelo de nuevo.",
+    "loading": "Cargando productos...",
+    "categories": "Categorías",
+    "all_products": "Todos los Productos",
+    "search": "Buscar"
   },
   "product_detail": {
     "back_to_products": "Volver a Productos",
@@ -29,65 +68,47 @@
     "password": "Contraseña",
     "password_placeholder": "Ingrese su contraseña",
     "loading": "Iniciando sesión...",
-    "submit": "Iniciar Sesión",
-    "no_account": "¿No tiene una cuenta? Regístrese",
-    "forgot_password": "¿Olvidó su contraseña?"
+    "submit": "Iniciar Sesión"
   },
-  "nav": {
-    "home": "Inicio",
-    "products": "Productos",
-    "news": "Noticias",
-    "certifications": "Certificaciones",
-    "about": "Sobre Nosotros",
-    "welcome": "Bienvenido, {name}",
-    "logout": "Cerrar Sesión",
-    "login": "Iniciar Sesión"
+  "admin": {
+    "title": "Panel de Administración",
+    "product_management": "Gestión de Productos",
+    "news_management": "Gestión de Noticias",
+    "certificate_management": "Gestión de Certificados",
+    "category_management": "Gestión de Categorías",
+    "dictionary_management": "Gestión de Diccionarios",
+    "file_management": "Gestión de Archivos",
+    "role_management": "Gestión de Roles"
   },
-  "certifications": {
-    "title": "Nuestras Certificaciones",
-    "subtitle": "Estamos comprometidos con los más altos estándares de calidad y seguridad.",
-    "loading": "Cargando certificaciones...",
-    "error": "Error al cargar las certificaciones. Por favor, inténtelo de nuevo más tarde.",
-    "no_certificates": "No hay certificaciones para mostrar en este momento.",
-    "issuer": "Emisor",
-    "issue_date": "Fecha de Emisión",
-    "verify": "Verificar Certificado"
-  },
-  "news": {
-    "title": "Noticias y Actualizaciones",
-    "subtitle": "Manténgase al día con nuestros últimos anuncios y artículos.",
-    "loading": "Cargando noticias...",
-    "error": "Error al cargar las noticias. Por favor, inténtelo de nuevo más tarde.",
-    "no_articles": "No hay artículos de noticias disponibles en este momento.",
-    "read_more": "Leer Más"
-  },
-  "news_detail": {
-    "loading": "Cargando artículo...",
-    "no_id_provided": "No se proporcionó ID de artículo.",
-    "not_found": "Lo sentimos, el artículo que busca no se pudo encontrar.",
-    "back_to_news": "Volver a Noticias",
-    "published_on": "Publicado el"
-  },
-  "hero": {
-    "title": "Innovar. Integrar. Inspirar.",
-    "subtitle": "Pioneros en la próxima generación de tecnología inteligente para conectar y empoderar al mundo.",
-    "cta": "Descubra Nuestras Soluciones"
-  },
-  "bento": {
-    "item1_title": "Automotriz Inteligente",
-    "item1_desc": "Sistemas inteligentes para los vehículos del mañana.",
-    "item2_title": "Análisis con IA",
-    "item2_desc": "Desbloquee conocimientos con nuestras plataformas de IA de vanguardia.",
-    "item3_title": "Hogar Conectado",
-    "item3_desc": "Integre su vida a la perfección con nuestro ecosistema de hogar inteligente.",
-    "item4_title": "IoT Industrial",
-    "item4_desc": "Soluciones robustas y escalables para la Industria 4.0.",
-    "loading": "Cargando productos...",
-    "error_fetching": "Error al obtener los productos. Por favor, inténtelo de nuevo.",
-    "no_products": "No hay productos destacados disponibles en este momento."
-  },
-  "about": {
-    "title": "Sobre Maxunitech",
-    "subtitle": "Somos arquitectos del futuro, ingenieros de lo imposible y socios en su éxito."
+  "role": {
+    "title": "Gestión de Roles",
+    "search_placeholder": "Buscar por nombre de rol",
+    "add_role": "Añadir Rol",
+    "edit_role": "Editar Rol",
+    "assign_permissions": "Asignar Permisos",
+    "role_name": "Nombre del Rol",
+    "role_key": "Clave del Rol",
+    "status": "Estado",
+    "remarks": "Observaciones",
+    "creation_time": "Fecha de Creación",
+    "operations": "Operaciones",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "enabled": "Habilitado",
+    "disabled": "Deshabilitado",
+    "confirm_delete_title": "Confirmar Eliminación",
+    "confirm_delete_text": "¿Está seguro de que desea eliminar el rol '{roleName}'?",
+    "delete_success": "Rol eliminado con éxito",
+    "delete_cancel": "Eliminación cancelada",
+    "permissions_updated": "Permisos actualizados con éxito",
+    "update_success": "Rol actualizado con éxito",
+    "add_success": "Rol añadido con éxito",
+    "menu_permissions": "Permisos de Menú",
+    "select_all": "Seleccionar Todo",
+    "unselect_all": "Deseleccionar Todo",
+    "expand_all": "Expandir Todo",
+    "collapse_all": "Contraer Todo",
+    "role_name_required": "El nombre del rol es obligatorio",
+    "role_key_required": "La clave del rol es obligatoria"
   }
 }

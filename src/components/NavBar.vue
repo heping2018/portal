@@ -11,6 +11,7 @@
         <router-link to="/products" class="nav-item">{{ t('nav.products') }}</router-link>
         <router-link to="/news" class="nav-item">{{ t('nav.news') }}</router-link>
         <router-link to="/certifications" class="nav-item">{{ t('nav.certifications') }}</router-link>
+        <router-link to="/rd-center" class="nav-item">{{ t('nav.rd_center') }}</router-link>
         <router-link to="/about" class="nav-item">{{ t('nav.about') }}</router-link>
       </div>
 

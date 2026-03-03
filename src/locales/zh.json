@@ -9,7 +9,8 @@
     "admin": "后台管理",
     "login": "登录",
     "welcome": "欢迎, {name}",
-    "logout": "退出"
+    "logout": "退出",
+    "rd_center": "研发中心"
   },
   "common": {
     "loading": "加载中...",
@@ -23,6 +24,22 @@
     "previous": "上一页",
     "next": "下一页",
     "page": "第 {currentPage} 页 / 共 {totalPages} 页"
+  },
+  "state": {
+    "loading": "加载中...",
+    "data_loading_failed": "数据加载失败，请稍后重试。"
+  },
+  "rd_center": {
+    "innovations": {
+      "title": "创新成果",
+      "subtitle": "探索技术与创新的前沿。",
+      "no_results": "暂无创新成果展示"
+    },
+    "detail": {
+      "back_to_rd_center": "返回研发中心",
+      "meta_published": "发布于: {date}",
+      "not_found": "未找到该创新成果"
+    }
   },
   "hero": {
     "title": "驱动未来的创新技术",
@@ -41,7 +58,11 @@
     "no_products_found": "未找到符合条件的产品。",
     "previous": "上一页",
     "next": "下一页",
-    "fetch_error": "加载产品失败，请稍后重试。"
+    "fetch_error": "加载产品失败，请稍后重试。",
+    "search_error": "搜索时发生错误，请重试。",
+    "categories": "产品分类",
+    "all_products": "所有产品",
+    "search": "搜索"
   },
   "news": {
     "title": "新闻与动态",
@@ -195,6 +216,7 @@
     "certificate_management_desc": "上传和管理公司的各类资质证书。",
     "user_management": "用户管理",
     "user_management_desc": "管理后台用户账户和权限。",
+    "role_management": "角色管理",
     "auth_config_management": "认证配置",
     "auth_config_management_desc": "配置系统认证方式和安全设置。",
     "category_management": "分类管理",
