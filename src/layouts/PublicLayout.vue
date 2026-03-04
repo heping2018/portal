@@ -9,7 +9,7 @@ import Footer from '../components/Footer.vue';
 const { locale } = useI18n();
 const route = useRoute();
 
-const routerKey = computed(() => locale.value + Date.now());
+const routerKey = computed(() => locale.value);
 
 // Check if the current route needs a full-width layout
 const isFullWidthLayout = computed(() => route.meta.fullWidth === true);

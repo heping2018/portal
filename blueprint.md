@@ -10,55 +10,44 @@ This project is a modern, responsive product catalog application built with Vue.
 
 *   **Modern & Clean:** The UI is designed to be aesthetically pleasing, using a dark theme with vibrant blue accents, creating a high-tech feel.
 *   **Responsive:** The layout adapts to various screen sizes, ensuring a consistent experience on desktops, tablets, and mobile devices.
-*   **Interactive:** Elements like the product grid feature subtle animations and hover effects (using Vanilla-Tilt.js) to enhance user engagement.
-*   **Internationalization (i18n):** The app supports multiple languages (English, Chinese, Spanish, Portuguese) to cater to a global audience.
+*   **Interactive:** Elements like the product grid feature subtle animations and hover effects to enhance user engagement.
+*   **Internationalization (i18n):** The app supports multiple languages (English and Chinese) to cater to a global audience.
 
 ### 2.2. Key Implemented Features
 
-*   **Product Catalog View (`ProductView.vue`):**
-    *   Displays products in a visually appealing bento-style grid.
+*   **Main Navigation (`NavBar.vue`):**
+    *   A persistent, translucent navigation bar that becomes opaque on scroll.
+    *   Provides access to all core modules: Home, Products, News, Case Studies, Solutions, Recruitment, Certifications, R&D Center, and About Us.
+    *   Includes a language switcher and user authentication links.
+
+*   **Product Catalog (`ProductView.vue`):**
+    *   Displays products in a visually appealing grid.
     *   Features robust filtering by category and keyword search.
-*   **Product Detail View:**
-    *   Shows comprehensive information for a single product.
+
 *   **R&D Center (`RdCenterView.vue`, `InnovationDetailView.vue`):**
     *   Displays a list of innovation achievements in a modern card-based grid.
-    *   Each card is interactive, with hover effects and a "Read More" link.
-    *   Clicking a card navigates to a detailed view for that innovation.
-    *   The detail page shows the full content of the innovation, including title, publication date, and a main image.
-    *   Provides a link to navigate back to the main R&D Center page.
+    *   Provides a detailed view for each innovation.
 
-## 3. Current Change: Implementation of R&D Center Module
+*   **Business Solutions (`SolutionView.vue`, `SolutionDetailView.vue`):**
+    *   Displays a list of business solutions, categorized by industry.
+    *   Provides a detail page for each solution.
 
-This section outlines the plan and steps taken to implement the R&D Center module.
+*   **Case Studies (`CaseStudiesView.vue`, `CaseStudyDetailView.vue`):**
+    *   Displays a browsable list of all case studies, filterable by industry.
+    *   Provides a detailed view for each case study.
+
+*   **Recruitment Portal (`RecruitmentView.vue`, `JobDetailView.vue`):**
+    *   Lists all open job positions.
+    *   Provides a detailed view for each job with an application form.
+
+## 3. Current Change: Add Core Modules to Navigation
+
+This section outlines the plan for making the Case Studies, Solutions, and Recruitment modules accessible from the main navigation bar.
 
 ### 3.1. Plan & Steps
 
-1.  **Create R&D Center Service (`src/services/rdCenterService.js`):**
-    *   **Action:** Created a new service file to handle API calls for the R&D module.
-    *   **Functions:** `getInnovations()` to fetch a paginated list of innovations, and `getInnovationById(id)` to fetch details for a single innovation.
+1.  **Update Navigation Component (`src/components/NavBar.vue`):**
+    *   Added `<router-link>` elements pointing to the routes for `/case-studies`, `/solutions`, and `/recruitment`.
 
-2.  **Create R&D Center Main Page (`src/views/RdCenterView.vue`):**
-    *   **Action:** Built a new Vue component to display the list of innovation achievements.
-    *   **Design:** Uses a responsive grid of cards with a modern, dark theme, gradient text for the title, and hover effects.
-    *   **Data:** Fetches data using the `getInnovations` service function on mount.
-
-3.  **Create Innovation Detail Page (`src/views/InnovationDetailView.vue`):**
-    *   **Action:** Built a new Vue component for displaying the full details of an innovation.
-    *   **Functionality:** Fetches data based on the `id` route parameter using the `getInnovationById` service function.
-    *   **Layout:** Provides a clean, readable layout for the innovation's content, title, and metadata.
-
-4.  **Update Router (`src/router/index.js`):**
-    *   **Action:** Added new routes to integrate the new pages into the application.
-    *   **Routes Added:**
-        *   `/rd-center/innovations/:id` mapped to `InnovationDetailView`.
-
-5.  **Update Internationalization (i18n) Files:**
-    *   **Action:** Added new translation keys for the R&D Center title, subtitle, and other UI elements.
-    *   **Files Modified:** `en.json`, `zh.json`, `es.json`, `pt.json`.
-
-6.  **Update API Documentation:**
-    *   **Action:** Removed the `GET /app-api/public/rd/innovations/{id}` endpoint from `unimplemented_api_documentation.md` as it is now implemented.
-
-### 3.2. Summary of Changes
-
-A new "R&D Center" section has been successfully added to the application. It allows users to browse a list of the company's innovation achievements and view detailed information for each one. The implementation followed the project's "add-only" principle, ensuring no disruption to existing functionalities. The new module is fully integrated with routing and internationalization.
+2.  **Update Internationalization (i18n) Files (`en.json`, `zh.json`):**
+    *   Added translation keys (`nav.case_studies`, `nav.solutions`, `nav.recruitment`) to both language files to ensure the navigation links are displayed correctly in both English and Chinese.

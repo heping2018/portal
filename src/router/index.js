@@ -20,6 +20,12 @@ import NewsView from '../views/NewsView.vue';
 import NewsDetailView from '../views/NewsDetailView.vue';
 import RdCenterView from '../views/RdCenterView.vue';
 import InnovationDetailView from '../views/InnovationDetailView.vue';
+import SolutionView from '../views/SolutionView.vue';
+import SolutionDetailView from '../views/SolutionDetailView.vue';
+import RecruitmentView from '../views/RecruitmentView.vue';
+import JobDetailView from '../views/JobDetailView.vue';
+import CaseStudiesView from '../views/CaseStudiesView.vue';
+import CaseStudyDetailView from '../views/CaseStudyDetailView.vue';
 
 // About Page Components
 import AboutView from '../views/AboutView.vue';
@@ -114,6 +120,39 @@ const routes = [
         path: 'rd-center/innovations/:id',
         name: 'InnovationDetail',
         component: InnovationDetailView,
+        props: true
+      },
+      {
+        path: 'solutions',
+        name: 'SolutionView',
+        component: SolutionView
+      },
+      {
+        path: 'solutions/:id',
+        name: 'SolutionDetail',
+        component: SolutionDetailView,
+        props: true
+      },
+      {
+        path: 'recruitment',
+        name: 'Recruitment',
+        component: RecruitmentView
+      },
+      {
+        path: 'jobs/:id',
+        name: 'JobDetail',
+        component: JobDetailView,
+        props: true
+      },
+       {
+        path: 'case-studies',
+        name: 'CaseStudiesView',
+        component: CaseStudiesView
+      },
+      {
+        path: 'case-studies/:id',
+        name: 'CaseStudyDetail',
+        component: CaseStudyDetailView,
         props: true
       },
       {

@@ -1,28 +1,50 @@
 {
-  "greeting": "¡Hola, bienvenido a nuestra aplicación!",
-  "language": "Idioma",
   "nav": {
     "home": "Inicio",
     "products": "Productos",
     "news": "Noticias",
+    "case_studies": "Casos de Estudio",
+    "solutions": "Soluciones",
+    "recruitment": "Reclutamiento",
     "certifications": "Certificaciones",
-    "about": "Sobre Nosotros",
+    "about": "Sobre nosotros",
     "contact": "Contacto",
     "admin": "Admin",
-    "login": "Iniciar Sesión",
+    "login": "Iniciar sesión",
     "welcome": "Bienvenido, {name}",
-    "logout": "Cerrar Sesión",
+    "logout": "Cerrar sesión",
     "rd_center": "Centro de I+D"
   },
   "common": {
     "loading": "Cargando...",
     "save": "Guardar",
     "cancel": "Cancelar",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "seconds": "segundos",
+    "milliseconds": "milisegundos"
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "page": "Página {currentPage} de {totalPages}"
   },
   "state": {
     "loading": "Cargando...",
-    "data_loading_failed": "Error al cargar los datos, por favor, inténtelo de nuevo."
+    "data_loading_failed": "Error al cargar los datos, por favor intente de nuevo."
+  },
+  "product": {
+    "title": "Nuestros Productos",
+    "subtitle": "Explore nuestras soluciones innovadoras, diseñadas para cumplir con los más altos estándares de calidad y rendimiento.",
+    "search_placeholder": "Buscar productos...",
+    "loading": "Cargando productos...",
+    "fetch_error": "Error al cargar los productos. Por favor, inténtelo de nuevo más tarde.",
+    "search_error": "Ocurrió un error durante la búsqueda. Por favor, inténtelo de nuevo.",
+    "no_products_found": "No se encontraron productos que coincidan con sus criterios.",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "categories": "Categorías",
+    "all_products": "Todos los Productos",
+    "search": "Buscar"
   },
   "rd_center": {
     "innovations": {
@@ -36,79 +58,181 @@
       "not_found": "Innovación no encontrada"
     }
   },
-  "product": {
-    "title": "Nuestros Productos",
-    "subtitle": "Explore nuestra innovadora gama de soluciones inteligentes.",
-    "search_placeholder": "Buscar por palabra clave...",
-    "view_details": "Ver Detalles",
-    "no_products_found": "No se encontraron productos. Por favor, intente una búsqueda diferente.",
-    "previous": "Anterior",
-    "next": "Siguiente",
-    "fetch_error": "Error al obtener los productos. Por favor, inténtelo de nuevo.",
-    "search_error": "Ocurrió un error durante la búsqueda. Por favor, inténtelo de nuevo.",
-    "loading": "Cargando productos...",
-    "categories": "Categorías",
-    "all_products": "Todos los Productos",
-    "search": "Buscar"
-  },
-  "product_detail": {
-    "back_to_products": "Volver a Productos",
-    "loading": "Cargando detalles del producto...",
-    "no_id_provided": "No se proporcionó ID de producto.",
-    "not_found": "Lo sentimos, el producto que busca no se pudo encontrar.",
-    "fetch_error": "Ocurrió un error al obtener los detalles del producto.",
-    "specifications": "Especificaciones",
-    "downloads": "Descargas Relacionadas"
-  },
   "login": {
-    "title": "Iniciar Sesión",
-    "subtitle": "Acceda a su cuenta para continuar.",
+    "title": "Inicio de Sesión de Administrador",
+    "subtitle": "Bienvenido de nuevo",
     "username": "Usuario",
-    "username_placeholder": "Ingrese su usuario",
     "password": "Contraseña",
-    "password_placeholder": "Ingrese su contraseña",
-    "loading": "Iniciando sesión...",
-    "submit": "Iniciar Sesión"
+    "submit": "Iniciar sesión",
+    "no_account": "¿No tiene cuenta?",
+    "forgot_password": "¿Olvidó la contraseña?"
+  },
+  "about": {
+    "title": "Acerca de Maxunitech",
+    "subtitle": "Su socio de confianza en automatización industrial.",
+    "nav": {
+      "profile": "Perfil de la Empresa",
+      "culture": "Nuestra Cultura",
+      "history": "Nuestra Historia",
+      "members": "Empresas Miembro"
+    },
+    "profile": {
+      "title": "Perfil de la Empresa",
+      "core_values": "Valores Fundamentales"
+    },
+    "culture": {
+      "title": "Nuestra Cultura"
+    },
+    "history": {
+      "title": "Nuestra Historia"
+    },
+    "members": {
+      "title": "Empresas Miembro",
+      "visit_website": "Visitar Sitio Web"
+    },
+    "error_loading": "Error al cargar los datos, por favor inténtelo de nuevo más tarde."
   },
   "admin": {
-    "title": "Panel de Administración",
+    "title": "Tablero",
     "product_management": "Gestión de Productos",
     "news_management": "Gestión de Noticias",
     "certificate_management": "Gestión de Certificados",
+    "role_management": "Gestión de Roles",
     "category_management": "Gestión de Categorías",
     "dictionary_management": "Gestión de Diccionarios",
-    "file_management": "Gestión de Archivos",
-    "role_management": "Gestión de Roles"
+    "file_management": "Gestión de Archivos"
   },
-  "role": {
-    "title": "Gestión de Roles",
-    "search_placeholder": "Buscar por nombre de rol",
-    "add_role": "Añadir Rol",
-    "edit_role": "Editar Rol",
-    "assign_permissions": "Asignar Permisos",
-    "role_name": "Nombre del Rol",
-    "role_key": "Clave del Rol",
-    "status": "Estado",
-    "remarks": "Observaciones",
-    "creation_time": "Fecha de Creación",
-    "operations": "Operaciones",
-    "edit": "Editar",
+  "user_management": {
+    "title": "Gestión de Usuarios"
+  },
+  "admin_user": {
+    "title": "Gestión de Usuarios",
+    "add": "Añadir Usuario",
+    "loading": "Cargando...",
+    "fetch_error": "Error al cargar",
+    "save_error": "Error al guardar",
+    "delete_error": "Error al eliminar",
+    "confirm_delete": "¿Eliminar este usuario?",
+    "edit_title": "Editar Usuario",
+    "add_title": "Añadir Usuario",
+    "export": "Exportar Excel",
+    "import": "Importar Usuarios",
+    "batch_delete": "Eliminación por Lotes",
+    "import_title": "Importar Usuarios",
+    "download_template": "Descargar Plantilla",
+    "select_file": "Seleccionar Archivo",
+    "update_support": "Actualizar usuarios existentes",
+    "change_password_title": "Cambiar Contraseña",
+    "import_success": "Éxito: {success}, Fallo: {failed}",
+    "import_error": "Importación fallida",
+    "export_error": "Exportación fallida",
+    "template_error": "Error al descargar la plantilla",
+    "password_changed": "Contraseña cambiada",
+    "password_mismatch": "Las contraseñas no coinciden",
+    "confirm_batch_delete": "¿Eliminar {count} usuarios?",
+    "status_active": "Activo",
+    "status_inactive": "Inactivo",
+    "password_placeholder_edit": "Dejar en blanco para mantener",
+    "table": {
+      "username": "Usuario",
+      "email": "Email",
+      "role": "Rol",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "form": {
+      "username": "Usuario",
+      "email": "Email",
+      "role": "Rol",
+      "password": "Contraseña",
+      "new_password": "Nueva Contraseña",
+      "confirm_password": "Confirmar"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar",
+      "change_password": "Contraseña",
+      "enable": "Habilitar",
+      "disable": "Deshabilitar"
+    }
+  },
+  "admin_category": {
+    "title": "Gestión de Categorías",
+    "add": "Añadir Categoría",
+    "loading": "Cargando...",
+    "fetch_error": "Error al cargar las categorías.",
+    "confirm_delete": "¿Está seguro de que desea eliminar esta categoría?",
+    "edit_title": "Editar Categoría",
+    "add_title": "Añadir Categoría",
+    "table": {
+      "name": "Nombre",
+      "type": "Tipo",
+      "sort": "Ordenar",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "form": {
+      "name": "Nombre",
+      "type": "Tipo",
+      "sort": "Ordenar"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar"
+    },
+    "status_active": "Activo",
+    "status_inactive": "Inactivo"
+  },
+  "admin_dictionary": {
+    "type_title": "Tipo de Diccionario",
+    "data_title": "Datos de Diccionario para \"{name}\"",
+    "data_title_unselected": "Datos de Diccionario",
+    "confirm_delete_type": "¿Está seguro de que desea eliminar este tipo de diccionario y todos sus datos?",
+    "confirm_delete_data": "¿Está seguro de que desea eliminar estos datos de diccionario?",
+    "select_type_prompt": "Seleccione un tipo de la izquierda para ver sus datos.",
+    "edit_type_title": "Editar Tipo de Diccionario",
+    "add_type_title": "Añadir Tipo de Diccionario",
+    "edit_data_title": "Editar Datos de Diccionario",
+    "add_data_title": "Añadir Datos de Diccionario",
+    "type_form": {
+      "name": "Nombre",
+      "type": "Tipo",
+      "remark": "Observación"
+    },
+    "data_form": {
+      "label": "Etiqueta",
+      "value": "Valor",
+      "sort": "Ordenar",
+      "remark": "Observación"
+    },
+    "data_table": {
+      "label": "Etiqueta",
+      "value": "Valor",
+      "sort": "Ordenar",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "status_active": "Activo",
+    "status_inactive": "Inactivo"
+  },
+  "admin_file": {
+    "upload": "Subir Archivo",
+    "uploading": "Subiendo...",
+    "upload_success": "Archivo subido con éxito.",
+    "upload_error": "Error al subir el archivo.",
+    "fetch_error": "Error al obtener los archivos.",
+    "delete_error": "Error al eliminar el archivo.",
+    "confirm_delete": "¿Está seguro de que desea eliminar este archivo?",
+    "copy_url": "Copiar URL",
+    "copy_success": "¡URL copiada al portapapeles!",
+    "copy_error": "Error al copiar la URL.",
     "delete": "Eliminar",
-    "enabled": "Habilitado",
-    "disabled": "Deshabilitado",
-    "confirm_delete_title": "Confirmar Eliminación",
-    "confirm_delete_text": "¿Está seguro de que desea eliminar el rol '{roleName}'?",
-    "delete_success": "Rol eliminado con éxito",
-    "delete_cancel": "Eliminación cancelada",
-    "permissions_updated": "Permisos actualizados con éxito",
-    "update_success": "Rol actualizado con éxito",
-    "add_success": "Rol añadido con éxito",
-    "menu_permissions": "Permisos de Menú",
-    "select_all": "Seleccionar Todo",
-    "unselect_all": "Deseleccionar Todo",
-    "expand_all": "Expandir Todo",
-    "collapse_all": "Contraer Todo",
-    "role_name_required": "El nombre del rol es obligatorio",
-    "role_key_required": "La clave del rol es obligatoria"
+    "no_files": "No se encontraron archivos. Intente subir algunos."
   }
 }

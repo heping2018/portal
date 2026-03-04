@@ -44,18 +44,6 @@
 - `GET /app-api/news/categories`: 获取新闻类别列表。
 - `GET /app-api/news/categories/{id}`: 获取新闻类别详情。
 
-### 业务解决方案模块 (Solutions)
-- `GET /app-api/public/solutions/by-industry/{industry}`: 按行业筛选解决方案。
-- `GET /app-api/public/solutions/industries`: 获取所有行业列表。
-- `GET /app-api/public/solutions/{id}`: 获取解决方案详情。
-- `GET /app-api/public/solutions/{id}/cases`: 获取解决方案关联的案例研究。
-
-### 案例研究模块 (Case Studies)
-- `GET /app-api/public/cases`: 获取案例研究列表。
-- `GET /app-api/public/cases/by-industry/{industry}`: 按行业筛选案例研究。
-- `GET /app-api/public/cases/{id}`: 获取案例研究详情。
-- `GET /app-api/public/cases/industries`: 获取案例研究的行业列表。
-
 ### 生产基地模块 (Production Base)
 - `GET /app-api/public/production/bases`: 获取生产基地列表。
 - `GET /app-api/public/production/bases/{id}`: 获取生产基地详情。

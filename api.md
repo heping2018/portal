@@ -3817,7 +3817,7 @@ interface ProductRespVO {
 
 #### 获取产品分页列表
 
-**Endpoint**: `GET /admin-api/product/product/page`
+**Endpoint**: `GET /admin-api/product/page`
 
 **权限**: `product:product:query`
 
@@ -4759,7 +4759,7 @@ interface CaseStudyVO {
 
 ### 按行业筛选案例研究
 
-**Endpoint**: `GET /app-api/public/cases/by-industry/{industry}`
+**Endpoint**: `GET /app-api/public/cases/by-industry`
 
 #### 请求参数
 

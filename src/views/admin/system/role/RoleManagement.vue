@@ -103,12 +103,14 @@ const pagination = ref({
 const fetchRoles = async () => {
   loading.value = true;
   try {
-    const { data } = await getRolePage({
+    const res = await getRolePage({
       pageNo: pagination.value.page,
       pageSize: pagination.value.limit,
     });
-    roles.value = data.list;
-    pagination.value.total = data.total;
+    var data = { res }
+    console.log(data)
+    roles.value = data.res.list;
+    pagination.value.total = data.res.total;
   } catch (error) {
     ElMessage.error('获取角色列表失败');
   } finally {

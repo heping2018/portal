@@ -1,12 +1,13 @@
 {
-  "greeting": "Olá, bem-vindo à nossa aplicação!",
-  "language": "Idioma",
   "nav": {
     "home": "Início",
     "products": "Produtos",
     "news": "Notícias",
+    "case_studies": "Estudos de Caso",
+    "solutions": "Soluções",
+    "recruitment": "Recrutamento",
     "certifications": "Certificações",
-    "about": "Sobre Nós",
+    "about": "Sobre nós",
     "contact": "Contato",
     "admin": "Admin",
     "login": "Login",
@@ -18,16 +19,37 @@
     "loading": "Carregando...",
     "save": "Salvar",
     "cancel": "Cancelar",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "seconds": "segundos",
+    "milliseconds": "milissegundos"
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Próximo",
+    "page": "Página {currentPage} de {totalPages}"
   },
   "state": {
     "loading": "Carregando...",
-    "data_loading_failed": "Falha ao carregar dados, por favor, tente novamente."
+    "data_loading_failed": "Falha ao carregar dados, por favor tente novamente."
+  },
+  "product": {
+    "title": "Nossos Produtos",
+    "subtitle": "Explore nossas soluções inovadoras, projetadas para atender aos mais altos padrões de qualidade e desempenho.",
+    "search_placeholder": "Procurar produtos...",
+    "loading": "Carregando produtos...",
+    "fetch_error": "Falha ao carregar os produtos. Por favor, tente novamente mais tarde.",
+    "search_error": "Ocorreu um erro durante a busca. Por favor, tente novamente.",
+    "no_products_found": "Nenhum produto encontrado que corresponda aos seus critérios.",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "categories": "Categorias",
+    "all_products": "Todos os Produtos",
+    "search": "Buscar"
   },
   "rd_center": {
     "innovations": {
       "title": "Conquistas de Inovação",
-      "subtitle": "Explorando as fronteiras da tecnologia e da inovação.",
+      "subtitle": "Explorando as fronteiras da tecnologia e inovação.",
       "no_results": "Nenhum resultado de inovação para exibir no momento."
     },
     "detail": {
@@ -36,48 +58,181 @@
       "not_found": "Inovação não encontrada"
     }
   },
-  "product": {
-    "title": "Nossos Produtos",
-    "subtitle": "Explore nossa gama inovadora de soluções inteligentes.",
-    "search_placeholder": "Buscar por palavra-chave...",
-    "view_details": "Ver Detalhes",
-    "no_products_found": "Nenhum produto encontrado. Por favor, tente uma busca diferente.",
-    "previous": "Anterior",
-    "next": "Próximo",
-    "fetch_error": "Erro ao buscar produtos. Por favor, tente novamente.",
-    "search_error": "Ocorreu um erro durante a busca. Por favor, tente novamente.",
-    "loading": "Carregando produtos...",
-    "categories": "Categorias",
-    "all_products": "Todos os Produtos",
-    "search": "Buscar"
-  },
-  "product_detail": {
-    "back_to_products": "Voltar aos Produtos",
-    "loading": "Carregando detalhes do produto...",
-    "no_id_provided": "Nenhum ID de produto foi fornecido.",
-    "not_found": "Desculpe, o produto que você está procurando não foi encontrado.",
-    "fetch_error": "Ocorreu um erro ao buscar os detalhes do produto.",
-    "specifications": "Especificações",
-    "downloads": "Downloads Relacionados"
-  },
   "login": {
-    "title": "Entrar",
-    "subtitle": "Acesse sua conta para continuar.",
+    "title": "Login de Administrador",
+    "subtitle": "Bem-vindo de volta",
     "username": "Usuário",
-    "username_placeholder": "Digite seu usuário",
     "password": "Senha",
-    "password_placeholder": "Digite sua senha",
-    "loading": "Entrando...",
-    "submit": "Entrar"
+    "submit": "Login",
+    "no_account": "Não tem uma conta?",
+    "forgot_password": "Esqueceu a senha?"
+  },
+  "about": {
+    "title": "Sobre a Maxunitech",
+    "subtitle": "Sua parceira de confiança em automação industrial.",
+    "nav": {
+      "profile": "Perfil da Empresa",
+      "culture": "Nossa Cultura",
+      "history": "Nossa História",
+      "members": "Empresas Membro"
+    },
+    "profile": {
+      "title": "Perfil da Empresa",
+      "core_values": "Valores Fundamentais"
+    },
+    "culture": {
+      "title": "Nossa Cultura"
+    },
+    "history": {
+      "title": "Nossa História"
+    },
+    "members": {
+      "title": "Empresas Membro",
+      "visit_website": "Visitar Site"
+    },
+    "error_loading": "Falha ao carregar dados, por favor tente novamente mais tarde."
   },
   "admin": {
-    "title": "Painel de Controle",
+    "title": "Painel",
     "product_management": "Gerenciamento de Produtos",
     "news_management": "Gerenciamento de Notícias",
     "certificate_management": "Gerenciamento de Certificados",
+    "role_management": "Gerenciamento de Funções",
     "category_management": "Gerenciamento de Categorias",
-    "dictionary_management": "Gerenciamento de Dicionário",
-    "file_management": "Gerenciamento de Arquivos",
-    "role_management": "Gerenciamento de Funções"
+    "dictionary_management": "Gerenciamento de Dicionários",
+    "file_management": "Gerenciamento de Arquivos"
+  },
+  "user_management": {
+    "title": "Gerenciamento de Usuários"
+  },
+  "admin_user": {
+    "title": "Gerenciamento de Usuários",
+    "add": "Adicionar Usuário",
+    "loading": "Carregando...",
+    "fetch_error": "Falha ao carregar",
+    "save_error": "Falha ao salvar",
+    "delete_error": "Falha ao deletar",
+    "confirm_delete": "Deletar este usuário?",
+    "edit_title": "Editar Usuário",
+    "add_title": "Adicionar Usuário",
+    "export": "Exportar Excel",
+    "import": "Importar Usuários",
+    "batch_delete": "Deletar em Lote",
+    "import_title": "Importar Usuários",
+    "download_template": "Baixar Modelo",
+    "select_file": "Selecionar Arquivo",
+    "update_support": "Atualizar usuários existentes",
+    "change_password_title": "Mudar Senha",
+    "import_success": "Sucesso: {success}, Falha: {failed}",
+    "import_error": "Importação falhou",
+    "export_error": "Exportação falhou",
+    "template_error": "Download do modelo falhou",
+    "password_changed": "Senha alterada",
+    "password_mismatch": "As senhas não coincidem",
+    "confirm_batch_delete": "Deletar {count} usuários?",
+    "status_active": "Ativo",
+    "status_inactive": "Inativo",
+    "password_placeholder_edit": "Deixe em branco para manter",
+    "table": {
+      "username": "Usuário",
+      "email": "Email",
+      "role": "Função",
+      "status": "Status",
+      "actions": "Ações"
+    },
+    "form": {
+      "username": "Usuário",
+      "email": "Email",
+      "role": "Função",
+      "password": "Senha",
+      "new_password": "Nova Senha",
+      "confirm_password": "Confirmar"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Deletar",
+      "save": "Salvar",
+      "change_password": "Senha",
+      "enable": "Habilitar",
+      "disable": "Desabilitar"
+    }
+  },
+  "admin_category": {
+    "title": "Gerenciamento de Categorias",
+    "add": "Adicionar Categoria",
+    "loading": "Carregando...",
+    "fetch_error": "Falha ao carregar as categorias.",
+    "confirm_delete": "Tem certeza de que deseja deletar esta categoria?",
+    "edit_title": "Editar Categoria",
+    "add_title": "Adicionar Categoria",
+    "table": {
+      "name": "Nome",
+      "type": "Tipo",
+      "sort": "Ordenar",
+      "status": "Status",
+      "actions": "Ações"
+    },
+    "form": {
+      "name": "Nome",
+      "type": "Tipo",
+      "sort": "Ordenar"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Deletar",
+      "save": "Salvar"
+    },
+    "status_active": "Ativo",
+    "status_inactive": "Inativo"
+  },
+  "admin_dictionary": {
+    "type_title": "Tipo de Dicionário",
+    "data_title": "Dados de Dicionário para \"{name}\"",
+    "data_title_unselected": "Dados de Dicionário",
+    "confirm_delete_type": "Tem certeza de que deseja deletar este tipo de dicionário e todos os seus dados?",
+    "confirm_delete_data": "Tem certeza de que deseja deletar estes dados de dicionário?",
+    "select_type_prompt": "Selecione um tipo à esquerda para ver seus dados.",
+    "edit_type_title": "Editar Tipo de Dicionário",
+    "add_type_title": "Adicionar Tipo de Dicionário",
+    "edit_data_title": "Editar Dados de Dicionário",
+    "add_data_title": "Adicionar Dados de Dicionário",
+    "type_form": {
+      "name": "Nome",
+      "type": "Tipo",
+      "remark": "Observação"
+    },
+    "data_form": {
+      "label": "Rótulo",
+      "value": "Valor",
+      "sort": "Ordenar",
+      "remark": "Observação"
+    },
+    "data_table": {
+      "label": "Rótulo",
+      "value": "Valor",
+      "sort": "Ordenar",
+      "status": "Status",
+      "actions": "Ações"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Deletar"
+    },
+    "status_active": "Ativo",
+    "status_inactive": "Inativo"
+  },
+  "admin_file": {
+    "upload": "Carregar Arquivo",
+    "uploading": "Carregando...",
+    "upload_success": "Arquivo carregado com sucesso.",
+    "upload_error": "Falha ao carregar o arquivo.",
+    "fetch_error": "Falha ao buscar os arquivos.",
+    "delete_error": "Falha ao deletar o arquivo.",
+    "confirm_delete": "Tem certeza de que deseja deletar este arquivo?",
+    "copy_url": "Copiar URL",
+    "copy_success": "URL copiada para a área de transferência!",
+    "copy_error": "Falha ao copiar a URL.",
+    "delete": "Deletar",
+    "no_files": "Nenhum arquivo encontrado. Tente carregar alguns."
   }
 }
