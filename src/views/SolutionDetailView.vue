@@ -34,7 +34,7 @@ const cases = ref([]);
 const fetchSolutionDetails = async () => {
   try {
     const response = await getSolutionDetails(route.params.id);
-    solution.value = response.data;
+    solution.value = response;
   } catch (error) {
     console.error('Error fetching solution details:', error);
   }
@@ -43,7 +43,7 @@ const fetchSolutionDetails = async () => {
 const fetchSolutionCases = async () => {
   try {
     const response = await getSolutionCases(route.params.id);
-    cases.value = response.data;
+    cases.value = response;
   } catch (error) {
     console.error('Error fetching solution cases:', error);
   }

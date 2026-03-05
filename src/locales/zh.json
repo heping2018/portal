@@ -21,7 +21,23 @@
     "cancel": "取消",
     "confirm": "确认",
     "seconds": "秒",
-    "milliseconds": "毫秒"
+    "milliseconds": "毫秒",
+    "all": "全部",
+    "basic_info": "基本信息",
+    "job_title": "职位标题",
+    "department": "部门",
+    "location": "工作地点"
+  },
+  "job_type": {
+    "full_time": "全职",
+    "part_time": "兼职",
+    "internship": "实习"
+  },
+  "language": {
+    "zh": "中文",
+    "en": "英文",
+    "pt": "葡萄牙语",
+    "es": "西班牙语"
   },
   "pagination": {
     "previous": "上一页",
@@ -53,6 +69,49 @@
     "loading": "正在加载特色产品...",
     "no_products": "暂无特色产品展示。"
   },
+  "common": {
+    "loading": "加载中...",
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "seconds": "秒",
+    "milliseconds": "毫秒",
+    "learn_more": "了解详情"
+  },
+  "theme": {
+    "switch_to_light": "切换到浅色主题",
+    "switch_to_dark": "切换到深色主题"
+  },
+  "home": {
+    "solutions": {
+      "title": "多云安全与管理一站式解决方案专家",
+      "subtitle": "为政府、教育、医疗、企业等行业客户提供安全监测和防护服务",
+      "saas": "SaaS订阅服务",
+      "industry": "行业解决方案"
+    },
+    "products": {
+      "title": "用云的技术提供先进的安全产品服务",
+      "subtitle": "实现安全能力资源化、安全资源服务化",
+      "saas": "订阅式SaaS服务场景",
+      "private": "私有云场景",
+      "appliance": "一体机场景",
+      "saas_desc": "实现安全能力资源化、安全资源服务化、为各类云平台提供综合性安全能力，解决用户上云过程中面临的安全风险难题。",
+      "private_desc": "通过本地安全资源池的方式为用户提供一体化的安全防护能力，包含事前云监测、事中云防护、事后云审计，实现安全的统一建设、统一运营、统一管理、统一分析。",
+      "appliance_desc": "通过本地单台一体机的模式为用户提供轻量化的本地安全节点，为用户提供安全的统一建设，统一管理。"
+    },
+    "services": {
+      "guide": "新手入门",
+      "guide_desc": "新手引导，快速入门",
+      "trial": "免费试用",
+      "trial_desc": "9大产品，0门槛试用",
+      "partner": "渠道合作",
+      "partner_desc": "强强联手，合作共赢"
+    },
+    "partners": {
+      "title": "22万+网站 400+云的信赖"
+    },
+    "related_products": "相关产品"
+  },
   "product": {
     "title": "产品中心",
     "subtitle": "探索我们多样化的工业自动化产品线，找到满足您特定需求的完美解决方案。",
@@ -74,6 +133,11 @@
     "error": "加载新闻失败，请稍后重试。",
     "no_articles": "暂无新闻发布。"
   },
+  "case_studies": {
+    "title": "客户案例",
+    "subtitle": "探索我们如何帮助客户实现数字化转型和业务增长。",
+    "no_results": "暂无案例展示。"
+  },
   "certifications": {
     "title": "我们的资质与荣誉",
     "subtitle": "我们对质量、安全和创新的承诺，得到了行业权威机构的广泛认可。",
@@ -84,8 +148,8 @@
     "error": "加载证书失败，请稍后重试。",
     "no_certificates": "暂无资质证书信息。"
   },
-  "about": {
-    "title": "关于 Maxunitech",
+"about": {
+    "title": "关于 Company",
     "subtitle": "我们是您值得信赖的工业自动化合作伙伴。",
     "nav": {
       "profile": "公司简介",
@@ -210,7 +274,7 @@
   },
   "admin": {
     "title": "后台管理中心",
-    "welcome": "欢迎来到 Maxunitech 管理后台。",
+    "welcome": "欢迎来到 Company 管理后台。",
     "product_management": "产品管理",
     "product_management_desc": "在这里管理您的所有产品信息。",
     "news_management": "新闻与动态管理",
@@ -224,7 +288,117 @@
     "auth_config_management_desc": "配置系统认证方式和安全设置。",
     "category_management": "分类管理",
     "dictionary_management": "字典管理",
-    "file_management": "文件管理"
+    "file_management": "文件管理",
+    "admin_recruitment_job":  "职位管理",
+    "admin_recruitment_application": "求职申请管理"
+  },
+  "admin_recruitment_job": {
+    "title": "职位管理",
+    "add": "新增职位",
+    "loading": "正在加载职位...",
+    "fetch_error": "加载职位列表失败",
+    "save_error": "保存职位失败",
+    "delete_error": "删除职位失败",
+    "confirm_delete": "您确定要删除此职位吗？",
+    "edit_title": "编辑职位",
+    "add_title": "新增职位",
+    "confirm_publish": "确定要发布这个职位吗？",
+    "confirm_close": "确定要关闭这个职位吗？",
+    "publish_error": "发布职位失败",
+    "close_error": "关闭职位失败",
+    "table": {
+      "code": "职位代码",
+      "title": "职位标题",
+      "department": "部门",
+      "location": "工作地点",
+      "type": "工作类型",
+      "status": "状态",
+      "headcount": "招聘人数",
+      "publish_date": "发布日期",
+      "actions": "操作"
+    },
+    "actions": {
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存",
+      "publish": "发布",
+      "close": "关闭",
+      "view": "详情"
+    },
+    "status": {
+      "draft": "草稿",
+      "open": "开放",
+      "closed": "关闭"
+    },
+    "form": {
+      "code": "职位代码",
+      "title": "职位标题",
+      "department": "部门",
+      "location": "工作地点",
+      "type": "工作类型",
+      "salary": "薪资范围",
+      "headcount": "招聘人数",
+      "deadline": "截止日期",
+      "sort_order": "排序号",
+      "responsibility": "岗位职责",
+      "requirement": "任职要求"
+    }
+  },
+  "admin_recruitment_application": {
+    "title": "求职申请管理",
+    "loading": "正在加载申请...",
+    "fetch_error": "加载申请列表失败",
+    "save_error": "保存申请失败",
+    "export_error": "导出失败",
+    "export_success": "导出成功",
+    "exporting": "导出中...",
+    "no_note": "暂无备注",
+    "confirm_delete": "您确定要删除此申请吗？",
+    "status_filter": "申请状态",
+    "table": {
+      "id": "ID",
+      "job": "职位",
+      "applicant": "申请人",
+      "email": "邮箱",
+      "phone": "电话",
+      "source": "申请来源",
+      "status": "状态",
+      "apply_date": "申请日期",
+      "actions": "操作"
+    },
+    "actions": {
+      "view": "详情",
+      "status": "状态",
+      "export": "导出 Excel",
+      "save": "保存"
+    },
+    "status": {
+      "pending": "待处理",
+      "reviewing": "审核中",
+      "interviewed": "已面试",
+      "rejected": "已拒绝",
+      "hired": "已录用"
+    },
+    "source": {
+      "website": "官网",
+      "referral": "推荐",
+      "other": "其他"
+    },
+    "modal": {
+      "update_status": "更新状态",
+      "new_status": "新状态",
+      "note": "备注说明",
+      "detail": "申请详情",
+      "basic_info": "基本信息",
+      "resume": "简历",
+      "no_resume": "未上传简历",
+      "view_resume": "查看简历",
+      "cover_letter": "求职信",
+      "education": "教育背景",
+      "experience": "工作经历",
+      "hr_note": "HR备注",
+      "edit_note": "编辑备注"
+    }
   },
   "user_management": {
     "title": "用户管理"

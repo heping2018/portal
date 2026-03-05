@@ -3,7 +3,7 @@ import request from '@/utils/request';
 const processParam = (str) => {
   // 正则表达式：判断是否包含中文字符
   const hasChinese = /[\u4e00-\u9fa5]/.test(str);
-  
+
   if (hasChinese) {
     // 如果有中文，进行编码
     return encodeURIComponent(str);
@@ -12,6 +12,20 @@ const processParam = (str) => {
     return str;
   }
 };
+
+/**
+ * 获取解决方案列表（分页）
+ * @param {Object} params - 查询参数
+ * @returns {Promise<AxiosResponse<any>>}
+ */
+export const getSolutionList = (params) => {
+  return request({
+    url: '/app-api/public/solutions',
+    method: 'get',
+    params: params
+  });
+};
+
 /**
  * 获取所有解决方案的行业列表
  * @returns {Promise<AxiosResponse<any>>}

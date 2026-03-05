@@ -49,7 +49,7 @@ const formatDate = (dateString) => {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
-  color: #f0f0f0;
+  color: var(--text-primary);
 }
 
 .view-header {
@@ -61,8 +61,8 @@ const formatDate = (dateString) => {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  color: #fff;
-  background: linear-gradient(45deg, #00c3ff, #9cffff);
+  color: var(--text-primary);
+  background: var(--gradient-button);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -70,7 +70,7 @@ const formatDate = (dateString) => {
 
 .subtitle {
   font-size: 1.3rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
   max-width: 700px;
   margin: 0 auto;
 }
@@ -79,7 +79,7 @@ const formatDate = (dateString) => {
   text-align: center;
   padding: 5rem 0;
   font-size: 1.2rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
 }
 .state-feedback.error {
   color: #ff6b6b;
@@ -92,8 +92,8 @@ const formatDate = (dateString) => {
 }
 
 .certification-card {
-  background: rgba(0, 20, 40, 0.6);
-  border: 1px solid rgba(0, 195, 255, 0.25);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 2rem;
   backdrop-filter: blur(8px);
@@ -102,20 +102,20 @@ const formatDate = (dateString) => {
 
 .certification-card:hover {
   transform: translateY(-10px);
-  border-color: rgba(0, 195, 255, 0.6);
-  box-shadow: 0 10px 25px rgba(0, 25, 45, 0.5);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .card-title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
 }
 
 .card-issuer, .card-date {
   font-size: 1rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
   margin-bottom: 0.75rem;
 }
 
@@ -123,13 +123,13 @@ const formatDate = (dateString) => {
   display: inline-block;
   margin-top: 1rem;
   font-weight: 600;
-  color: #00c3ff;
+  color: var(--accent-primary);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .card-verify-link:hover {
-  color: #ffffff;
+  color: var(--text-primary);
   text-decoration: underline;
 }
 </style>

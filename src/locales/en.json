@@ -21,7 +21,58 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "seconds": "seconds",
-    "milliseconds": "milliseconds"
+    "milliseconds": "milliseconds",
+    "learn_more": "Learn More",
+    "all": "All",
+    "basic_info": "Basic Info",
+    "job_title": "Job Title",
+    "department": "Department",
+    "location": "Location"
+  },
+  "language": {
+    "zh": "Chinese",
+    "en": "English",
+    "pt": "Portuguese",
+    "es": "Spanish"
+  },
+  "theme": {
+    "switch_to_light": "Switch to Light Theme",
+    "switch_to_dark": "Switch to Dark Theme"
+  },
+  "home": {
+    "solutions": {
+      "title": "Multi-cloud Security & Management Solutions",
+      "subtitle": "Providing security monitoring and protection services for government, education, healthcare, and enterprise customers",
+      "saas": "SaaS Subscription",
+      "industry": "Industry Solutions"
+    },
+    "products": {
+      "title": "Advanced Security Products with Cloud Technology",
+      "subtitle": "Resource-based security capabilities and service-oriented security resources",
+      "saas": "SaaS Subscription Scenario",
+      "private": "Private Cloud Scenario",
+      "appliance": "Appliance Scenario",
+      "saas_desc": "Realizing resource-based security capabilities and service-oriented security resources, providing comprehensive security capabilities for various cloud platforms.",
+      "private_desc": "Providing integrated security protection capabilities through local security resource pools, including pre-event monitoring, in-event protection, and post-event auditing.",
+      "appliance_desc": "Providing lightweight local security nodes through a single appliance mode, offering unified security construction and management."
+    },
+    "services": {
+      "guide": "Getting Started",
+      "guide_desc": "Quick start guide for beginners",
+      "trial": "Free Trial",
+      "trial_desc": "9 products, 0 threshold trial",
+      "partner": "Partnership",
+      "partner_desc": "Strong collaboration for win-win results"
+    },
+    "partners": {
+      "title": "Trusted by 220K+ websites and 400+ clouds"
+    },
+    "related_products": "Related Products"
+  },
+  "case_studies": {
+    "title": "Case Studies",
+    "subtitle": "Discover how we help clients achieve digital transformation and business growth.",
+    "no_results": "No case studies available."
   },
   "pagination": {
     "previous": "Previous",
@@ -67,8 +118,8 @@
     "no_account": "No account?",
     "forgot_password": "Forgot password?"
   },
-  "about": {
-    "title": "About Maxunitech",
+"about": {
+    "title": "About Company",
     "subtitle": "Your trusted partner in industrial automation.",
     "nav": {
       "profile": "Company Profile",
@@ -100,7 +151,122 @@
     "role_management": "Role Management",
     "category_management": "Category Management",
     "dictionary_management": "Dictionary Management",
-    "file_management": "File Management"
+    "file_management": "File Management",
+    "admin_recruitment_job": "Job Management",
+    "admin_recruitment_application": "Application Management"
+  },
+  "job_type": {
+    "full_time": "Full-time",
+    "part_time": "Part-time",
+    "internship": "Internship"
+  },
+  "admin_recruitment_job": {
+    "title": "Job Management",
+    "add": "Add Job",
+    "loading": "Loading jobs...",
+    "fetch_error": "Failed to load job list",
+    "save_error": "Failed to save job",
+    "delete_error": "Failed to delete job",
+    "confirm_delete": "Are you sure you want to delete this job?",
+    "edit_title": "Edit Job",
+    "add_title": "Add Job",
+    "confirm_publish": "Are you sure you want to publish this job?",
+    "confirm_close": "Are you sure you want to close this job?",
+    "publish_error": "Failed to publish job",
+    "close_error": "Failed to close job",
+    "table": {
+      "code": "Job Code",
+      "title": "Job Title",
+      "department": "Department",
+      "location": "Location",
+      "type": "Job Type",
+      "status": "Status",
+      "headcount": "Headcount",
+      "publish_date": "Publish Date",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "publish": "Publish",
+      "close": "Close",
+      "view": "View"
+    },
+    "status": {
+      "draft": "Draft",
+      "open": "Open",
+      "closed": "Closed"
+    },
+    "form": {
+      "code": "Job Code",
+      "title": "Job Title",
+      "department": "Department",
+      "location": "Location",
+      "type": "Job Type",
+      "salary": "Salary Range",
+      "headcount": "Headcount",
+      "deadline": "Deadline",
+      "sort_order": "Sort Order",
+      "responsibility": "Responsibilities",
+      "requirement": "Requirements"
+    }
+  },
+  "admin_recruitment_application": {
+    "title": "Application Management",
+    "loading": "Loading applications...",
+    "fetch_error": "Failed to load application list",
+    "save_error": "Failed to save application",
+    "export_error": "Export failed",
+    "export_success": "Export successful",
+    "exporting": "Exporting...",
+    "no_note": "No note",
+    "confirm_delete": "Are you sure you want to delete this application?",
+    "status_filter": "Application Status",
+    "table": {
+      "id": "ID",
+      "job": "Job",
+      "applicant": "Applicant",
+      "email": "Email",
+      "phone": "Phone",
+      "source": "Source",
+      "status": "Status",
+      "apply_date": "Apply Date",
+      "actions": "Actions"
+    },
+    "actions": {
+      "view": "View",
+      "status": "Status",
+      "export": "Export Excel",
+      "save": "Save"
+    },
+    "status": {
+      "pending": "Pending",
+      "reviewing": "Reviewing",
+      "interviewed": "Interviewed",
+      "rejected": "Rejected",
+      "hired": "Hired"
+    },
+    "source": {
+      "website": "Website",
+      "referral": "Referral",
+      "other": "Other"
+    },
+    "modal": {
+      "update_status": "Update Status",
+      "new_status": "New Status",
+      "note": "Note",
+      "detail": "Application Detail",
+      "basic_info": "Basic Info",
+      "resume": "Resume",
+      "no_resume": "No resume uploaded",
+      "view_resume": "View Resume",
+      "cover_letter": "Cover Letter",
+      "education": "Education",
+      "experience": "Experience",
+      "hr_note": "HR Note",
+      "edit_note": "Edit Note"
+    }
   },
   "user_management": {
     "title": "User Management"
@@ -234,5 +400,106 @@
     "copy_error": "Failed to copy URL.",
     "delete": "Delete",
     "no_files": "No files found. Try uploading some."
+  },
+  "admin_recruitment_job": {
+    "title": "Job Management",
+    "add": "Add Job",
+    "loading": "Loading jobs...",
+    "fetch_error": "Failed to load job list",
+    "save_error": "Failed to save job",
+    "delete_error": "Failed to delete job",
+    "confirm_delete": "Are you sure you want to delete this job?",
+    "edit_title": "Edit Job",
+    "add_title": "Add Job",
+    "table": {
+      "code": "Job Code",
+      "title": "Job Title",
+      "department": "Department",
+      "location": "Location",
+      "type": "Job Type",
+      "status": "Status",
+      "headcount": "Headcount",
+      "publish_date": "Publish Date",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "publish": "Publish",
+      "close": "Close",
+      "view": "View"
+    },
+    "status": {
+      "draft": "Draft",
+      "open": "Open",
+      "closed": "Closed"
+    },
+    "form": {
+      "code": "Job Code",
+      "title": "Job Title",
+      "department": "Department",
+      "location": "Location",
+      "type": "Job Type",
+      "salary": "Salary Range",
+      "headcount": "Headcount",
+      "deadline": "Deadline",
+      "sort_order": "Sort Order",
+      "responsibility": "Responsibilities",
+      "requirement": "Requirements"
+    }
+  },
+  "admin_recruitment_application": {
+    "title": "Application Management",
+    "loading": "Loading applications...",
+    "fetch_error": "Failed to load application list",
+    "save_error": "Failed to save application",
+    "export_error": "Export failed",
+    "export_success": "Export successful",
+    "confirm_delete": "Are you sure you want to delete this application?",
+    "table": {
+      "id": "ID",
+      "job": "Job",
+      "applicant": "Applicant",
+      "email": "Email",
+      "phone": "Phone",
+      "source": "Source",
+      "status": "Status",
+      "apply_date": "Apply Date",
+      "actions": "Actions"
+    },
+    "actions": {
+      "view": "View",
+      "status": "Status",
+      "export": "Export Excel",
+      "save": "Save"
+    },
+    "status": {
+      "pending": "Pending",
+      "reviewing": "Reviewing",
+      "interviewed": "Interviewed",
+      "rejected": "Rejected",
+      "hired": "Hired"
+    },
+    "source": {
+      "website": "Website",
+      "referral": "Referral",
+      "other": "Other"
+    },
+    "modal": {
+      "update_status": "Update Status",
+      "new_status": "New Status",
+      "note": "Note",
+      "detail": "Application Detail",
+      "basic_info": "Basic Info",
+      "resume": "Resume",
+      "no_resume": "No resume uploaded",
+      "view_resume": "View Resume",
+      "cover_letter": "Cover Letter",
+      "education": "Education",
+      "experience": "Experience",
+      "hr_note": "HR Note",
+      "edit_note": "Edit Note"
+    }
   }
 }

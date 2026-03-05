@@ -2,7 +2,7 @@
   <div class="admin-layout">
     <aside class="sidebar">
       <div class="logo">
-        <router-link to="/">Maxunitech Admin</router-link>
+        <router-link to="/">Company Admin</router-link>
       </div>
       <nav class="admin-nav">
         <router-link to="/admin/dashboard">{{ t('admin.title') }}</router-link>
@@ -14,6 +14,8 @@
         <router-link to="/admin/categories">{{ t('admin.category_management') }}</router-link>
         <router-link to="/admin/dictionary">{{ t('admin.dictionary_management') }}</router-link>
         <router-link to="/admin/files">{{ t('admin.file_management') }}</router-link>
+        <router-link to="/admin/recruitment/jobs">{{ t('admin.admin_recruitment_job') }}</router-link>
+        <router-link to="/admin/recruitment/applications">{{ t('admin.admin_recruitment_application') }}</router-link>
       </nav>
     </aside>
     <div class="main-content-wrapper">

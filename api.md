@@ -31,6 +31,7 @@
 - [研发中心](#研发中心)
 - [生产基地](#生产基地)
 - [质量体系](#质量体系)
+- [招聘管理](#招聘管理)
 
 ---
 
@@ -3817,7 +3818,7 @@ interface ProductRespVO {
 
 #### 获取产品分页列表
 
-**Endpoint**: `GET /admin-api/product/page`
+**Endpoint**: `GET /admin-api/product/product/page`
 
 **权限**: `product:product:query`
 
@@ -4759,7 +4760,7 @@ interface CaseStudyVO {
 
 ### 按行业筛选案例研究
 
-**Endpoint**: `GET /app-api/public/cases/by-industry`
+**Endpoint**: `GET /app-api/public/cases/by-industry/{industry}`
 
 #### 请求参数
 
@@ -7696,5 +7697,630 @@ interface QualitySystemDO {
   updateTime: string;
 }
 ```
+
+---
+
+## 招聘管理
+
+### 公开 API - 职位列表
+
+#### 获取职位列表
+
+**Endpoint**: `GET /public/recruit/jobs`
+
+**权限**: 公开访问（无需认证）
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: {
+    id: number;
+    code: string;
+    title: string;           // 职位标题（根据 Accept-Language 自动切换语言）
+    department: string;      // 部门（多语言）
+    location: string;        // 工作地点（多语言）
+    type: string;            // 工作类型：full-time=全职, part-time=兼职, internship=实习
+    salaryRange: string;     // 薪资范围
+    publishDate: string;     // 发布日期
+    status: string;          // 职位状态：open=开放, closed=关闭
+  }[];
+}
+```
+
+---
+
+### 公开 API - 职位详情
+
+#### 获取职位详情
+
+**Endpoint**: `GET /public/recruit/jobs/{id}`
+
+**权限**: 公开访问（无需认证）
+
+**路径参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | number | 是 | 职位 ID |
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: {
+    id: number;
+    code: string;
+    title: string;           // 职位标题（多语言）
+    department: string;      // 部门（多语言）
+    location: string;        // 工作地点（多语言）
+    type: string;            // 工作类型
+    requirement: string;     // 任职要求（多语言）
+    responsibility: string;  // 岗位职责（多语言）
+    salaryRange: string;     // 薪资范围
+    headcount: number;       // 招聘人数
+    publishDate: string;     // 发布日期
+    deadline: string;        // 截止日期
+  };
+}
+```
+
+---
+
+### 公开 API - 提交求职申请
+
+#### 提交求职申请
+
+**Endpoint**: `POST /public/recruit/jobs/apply`
+
+**权限**: 公开访问（无需认证）
+
+**请求参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| jobId | number | 是 | 职位 ID |
+| applicantName | string | 是 | 申请人姓名 |
+| email | string | 是 | 申请人邮箱 |
+| phone | string | 是 | 申请人电话（手机号格式） |
+| resumeUrl | string | 否 | 简历文件 URL |
+| coverLetter | string | 否 | 求职信（最多2000字符） |
+| education | string | 否 | 教育背景（最多500字符） |
+| experience | string | 否 | 工作经历（最多2000字符） |
+| source | string | 否 | 申请来源：website=官网, referral=推荐, other=其他 |
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: number;  // 返回新创建的申请 ID
+}
+```
+
+---
+
+### 公开 API - 简历上传
+
+#### 上传简历文件
+
+**Endpoint**: `POST /public/recruit/upload/resume`
+
+**权限**: 公开访问（无需认证）
+
+**请求参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| file | File | 是 | 简历文件（支持 PDF、DOC、DOCX，最大 10MB） |
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: string;  // 返回文件访问路径，如 /uploads/resume/2024/03/04/xxx.pdf
+}
+```
+
+---
+
+### 公开 API - 招聘文化
+
+#### 获取招聘文化信息
+
+**Endpoint**: `GET /public/recruit/culture`
+
+**权限**: 公开访问（无需认证）
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: {
+    title: string;
+    description: string;
+  };
+}
+```
+
+#### 获取团队信息
+
+**Endpoint**: `GET /public/recruit/team`
+
+**权限**: 公开访问（无需认证）
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: {
+    title: string;
+    description: string;
+  };
+}
+```
+
+---
+
+### 管理后台 - 职位管理
+
+#### 创建职位
+
+**Endpoint**: `POST /admin-api/admin/recruit/jobs/create`
+
+**权限**: `recruit:job:create`
+
+**请求参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| code | string | 是 | 职位代码（唯一标识，大写字母+数字+下划线） |
+| titleZh | string | 是 | 职位标题（中文） |
+| titleEn | string | 否 | 职位标题（英文） |
+| titlePt | string | 否 | 职位标题（葡萄牙语） |
+| titleEs | string | 否 | 职位标题（西班牙语） |
+| departmentZh | string | 否 | 部门（中文） |
+| departmentEn | string | 否 | 部门（英文） |
+| departmentPt | string | 否 | 部门（葡萄牙语） |
+| departmentEs | string | 否 | 部门（西班牙语） |
+| locationZh | string | 否 | 工作地点（中文） |
+| locationEn | string | 否 | 工作地点（英文） |
+| locationPt | string | 否 | 工作地点（葡萄牙语） |
+| locationEs | string | 否 | 工作地点（西班牙语） |
+| requirementZh | string | 是 | 任职要求（中文） |
+| requirementEn | string | 否 | 任职要求（英文） |
+| requirementPt | string | 否 | 任职要求（葡萄牙语） |
+| requirementEs | string | 否 | 任职要求（西班牙语） |
+| responsibilityZh | string | 是 | 岗位职责（中文） |
+| responsibilityEn | string | 否 | 岗位职责（英文） |
+| responsibilityPt | string | 否 | 岗位职责（葡萄牙语） |
+| responsibilityEs | string | 否 | 岗位职责（西班牙语） |
+| type | string | 是 | 工作类型：full-time / part-time / internship |
+| salaryRange | string | 否 | 薪资范围 |
+| headcount | number | 是 | 招聘人数 |
+| deadline | string | 否 | 截止日期 |
+| sortOrder | number | 否 | 排序号 |
+
+**响应数据**
+
+```typescript
+number // 新创建的职位 ID
+```
+
+---
+
+#### 更新职位
+
+**Endpoint**: `PUT /admin-api/admin/recruit/jobs/update`
+
+**权限**: `recruit:job:update`
+
+**请求参数**
+
+同【创建职位】，需额外提供 `id` 字段。
+
+**响应数据**
+
+```typescript
+boolean // true表示更新成功
+```
+
+---
+
+#### 删除职位
+
+**Endpoint**: `DELETE /admin-api/admin/recruit/jobs/delete?id={id}`
+
+**权限**: `recruit:job:delete`
+
+**路径参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | number | 是 | 职位 ID |
+
+**响应数据**
+
+```typescript
+boolean // true表示删除成功
+```
+
+---
+
+#### 发布职位
+
+**Endpoint**: `PUT /admin-api/admin/recruit/jobs/{id}/publish`
+
+**权限**: `recruit:job:update`
+
+**路径参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | number | 是 | 职位 ID |
+
+**响应数据**
+
+```typescript
+boolean // true表示发布成功
+```
+
+---
+
+#### 关闭职位
+
+**Endpoint**: `PUT /admin-api/admin/recruit/jobs/{id}/close`
+
+**权限**: `recruit:job:update`
+
+**路径参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | number | 是 | 职位 ID |
+
+**响应数据**
+
+```typescript
+boolean // true表示关闭成功
+```
+
+---
+
+#### 获得职位详情
+
+**Endpoint**: `GET /admin-api/admin/recruit/jobs/get`
+
+**权限**: `recruit:job:query`
+
+**查询参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | number | 是 | 职位 ID |
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: {
+    id: number;
+    code: string;
+    titleZh: string;
+    titleEn?: string;
+    titlePt?: string;
+    titleEs?: string;
+    departmentZh: string;
+    departmentEn?: string;
+    departmentPt?: string;
+    departmentEs?: string;
+    locationZh: string;
+    locationEn?: string;
+    locationPt?: string;
+    locationEs?: string;
+    type: string;
+    requirementZh: string;
+    requirementEn?: string;
+    requirementPt?: string;
+    requirementEs?: string;
+    responsibilityZh: string;
+    responsibilityEn?: string;
+    responsibilityPt?: string;
+    responsibilityEs?: string;
+    salaryRange: string;
+    headcount: number;
+    status: string;
+    publishDate: string;
+    deadline?: string;
+    sortOrder: number;
+    active: boolean;
+    creator: string;
+    createTime: string;
+    updater: string;
+    updateTime: string;
+    deleted: boolean;
+  };
+}
+```
+
+---
+
+### 管理后台 - 求职申请管理
+
+#### 获取申请列表
+
+**Endpoint**: `GET /admin-api/admin/recruit/applications/list`
+
+**权限**: `recruit:application:query`
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: {
+    id: number;
+    jobId: number;
+    jobTitle: string;         // 职位标题
+    applicantName: string;    // 申请人姓名
+    email: string;            // 申请人邮箱
+    phone: string;            // 申请人电话
+    resumeUrl: string;        // 简历URL
+    coverLetter: string;      // 求职信
+    education: string;        // 教育背景
+    experience: string;       // 工作经历
+    source: string;           // 申请来源
+    status: string;           // 申请状态：pending / reviewing / interviewed / rejected / hired
+    applyDate: string;        // 申请日期
+    note: string;             // HR备注
+  }[];
+}
+```
+
+---
+
+#### 更新申请状态
+
+**Endpoint**: `PUT /admin-api/admin/recruit/applications/status`
+
+**权限**: `recruit:application:update`
+
+**请求参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | number | 是 | 申请 ID |
+| status | string | 是 | 新状态：pending / reviewing / interviewed / rejected / hired |
+| note | string | 否 | 备注说明 |
+
+**响应数据**
+
+```typescript
+boolean // true表示更新成功
+```
+
+---
+
+#### 获得申请详情
+
+**Endpoint**: `GET /admin-api/admin/recruit/applications/get`
+
+**权限**: `recruit:application:query`
+
+**查询参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | number | 是 | 申请 ID |
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: {
+    id: number;
+    jobId: number;
+    jobTitle: string;
+    applicantName: string;
+    email: string;
+    phone: string;
+    resumeUrl: string;
+    coverLetter: string;
+    education: string;
+    experience: string;
+    source: string;
+    status: string;
+    applyDate: string;
+    note: string;
+    creator: string;
+    createTime: string;
+    updater: string;
+    updateTime: string;
+    deleted: boolean;
+  };
+}
+```
+
+---
+
+#### 获取职位相关申请
+
+**Endpoint**: `GET /admin-api/admin/recruit/applications/job/{jobId}`
+
+**权限**: `recruit:application:query`
+
+**路径参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| jobId | number | 是 | 职位 ID |
+
+**响应数据**
+
+```typescript
+{
+  code: number;
+  msg: string;
+  data: {
+    id: number;
+    jobId: number;
+    jobTitle: string;
+    applicantName: string;
+    email: string;
+    phone: string;
+    resumeUrl: string;
+    coverLetter: string;
+    education: string;
+    experience: string;
+    source: string;
+    status: string;
+    applyDate: string;
+    note: string;
+  }[];
+}
+```
+
+---
+
+#### 导出申请数据
+
+**Endpoint**: `GET /admin-api/admin/recruit/applications/export`
+
+**权限**: `recruit:application:export`
+
+**请求头**
+
+| Header 名称 | 必填 | 说明 | 示例值 |
+|-------------|------|------|--------|
+| `Authorization` | 是 | JWT 访问令牌 | `Bearer eyJhbGciOiJIUzUxMiJ9...` |
+| `Accept-Language` | 否 | 国际化语言 | `zh-CN`, `en`, `pt`, `es` |
+
+**响应数据**
+
+```typescript
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8
+
+// 返回 Excel 文件流，包含所有申请数据
+// 文件名格式：recruit_applications_{timestamp}.xlsx
+```
+
+**导出字段说明**:
+
+| 字段 | 说明 |
+|------|------|
+| ID | 申请 ID |
+| Job Title | 职位标题 |
+| Applicant Name | 申请人姓名 |
+| Email | 邮箱 |
+| Phone | 电话 |
+| Education | 教育背景 |
+| Experience | 工作经历 |
+| Source | 申请来源 |
+| Status | 申请状态 |
+| Apply Date | 申请日期 |
+| Note | HR 备注 |
+
+---
+
+### TypeScript 类型定义
+
+```typescript
+// 职位相关类型
+interface JobVO {
+  id: number;
+  code: string;
+  title: string;
+  department: string;
+  location: string;
+  type: 'full-time' | 'part-time' | 'internship';
+  salaryRange: string;
+  publishDate: string;
+  status: 'draft' | 'open' | 'closed';
+}
+
+interface JobDetailVO extends JobVO {
+  requirement: string;
+  responsibility: string;
+  headcount: number;
+  deadline: string;
+}
+
+interface JobCreateReqVO {
+  code: string;
+  titleZh: string;
+  titleEn?: string;
+  titlePt?: string;
+  titleEs?: string;
+  departmentZh?: string;
+  departmentEn?: string;
+  departmentPt?: string;
+  departmentEs?: string;
+  locationZh?: string;
+  locationEn?: string;
+  locationPt?: string;
+  locationEs?: string;
+  requirementZh: string;
+  requirementEn?: string;
+  requirementPt?: string;
+  requirementEs?: string;
+  responsibilityZh: string;
+  responsibilityEn?: string;
+  responsibilityPt?: string;
+  responsibilityEs?: string;
+  type: 'full-time' | 'part-time' | 'internship';
+  salaryRange?: string;
+  headcount: number;
+  deadline?: string;
+  sortOrder?: number;
+}
+
+// 求职申请相关类型
+interface JobApplicationVO {
+  id: number;
+  jobId: number;
+  jobTitle: string;
+  applicantName: string;
+  email: string;
+  phone: string;
+  resumeUrl: string;
+  coverLetter: string;
+  education: string;
+  experience: string;
+  source: 'website' | 'referral' | 'other';
+  status: 'pending' | 'reviewing' | 'interviewed' | 'rejected' | 'hired';
+  applyDate: string;
+  note: string;
+}
+
+interface JobApplicationSubmitReqVO {
+  jobId: number;
+  applicantName: string;
+  email: string;
+  phone: string;
+  resumeUrl?: string;
+  coverLetter?: string;
+  education?: string;
+  experience?: string;
+  source?: string;
+}
+```
+
+---
 
 ---

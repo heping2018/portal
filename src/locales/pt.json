@@ -67,8 +67,8 @@
     "no_account": "Não tem uma conta?",
     "forgot_password": "Esqueceu a senha?"
   },
-  "about": {
-    "title": "Sobre a Maxunitech",
+"about": {
+    "title": "Sobre a Company",
     "subtitle": "Sua parceira de confiança em automação industrial.",
     "nav": {
       "profile": "Perfil da Empresa",
@@ -100,7 +100,141 @@
     "role_management": "Gerenciamento de Funções",
     "category_management": "Gerenciamento de Categorias",
     "dictionary_management": "Gerenciamento de Dicionários",
-    "file_management": "Gerenciamento de Arquivos"
+    "file_management": "Gerenciamento de Arquivos",
+    "admin_recruitment_job": "Gestão de Vagas",
+    "admin_recruitment_application": "Gestão de Candidaturas"
+  },
+  "job_type": {
+    "full_time": "Tempo Integral",
+    "part_time": "Meio Período",
+    "internship": "Estágio"
+  },
+  "language": {
+    "zh": "Chinês",
+    "en": "Inglês",
+    "pt": "Português",
+    "es": "Espanhol"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "seconds": "segundos",
+    "milliseconds": "milissegundos",
+    "all": "Todos",
+    "basic_info": "Informações Básicas",
+    "job_title": "Título da Vaga",
+    "department": "Departamento",
+    "location": "Localização"
+  },
+  "admin_recruitment_job": {
+    "title": "Gestão de Vagas",
+    "add": "Adicionar Vaga",
+    "loading": "Carregando vagas...",
+    "fetch_error": "Falha ao carregar lista de vagas",
+    "save_error": "Falha ao salvar vaga",
+    "delete_error": "Falha ao deletar vaga",
+    "confirm_delete": "Tem certeza que deseja deletar esta vaga?",
+    "edit_title": "Editar Vaga",
+    "add_title": "Adicionar Vaga",
+    "confirm_publish": "Tem certeza que deseja publicar esta vaga?",
+    "confirm_close": "Tem certeza que deseja fechar esta vaga?",
+    "publish_error": "Falha ao publicar vaga",
+    "close_error": "Falha ao fechar vaga",
+    "table": {
+      "code": "Código da Vaga",
+      "title": "Título da Vaga",
+      "department": "Departamento",
+      "location": "Localização",
+      "type": "Tipo de Trabalho",
+      "status": "Status",
+      "headcount": "Vagas",
+      "publish_date": "Data de Publicação",
+      "actions": "Ações"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Deletar",
+      "save": "Salvar",
+      "publish": "Publicar",
+      "close": "Fechar",
+      "view": "Ver"
+    },
+    "status": {
+      "draft": "Rascunho",
+      "open": "Aberta",
+      "closed": "Fechada"
+    },
+    "form": {
+      "code": "Código da Vaga",
+      "title": "Título da Vaga",
+      "department": "Departamento",
+      "location": "Localização",
+      "type": "Tipo de Trabalho",
+      "salary": "Faixa Salarial",
+      "headcount": "Vagas",
+      "deadline": "Prazo",
+      "sort_order": "Ordem",
+      "responsibility": "Responsabilidades",
+      "requirement": "Requisitos"
+    }
+  },
+  "admin_recruitment_application": {
+    "title": "Gestão de Candidaturas",
+    "loading": "Carregando candidaturas...",
+    "fetch_error": "Falha ao carregar lista de candidaturas",
+    "save_error": "Falha ao salvar candidatura",
+    "export_error": "Falha ao exportar",
+    "export_success": "Exportação bem sucedida",
+    "exporting": "Exportando...",
+    "no_note": "Sem nota",
+    "confirm_delete": "Tem certeza que deseja deletar esta candidatura?",
+    "status_filter": "Status da Candidatura",
+    "table": {
+      "id": "ID",
+      "job": "Vaga",
+      "applicant": "Candidato",
+      "email": "Email",
+      "phone": "Telefone",
+      "source": "Fonte",
+      "status": "Status",
+      "apply_date": "Data de Aplicação",
+      "actions": "Ações"
+    },
+    "actions": {
+      "view": "Ver",
+      "status": "Status",
+      "export": "Exportar Excel",
+      "save": "Salvar"
+    },
+    "status": {
+      "pending": "Pendente",
+      "reviewing": "Em Análise",
+      "interviewed": "Entrevistado",
+      "rejected": "Rejeitado",
+      "hired": "Contratado"
+    },
+    "source": {
+      "website": "Site",
+      "referral": "Indicação",
+      "other": "Outro"
+    },
+    "modal": {
+      "update_status": "Atualizar Status",
+      "new_status": "Novo Status",
+      "note": "Nota",
+      "detail": "Detalhes da Candidatura",
+      "basic_info": "Informações Básicas",
+      "resume": "Currículo",
+      "no_resume": "Currículo não enviado",
+      "view_resume": "Ver Currículo",
+      "cover_letter": "Carta de Apresentação",
+      "education": "Educação",
+      "experience": "Experiência",
+      "hr_note": "Nota do RH",
+      "edit_note": "Editar Nota"
+    }
   },
   "user_management": {
     "title": "Gerenciamento de Usuários"
@@ -234,5 +368,106 @@
     "copy_error": "Falha ao copiar a URL.",
     "delete": "Deletar",
     "no_files": "Nenhum arquivo encontrado. Tente carregar alguns."
+  },
+  "admin_recruitment_job": {
+    "title": "Gestão de Vagas",
+    "add": "Adicionar Vaga",
+    "loading": "Carregando vagas...",
+    "fetch_error": "Falha ao carregar lista de vagas",
+    "save_error": "Falha ao salvar vaga",
+    "delete_error": "Falha ao deletar vaga",
+    "confirm_delete": "Tem certeza que deseja deletar esta vaga?",
+    "edit_title": "Editar Vaga",
+    "add_title": "Adicionar Vaga",
+    "table": {
+      "code": "Código da Vaga",
+      "title": "Título da Vaga",
+      "department": "Departamento",
+      "location": "Localização",
+      "type": "Tipo de Trabalho",
+      "status": "Status",
+      "headcount": "Vagas",
+      "publish_date": "Data de Publicação",
+      "actions": "Ações"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Deletar",
+      "save": "Salvar",
+      "publish": "Publicar",
+      "close": "Fechar",
+      "view": "Ver"
+    },
+    "status": {
+      "draft": "Rascunho",
+      "open": "Aberta",
+      "closed": "Fechada"
+    },
+    "form": {
+      "code": "Código da Vaga",
+      "title": "Título da Vaga",
+      "department": "Departamento",
+      "location": "Localização",
+      "type": "Tipo de Trabalho",
+      "salary": "Faixa Salarial",
+      "headcount": "Vagas",
+      "deadline": "Prazo",
+      "sort_order": "Ordem",
+      "responsibility": "Responsabilidades",
+      "requirement": "Requisitos"
+    }
+  },
+  "admin_recruitment_application": {
+    "title": "Gestão de Candidaturas",
+    "loading": "Carregando candidaturas...",
+    "fetch_error": "Falha ao carregar lista de candidaturas",
+    "save_error": "Falha ao salvar candidatura",
+    "export_error": "Falha ao exportar",
+    "export_success": "Exportação bem sucedida",
+    "confirm_delete": "Tem certeza que deseja deletar esta candidatura?",
+    "table": {
+      "id": "ID",
+      "job": "Vaga",
+      "applicant": "Candidato",
+      "email": "Email",
+      "phone": "Telefone",
+      "source": "Fonte",
+      "status": "Status",
+      "apply_date": "Data de Aplicação",
+      "actions": "Ações"
+    },
+    "actions": {
+      "view": "Ver",
+      "status": "Status",
+      "export": "Exportar Excel",
+      "save": "Salvar"
+    },
+    "status": {
+      "pending": "Pendente",
+      "reviewing": "Em Análise",
+      "interviewed": "Entrevistado",
+      "rejected": "Rejeitado",
+      "hired": "Contratado"
+    },
+    "source": {
+      "website": "Site",
+      "referral": "Indicação",
+      "other": "Outro"
+    },
+    "modal": {
+      "update_status": "Atualizar Status",
+      "new_status": "Novo Status",
+      "note": "Nota",
+      "detail": "Detalhes da Candidatura",
+      "basic_info": "Informações Básicas",
+      "resume": "Currículo",
+      "no_resume": "Currículo não enviado",
+      "view_resume": "Ver Currículo",
+      "cover_letter": "Carta de Apresentação",
+      "education": "Educação",
+      "experience": "Experiência",
+      "hr_note": "Nota do RH",
+      "edit_note": "Editar Nota"
+    }
   }
 }

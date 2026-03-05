@@ -140,19 +140,20 @@ watch(news, (newNews) => {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 15px rgba(0, 195, 255, 0.6);
+  text-shadow: 0 0 15px var(--shadow-color);
+  color: var(--text-primary);
 }
 
 .subtitle {
   font-size: 1.3rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
 }
 
 .state-feedback {
   text-align: center;
   padding: 6rem 0;
   font-size: 1.3rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
 }
 .state-feedback.error {
   color: #ff7b7b;
@@ -160,8 +161,8 @@ watch(news, (newNews) => {
 
 .loading-spinner {
   margin: 0 auto 2rem;
-  border: 4px solid rgba(0, 195, 255, 0.2);
-  border-left-color: #00c3ff;
+  border: 4px solid var(--border-color);
+  border-left-color: var(--accent-primary);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -187,11 +188,15 @@ watch(news, (newNews) => {
   min-height: 400px;
   border-radius: 16px;
   overflow: hidden;
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
-  background-color: #001A33;
+  background-color: var(--bg-card);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   transform-style: preserve-3d; /* Required for vanilla-tilt */
+}
+
+[data-theme="light"] .news-card {
+  color: #0d47a1;
 }
 
 .card-background {
@@ -214,8 +219,12 @@ watch(news, (newNews) => {
   position: relative;
   padding: 1.5rem;
   z-index: 2;
-  background: linear-gradient(to top, rgba(0, 10, 20, 0.95) 20%, rgba(0, 10, 20, 0.7) 60%, transparent 100%);
-  border-top: 1px solid rgba(0, 195, 255, 0.2);
+  background: var(--gradient-card);
+  border-top: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .card-content {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 20%, rgba(255, 255, 255, 0.9) 60%, transparent 100%);
 }
 
 .card-content h3 {
@@ -225,26 +234,30 @@ watch(news, (newNews) => {
   line-height: 1.3;
 }
 
+[data-theme="light"] .card-content h3 {
+  color: #0d47a1;
+}
+
 .card-content .date-label {
   font-size: 0.9rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
   opacity: 0.9;
   margin-bottom: 0.5rem;
 }
 
 .card-content .summary {
-    font-size: 1rem;
-    color: #c0d8f0;
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
+  font-size: 1rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .news-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 5, 10, 0.5), 0 0 40px rgba(0, 195, 255, 0.4);
+  box-shadow: var(--shadow-glow);
 }
 
 @media (max-width: 768px) {

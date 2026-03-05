@@ -69,9 +69,95 @@ onMounted(fetchNavigation);
 }
 
 .sidebar-nav, .content-area {
-  background-color: #162231; /* Dark theme background */
+  background-color: var(--bg-card);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-nav {
+  width: 260px;
+  flex-shrink: 0;
+  padding: 1.5rem;
+  height: fit-content;
+}
+
+.nav-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background-color: var(--accent-primary);
+  color: #fff;
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.nav-item i {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.content-area {
+  flex-grow: 1;
+  padding: 2rem;
+  color: var(--text-primary);
+}
+
+.loading-error-message {
+  color: #ff6b6b;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Transition effects */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+/* Apply theme to child components globally inside content-area */
+.content-area :deep(.section-title) {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+.content-area :deep(.loading-spinner) {
+  border-top-color: var(--accent-primary);
+}
+
+.content-area :deep(.error-message) {
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* Profile Section */
+.content-area :deep(.intro-text) {
+  color: var(--text-secondary);
 }
 
 .sidebar-nav {
@@ -109,7 +195,7 @@ onMounted(fetchNavigation);
 
 .nav-item.active {
   background-color: #007bff;
-  color: #fff;
+  color: var(--text-primary);
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
   transform: translateY(-2px);
 }

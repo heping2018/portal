@@ -41,13 +41,13 @@ const isFullWidthLayout = computed(() => route.meta.fullWidth === true);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #000B18;
-  /* The main layout container itself should not have horizontal padding */
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
 }
 
 .content-wrapper {
   max-width: 1400px; /* Default max width for most pages */
-  margin: 0 auto;   /* Center the content by default */
+  margin: 0 auto; /* Center the content by default */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -66,8 +66,12 @@ const isFullWidthLayout = computed(() => route.meta.fullWidth === true);
 
 .app-content {
   flex-grow: 1;
-  padding-top: 60px; /* Adjust if header height changes */
-  /* This is the main content area, it should not have horizontal padding either */
-  /* The padding should be handled by the components inside the router-view */
+  padding-top: 80px; /* 增加顶部padding以适应多行导航栏 */
+}
+
+@media (max-width: 768px) {
+  .app-content {
+    padding-top: 60px;
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <footer class="app-footer">
     <div class="footer-container">
-      <p>&copy; {{ new Date().getFullYear() }} Maxunitech. All Rights Reserved.</p>
+      <p>&copy; {{ new Date().getFullYear() }} Company. All Rights Reserved.</p>
     </div>
   </footer>
 </template>
@@ -12,19 +12,20 @@
 
 <style scoped>
 .app-footer {
-  background-color: #000B18; /* Deep space blue */
-  color: #a0a0a0;
-  padding: 1.5rem 2rem; /* Adjusted padding for a cleaner look */
-  border-top: 1px solid rgba(0, 195, 255, 0.2); /* Cyan border */
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
   position: relative;
   z-index: 10;
   width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center; /* Center the content */
+  text-align: center;
   font-size: 0.9rem;
 }
 </style>

@@ -7,7 +7,15 @@
 </template>
 
 <script setup>
-// The new v-slot syntax for router-view requires no additional script setup for this feature.
+import { onMounted } from 'vue';
+import { useThemeStore } from './stores/themeStore';
+
+const themeStore = useThemeStore();
+
+onMounted(() => {
+  // Initialize theme on app mount
+  document.documentElement.setAttribute('data-theme', themeStore.theme);
+});
 </script>
 
 <style>
@@ -17,18 +25,17 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #000B18; /* Ensure body background matches app theme */
-  color: #E0E0E0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Transition styles for fade effect */
-.fade-enter-active,
-.fade-leave-active {
+.fade-enter-active, .fade-leave-active {
   transition: opacity 0.2s ease;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
 }
 
@@ -40,7 +47,7 @@ html, body, #app {
 }
 
 body {
-    overflow-y: hidden; /* Prevent body scrollbars when content is managed internally */
+  overflow-y: hidden; /* Prevent body scrollbars when content is managed internally */
 }
 
 </style>

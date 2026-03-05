@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
       proxy: {
         // Proxy all requests starting with /api to the target URL
         '/api': {
-          target: 'https://unstruggling-remona-actionably.ngrok-free.dev',
+          target: 'http://127.0.0.1:8080',
           changeOrigin: true, // Needed for virtual hosted sites
           // The rewrite rule has been removed to ensure the /api prefix is forwarded to the backend.
         },

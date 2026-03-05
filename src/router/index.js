@@ -45,6 +45,8 @@ import AdminCategoryView from '../views/AdminCategoryView.vue';
 import AdminDictionaryView from '../views/AdminDictionaryView.vue';
 import AdminFileView from '../views/AdminFileView.vue';
 import RoleManagement from '../views/admin/system/role/RoleManagement.vue';
+import RecruitmentJobView from '../views/admin/RecruitmentJobView.vue';
+import RecruitmentApplicationView from '../views/admin/RecruitmentApplicationView.vue';
 
 const routes = [
   {
@@ -244,6 +246,16 @@ const routes = [
         path: 'files',
         name: 'AdminFileView',
         component: AdminFileView
+      },
+      {
+        path: 'recruitment/jobs',
+        name: 'AdminRecruitmentJob',
+        component: RecruitmentJobView
+      },
+      {
+        path: 'recruitment/applications',
+        name: 'AdminRecruitmentApplication',
+        component: RecruitmentApplicationView
       },
     ]
   }

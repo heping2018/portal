@@ -6,7 +6,7 @@ import request from '@/utils/request';
  */
 export const getJobs = () => {
   return request({
-    url: '/app-api/public/jobs',
+    url: '/app-api/public/recruit/jobs',
     method: 'get',
   });
 };
@@ -18,24 +18,69 @@ export const getJobs = () => {
  */
 export const getJobDetails = (id) => {
   return request({
-    url: `/app-api/public/jobs/${id}`,
+    url: `/app-api/public/recruit/jobs/${id}`,
     method: 'get',
   });
 };
 
 /**
- * 提交职位申请
- * @param {number} id
- * @param {FormData} applicationData
- * @returns {Promise<AxiosResponse<any>>}
+ * 上传简历文件
+ * @param {File} file - 简历文件（支持 PDF、DOC、DOCX，最大 10MB）
+ * @returns {Promise<AxiosResponse<string>>} - 返回文件访问路径
  */
-export const applyForJob = (id, applicationData) => {
+export const uploadResume = (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
   return request({
-    url: `/app-api/public/jobs/${id}/apply`,
+    url: '/app-api/public/recruit/upload/resume',
     method: 'post',
-    data: applicationData,
+    data: formData,
     headers: {
       'Content-Type': 'multipart/form-data',
     },
+  });
+};
+
+/**
+ * 提交求职申请
+ * @param {Object} applicationData - 申请数据
+ * @param {number} applicationData.jobId - 职位 ID
+ * @param {string} applicationData.applicantName - 申请人姓名
+ * @param {string} applicationData.email - 申请人邮箱
+ * @param {string} applicationData.phone - 申请人电话
+ * @param {string} [applicationData.resumeUrl] - 简历文件 URL
+ * @param {string} [applicationData.coverLetter] - 求职信
+ * @param {string} [applicationData.education] - 教育背景
+ * @param {string} [applicationData.experience] - 工作经历
+ * @param {string} [applicationData.source] - 申请来源
+ * @returns {Promise<AxiosResponse<number>>} - 返回新创建的申请 ID
+ */
+export const applyForJob = (applicationData) => {
+  return request({
+    url: '/app-api/public/recruit/jobs/apply',
+    method: 'post',
+    data: applicationData,
+  });
+};
+
+/**
+ * 获取招聘文化信息
+ * @returns {Promise<AxiosResponse<{title: string, description: string}>>}
+ */
+export const getRecruitCulture = () => {
+  return request({
+    url: '/app-api/public/recruit/culture',
+    method: 'get',
+  });
+};
+
+/**
+ * 获取团队信息
+ * @returns {Promise<AxiosResponse<{title: string, description: string}>>}
+ */
+export const getRecruitTeam = () => {
+  return request({
+    url: '/app-api/public/recruit/team',
+    method: 'get',
   });
 };

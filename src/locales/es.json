@@ -67,8 +67,8 @@
     "no_account": "¿No tiene cuenta?",
     "forgot_password": "¿Olvidó la contraseña?"
   },
-  "about": {
-    "title": "Acerca de Maxunitech",
+"about": {
+    "title": "Acerca de Company",
     "subtitle": "Su socio de confianza en automatización industrial.",
     "nav": {
       "profile": "Perfil de la Empresa",
@@ -100,7 +100,141 @@
     "role_management": "Gestión de Roles",
     "category_management": "Gestión de Categorías",
     "dictionary_management": "Gestión de Diccionarios",
-    "file_management": "Gestión de Archivos"
+    "file_management": "Gestión de Archivos",
+    "admin_recruitment_job": "Gestión de Empleos",
+    "admin_recruitment_application": "Gestión de Solicitudes"
+  },
+  "job_type": {
+    "full_time": "Tiempo Completo",
+    "part_time": "Tiempo Parcial",
+    "internship": "Pasantía"
+  },
+  "language": {
+    "zh": "Chino",
+    "en": "Inglés",
+    "pt": "Portugués",
+    "es": "Español"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "seconds": "segundos",
+    "milliseconds": "milisegundos",
+    "all": "Todos",
+    "basic_info": "Información Básica",
+    "job_title": "Título del Empleo",
+    "department": "Departamento",
+    "location": "Ubicación"
+  },
+  "admin_recruitment_job": {
+    "title": "Gestión de Empleos",
+    "add": "Añadir Empleo",
+    "loading": "Cargando empleos...",
+    "fetch_error": "Error al cargar lista de empleos",
+    "save_error": "Error al guardar empleo",
+    "delete_error": "Error al eliminar empleo",
+    "confirm_delete": "¿Está seguro de que desea eliminar este empleo?",
+    "edit_title": "Editar Empleo",
+    "add_title": "Añadir Empleo",
+    "confirm_publish": "¿Está seguro de que desea publicar este empleo?",
+    "confirm_close": "¿Está seguro de que desea cerrar este empleo?",
+    "publish_error": "Error al publicar empleo",
+    "close_error": "Error al cerrar empleo",
+    "table": {
+      "code": "Código del Empleo",
+      "title": "Título del Empleo",
+      "department": "Departamento",
+      "location": "Ubicación",
+      "type": "Tipo de Trabajo",
+      "status": "Estado",
+      "headcount": "Plazas",
+      "publish_date": "Fecha de Publicación",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar",
+      "publish": "Publicar",
+      "close": "Cerrar",
+      "view": "Ver"
+    },
+    "status": {
+      "draft": "Borrador",
+      "open": "Abierto",
+      "closed": "Cerrado"
+    },
+    "form": {
+      "code": "Código del Empleo",
+      "title": "Título del Empleo",
+      "department": "Departamento",
+      "location": "Ubicación",
+      "type": "Tipo de Trabajo",
+      "salary": "Rango Salarial",
+      "headcount": "Plazas",
+      "deadline": "Fecha Límite",
+      "sort_order": "Orden",
+      "responsibility": "Responsabilidades",
+      "requirement": "Requisitos"
+    }
+  },
+  "admin_recruitment_application": {
+    "title": "Gestión de Solicitudes",
+    "loading": "Cargando solicitudes...",
+    "fetch_error": "Error al cargar lista de solicitudes",
+    "save_error": "Error al guardar solicitud",
+    "export_error": "Error al exportar",
+    "export_success": "Exportación exitosa",
+    "exporting": "Exportando...",
+    "no_note": "Sin nota",
+    "confirm_delete": "¿Está seguro de que desea eliminar esta solicitud?",
+    "status_filter": "Estado de Solicitud",
+    "table": {
+      "id": "ID",
+      "job": "Empleo",
+      "applicant": "Candidato",
+      "email": "Email",
+      "phone": "Teléfono",
+      "source": "Fuente",
+      "status": "Estado",
+      "apply_date": "Fecha de Solicitud",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "view": "Ver",
+      "status": "Estado",
+      "export": "Exportar Excel",
+      "save": "Guardar"
+    },
+    "status": {
+      "pending": "Pendiente",
+      "reviewing": "Revisando",
+      "interviewed": "Entrevistado",
+      "rejected": "Rechazado",
+      "hired": "Contratado"
+    },
+    "source": {
+      "website": "Sitio Web",
+      "referral": "Referencia",
+      "other": "Otro"
+    },
+    "modal": {
+      "update_status": "Actualizar Estado",
+      "new_status": "Nuevo Estado",
+      "note": "Nota",
+      "detail": "Detalle de la Solicitud",
+      "basic_info": "Información Básica",
+      "resume": "Currículum",
+      "no_resume": "No se subió currículum",
+      "view_resume": "Ver Currículum",
+      "cover_letter": "Carta de Presentación",
+      "education": "Educación",
+      "experience": "Experiencia",
+      "hr_note": "Nota de RRHH",
+      "edit_note": "Editar Nota"
+    }
   },
   "user_management": {
     "title": "Gestión de Usuarios"
@@ -234,5 +368,106 @@
     "copy_error": "Error al copiar la URL.",
     "delete": "Eliminar",
     "no_files": "No se encontraron archivos. Intente subir algunos."
+  },
+  "admin_recruitment_job": {
+    "title": "Gestión de Empleos",
+    "add": "Añadir Empleo",
+    "loading": "Cargando empleos...",
+    "fetch_error": "Error al cargar lista de empleos",
+    "save_error": "Error al guardar empleo",
+    "delete_error": "Error al eliminar empleo",
+    "confirm_delete": "¿Está seguro de que desea eliminar este empleo?",
+    "edit_title": "Editar Empleo",
+    "add_title": "Añadir Empleo",
+    "table": {
+      "code": "Código del Empleo",
+      "title": "Título del Empleo",
+      "department": "Departamento",
+      "location": "Ubicación",
+      "type": "Tipo de Trabajo",
+      "status": "Estado",
+      "headcount": "Plazas",
+      "publish_date": "Fecha de Publicación",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar",
+      "publish": "Publicar",
+      "close": "Cerrar",
+      "view": "Ver"
+    },
+    "status": {
+      "draft": "Borrador",
+      "open": "Abierto",
+      "closed": "Cerrado"
+    },
+    "form": {
+      "code": "Código del Empleo",
+      "title": "Título del Empleo",
+      "department": "Departamento",
+      "location": "Ubicación",
+      "type": "Tipo de Trabajo",
+      "salary": "Rango Salarial",
+      "headcount": "Plazas",
+      "deadline": "Fecha Límite",
+      "sort_order": "Orden",
+      "responsibility": "Responsabilidades",
+      "requirement": "Requisitos"
+    }
+  },
+  "admin_recruitment_application": {
+    "title": "Gestión de Solicitudes",
+    "loading": "Cargando solicitudes...",
+    "fetch_error": "Error al cargar lista de solicitudes",
+    "save_error": "Error al guardar solicitud",
+    "export_error": "Error al exportar",
+    "export_success": "Exportación exitosa",
+    "confirm_delete": "¿Está seguro de que desea eliminar esta solicitud?",
+    "table": {
+      "id": "ID",
+      "job": "Empleo",
+      "applicant": "Candidato",
+      "email": "Email",
+      "phone": "Teléfono",
+      "source": "Fuente",
+      "status": "Estado",
+      "apply_date": "Fecha de Solicitud",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "view": "Ver",
+      "status": "Estado",
+      "export": "Exportar Excel",
+      "save": "Guardar"
+    },
+    "status": {
+      "pending": "Pendiente",
+      "reviewing": "Revisando",
+      "interviewed": "Entrevistado",
+      "rejected": "Rechazado",
+      "hired": "Contratado"
+    },
+    "source": {
+      "website": "Sitio Web",
+      "referral": "Referencia",
+      "other": "Otro"
+    },
+    "modal": {
+      "update_status": "Actualizar Estado",
+      "new_status": "Nuevo Estado",
+      "note": "Nota",
+      "detail": "Detalle de la Solicitud",
+      "basic_info": "Información Básica",
+      "resume": "Currículum",
+      "no_resume": "No se subió currículum",
+      "view_resume": "Ver Currículum",
+      "cover_letter": "Carta de Presentación",
+      "education": "Educación",
+      "experience": "Experiencia",
+      "hr_note": "Nota de RRHH",
+      "edit_note": "Editar Nota"
+    }
   }
 }

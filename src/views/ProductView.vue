@@ -235,14 +235,20 @@ watch(products, (newProducts) => {
           <p>{{ t(error) }}</p>
         </div>
 
-        <div v-else-if="products.length > 0" class="bento-grid" ref="productGridRef">
-          <router-link v-for="product in products" :key="product.id" :to="`/products/${product.id}`" class="bento-item" :style="{ '--bg-image': `url(${product.imageUrl || 'https://via.placeholder.com/400x300'})` }">
-            <div class="item-content">
-              <h3>{{ getLocalized(product, 'title') }}</h3>
-              <p class="category-label">{{ getLocalized(product, 'description') || 'Uncategorized' }}</p>
+            <div v-else-if="products.length > 0" class="bento-grid" ref="productGridRef">
+                <router-link 
+                    v-for="product in products" 
+                    :key="product.id" 
+                    :to="`/products/${product.id}`" 
+                    class="bento-item"
+                >
+                    <div class="card-background" :style="{ '--bg-image': `url(${product.imageUrl || 'https://via.placeholder.com/600x400'})` }"></div>
+                    <div class="item-content">
+                        <h3>{{ getLocalized(product, 'title') }}</h3>
+                        <p class="description">{{ getLocalized(product, 'description') || 'Uncategorized' }}</p>
+                    </div>
+                </router-link>
             </div>
-          </router-link>
-        </div>
 
         <div v-else class="state-feedback">
           <p>{{ t('product.no_products_found') }}</p>
@@ -264,7 +270,7 @@ watch(products, (newProducts) => {
   max-width: 1600px;
   margin: 0 auto;
   padding: 2rem;
-  color: #f0f0f0;
+  color: var(--text-primary);
 }
 
 .view-header {
@@ -276,13 +282,13 @@ watch(products, (newProducts) => {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #fff;
-  text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+  color: var(--text-primary);
+  text-shadow: 0 0 10px var(--shadow-color);
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -297,46 +303,46 @@ watch(products, (newProducts) => {
 
 .sidebar {
   flex: 0 0 240px;
-  background: rgba(0, 20, 40, 0.5);
+  background: var(--bg-card);
   padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid rgba(0, 195, 255, 0.2);
+  border: 1px solid var(--border-color);
   backdrop-filter: blur(5px);
 }
 
 .sidebar h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid rgba(0, 195, 255, 0.2);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .category-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .category-list li {
-    padding: 0.75rem 1rem;
-    margin: 0.25rem 0;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    color: #a0c3e6;
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--text-secondary);
 }
 
 .category-list li:hover {
-    background-color: rgba(0, 195, 255, 0.1);
-    color: #fff;
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
 }
 
 .category-list li.active {
-    background-color: rgba(0, 195, 255, 0.2);
-    color: #fff;
-    font-weight: 600;
+  background-color: rgba(0, 195, 255, 0.2);
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .main-content {
@@ -352,10 +358,10 @@ watch(products, (newProducts) => {
 }
 
 .search-input {
-  background: rgba(0, 20, 40, 0.7);
-  border: 1px solid rgba(0, 195, 255, 0.3);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  color: #f0f0f0;
+  color: var(--text-primary);
   padding: 0.75rem 1.25rem;
   font-size: 1rem;
   width: 100%;
@@ -366,15 +372,15 @@ watch(products, (newProducts) => {
 
 .search-input:focus {
   outline: none;
-  border-color: rgba(0, 195, 255, 0.7);
-  box-shadow: 0 0 15px rgba(0, 195, 255, 0.3);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 15px var(--shadow-color);
 }
 
 .search-button {
   padding: 0.75rem 1.5rem;
   background-color: rgba(0, 195, 255, 0.2);
-  border: 1px solid rgba(0, 195, 255, 0.5);
-  color: #fff;
+  border: 1px solid var(--border-color-hover);
+  color: var(--text-primary);
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -382,7 +388,7 @@ watch(products, (newProducts) => {
 
 .search-button:hover {
   background-color: rgba(0, 195, 255, 0.3);
-  border-color: rgba(0, 195, 255, 0.8);
+  border-color: var(--accent-primary);
 }
 
 /* State Feedback */
@@ -390,7 +396,7 @@ watch(products, (newProducts) => {
   text-align: center;
   padding: 5rem 0;
   font-size: 1.2rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
 }
 .state-feedback.error {
   color: #ff6b6b;
@@ -399,112 +405,121 @@ watch(products, (newProducts) => {
 /* Bento Grid Layout */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   margin-bottom: 3rem;
+  max-width: 1200px;
+}
+
+/* 1个项目时：占满一行并居中 */
+.bento-grid > *:only-child {
+  grid-column: 1 / -1;
+}
+
+/* 2个项目时：各占50%居中 */
+.bento-grid > *:first-child:nth-last-child(2) {
+  grid-column: span 1;
+}
+
+.bento-grid > *:first-child:nth-last-child(2) ~ * {
+  grid-column: span 1;
+}
+
+/* 4个项目的特殊布局：前3个一行，第4个占满 */
+.bento-grid > *:first-child:nth-last-child(4),
+.bento-grid > *:first-child:nth-last-child(4) ~ *:nth-child(-n+3) {
+  grid-column: span 1;
+}
+
+.bento-grid > *:first-child:nth-last-child(4) ~ *:nth-child(4) {
+  grid-column: 1 / -1;
 }
 
 .bento-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   position: relative;
-  aspect-ratio: 4 / 3;
+  min-height: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+  color: var(--text-primary);
+  text-decoration: none;
+  background-color: var(--bg-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+[data-theme="light"] .bento-item {
+  color: #0d47a1;
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   background-image: var(--bg-image);
-  border-radius: 12px;
-  overflow: hidden;
-  color: #fff;
-  text-decoration: none;
-  background-color: #000B11;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
+  transition: transform 0.4s ease-out;
 }
 
-.bento-item::before, .bento-item::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  transition: all 0.4s ease;
-  pointer-events: none;
-}
-
-.bento-item::before {
-  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8) 100%);
-  z-index: 1;
-}
-
-.bento-item::after {
-  border: 1px solid rgba(0, 195, 255, 0.3);
-  opacity: 1;
-}
-
-.bento-item:hover::after {
-  border-color: rgba(0, 195, 255, 1);
-  box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+.bento-item:hover .card-background {
+  transform: scale(1.05);
 }
 
 .item-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
+  position: relative;
+  padding: 1.5rem;
   z-index: 2;
-  transform: translateZ(20px);
+  background: var(--gradient-card);
+  border-top: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .item-content {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 20%, rgba(255, 255, 255, 0.9) 60%, transparent 100%);
 }
 
 .item-content h3 {
-  margin: 0 0 0.25rem;
-  font-size: 1.3rem;
-  font-weight: 600;
+  margin: 0.5rem 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-.item-content .category-label {
-  font-size: 0.9rem;
-  color: #a0c3e6;
-  opacity: 0.8;
+[data-theme="light"] .item-content h3 {
+  color: #0d47a1;
 }
 
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 0;
-}
-
-.pagination button {
-  padding: 0.6rem 1.2rem;
-  border: 1px solid rgba(0, 195, 255, 0.3);
-  background-color: transparent;
-  color: #f0f0f0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.pagination button:hover:not(:disabled) {
-  background-color: rgba(0, 195, 255, 0.2);
-  border-color: rgba(0, 195, 255, 0.7);
-}
-
-.pagination button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.pagination span {
+.item-content .description {
   font-size: 1rem;
-  color: #a0c3e6;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+.bento-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {  .bento-grid {    grid-template-columns: 1fr;  }  .bento-grid > *:only-child,  .bento-grid > *:first-child:nth-last-child(4) ~ *:nth-child(4) {    grid-column: 1;  }
+  
+  .bento-item {
+    min-height: 350px;
+  }
+  
   .product-layout {
     flex-direction: column;
   }
@@ -518,9 +533,43 @@ watch(products, (newProducts) => {
   .filters {
     flex-direction: column;
   }
-  
+
   .search-input {
-      max-width: none;
+    max-width: none;
   }
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.pagination button {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--text-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: rgba(0, 195, 255, 0.2);
+  border-color: var(--accent-primary);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 1rem;
+  color: var(--text-secondary);
 }
 </style>

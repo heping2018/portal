@@ -40,7 +40,7 @@ onMounted(async () => {
   const caseId = route.params.id;
   try {
     const response = await getCaseStudyDetails(caseId);
-    caseStudy.value = response.data;
+    caseStudy.value = response;
   } catch (err) {
     console.error('Failed to fetch case study details:', err);
     error.value = true;

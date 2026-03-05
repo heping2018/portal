@@ -79,8 +79,8 @@ onMounted(() => {
 <style scoped>
 .rd-center-container {
   padding: 4rem 2rem;
-  background-color: #1a1a1a;
-  color: #fff;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .header-section {
@@ -92,21 +92,22 @@ onMounted(() => {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  background: -webkit-linear-gradient(45deg, #3498db, #8e44ad);
+  background: var(--gradient-button);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: #bdc3c7;
+  color: var(--text-secondary);
 }
 
 .loading-state, .error-state, .no-results {
   text-align: center;
   padding: 4rem 0;
   font-size: 1.2rem;
-  color: #7f8c8d;
+  color: var(--text-secondary);
 }
 
 .innovations-grid {
@@ -118,18 +119,18 @@ onMounted(() => {
 }
 
 .innovation-card {
-  background: #2c2c2c;
+  background: var(--bg-card);
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 1px solid var(--border-color);
 }
 
 .innovation-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  border-color: #3498db;
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--accent-primary);
 }
 
 .card-image {
@@ -163,6 +164,6 @@ onMounted(() => {
 }
 
 .innovation-card:hover .card-read-more {
-  color: #fff;
+  color: var(--text-primary);
 }
 </style>
