@@ -6,7 +6,7 @@
       </div>
       <nav class="admin-nav">
         <router-link to="/admin/dashboard">{{ t('admin.title') }}</router-link>
-        <router-link to="/admin/users">{{ t('user_management.title') }}</router-link>
+        <router-link to="/admin/users">{{ t('admin.user_management') }}</router-link>
         <router-link to="/admin/system/role">{{ t('admin.role_management') }}</router-link>
         <router-link to="/admin/products">{{ t('admin.product_management') }}</router-link>
         <router-link to="/admin/news">{{ t('admin.news_management') }}</router-link>
@@ -51,22 +51,13 @@ const handleLogout = async () => {
 </script>
 
 <style scoped>
-/* Using :root on the component is fine for local scoping CSS variables */
-:root {
-  --deep-navy-blue: #0A0F1E;
-  --midnight-blue: #0D152A;
-  --glow-blue: #00BFFF;
-  --border-blue: rgba(0, 150, 255, 0.2);
-  --text-primary: #E0EFFF;
-  --text-secondary: #B0C4DE;
-}
-
+/* Admin Layout - Theme Aware */
 .admin-layout {
   display: flex;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(170deg, var(--deep-navy-blue), var(--midnight-blue));
-  color: var(--text-primary);
+  background: var(--admin-bg-gradient);
+  color: var(--admin-text-primary);
 }
 
 .sidebar {
@@ -74,10 +65,10 @@ const handleLogout = async () => {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  background-color: rgba(13, 21, 42, 0.7);
+  background-color: var(--admin-sidebar-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-right: 1px solid var(--border-blue);
+  border-right: 1px solid var(--admin-border-color);
   padding: 0;
   height: 100vh; /* Make sidebar full height */
 }
@@ -87,8 +78,8 @@ const handleLogout = async () => {
   text-align: center;
   font-size: 22px;
   font-weight: bold;
-  border-bottom: 1px solid var(--border-blue);
-  color: var(--text-primary);
+  border-bottom: 1px solid var(--admin-border-color);
+  color: var(--admin-text-primary);
   flex-shrink: 0;
 }
 
@@ -107,7 +98,7 @@ const handleLogout = async () => {
   display: flex;
   align-items: center;
   padding: 14px 24px;
-  color: var(--text-secondary);
+  color: var(--admin-text-secondary);
   text-decoration: none;
   transition: all 0.3s ease;
   margin: 8px 16px;
@@ -117,16 +108,16 @@ const handleLogout = async () => {
 }
 
 .admin-nav a:hover {
-  background-color: rgba(0, 191, 255, 0.1);
-  color: var(--text-primary);
+  background-color: var(--admin-nav-hover-bg);
+  color: var(--admin-text-primary);
 }
 
 .admin-nav a.router-link-exact-active {
-  background-color: rgba(13, 21, 42, 0.9);
-  color: var(--glow-blue);
+  background-color: var(--admin-nav-active-bg);
+  color: var(--admin-accent-color);
   font-weight: 600;
-  border-left-color: var(--glow-blue);
-  box-shadow: inset 3px 0 10px -2px rgba(0, 191, 255, 0.3);
+  border-left-color: var(--admin-accent-color);
+  box-shadow: inset 3px 0 10px -2px var(--admin-accent-glow);
 }
 
 .main-content-wrapper {
@@ -144,8 +135,8 @@ const handleLogout = async () => {
   padding: 0 24px;
   height: 64px;
   flex-shrink: 0;
-  background-color: rgba(13, 21, 42, 0.5);
-  border-bottom: 1px solid var(--border-blue);
+  background-color: var(--admin-header-bg);
+  border-bottom: 1px solid var(--admin-border-color);
 }
 
 .user-info {
@@ -155,9 +146,9 @@ const handleLogout = async () => {
 }
 
 .logout-button {
-  border: 1px solid var(--border-blue);
+  border: 1px solid var(--admin-border-color);
   background: transparent;
-  color: var(--text-secondary);
+  color: var(--admin-text-secondary);
   cursor: pointer;
   font-size: 1rem;
   padding: 8px 16px;
@@ -166,9 +157,9 @@ const handleLogout = async () => {
 }
 
 .logout-button:hover {
-  color: var(--glow-blue);
-  border-color: var(--glow-blue);
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+  color: var(--admin-accent-color);
+  border-color: var(--admin-accent-color);
+  box-shadow: var(--admin-accent-glow);
 }
 
 .admin-page-content {
@@ -191,12 +182,12 @@ const handleLogout = async () => {
 
 .admin-nav::-webkit-scrollbar-thumb,
 .admin-page-content::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 191, 255, 0.3);
+  background-color: var(--admin-scrollbar-thumb);
   border-radius: 4px;
 }
 
 .admin-nav::-webkit-scrollbar-thumb:hover,
 .admin-page-content::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 191, 255, 0.5);
+  background-color: var(--admin-scrollbar-thumb-hover);
 }
 </style>

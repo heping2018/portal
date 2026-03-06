@@ -2,14 +2,14 @@
 .admin-view {
   padding: 2.5rem;
   font-family: 'Inter', sans-serif;
-  color: #E0E0E0;
+  color: var(--admin-text-primary, #E0E0E0);
 }
 
 .admin-view h1 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #FFFFFF;
+  color: var(--admin-text-primary, #FFFFFF);
 }
 
 /* --- Control Buttons --- */
@@ -62,10 +62,10 @@
 
 /* --- Table Styling --- */
 .table-container {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-card, rgba(255, 255, 255, 0.05));
   backdrop-filter: blur(10px);
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--admin-border-color, rgba(255, 255, 255, 0.1));
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   overflow: hidden;
 }
@@ -78,16 +78,16 @@ table {
 th, td {
   padding: 1.2rem 1.5rem;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--admin-border-color, rgba(255, 255, 255, 0.1));
 }
 
 thead {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--admin-nav-hover-bg, rgba(255, 255, 255, 0.1));
 }
 
 th {
   font-size: 0.9rem;
-  color: #F0F0F0;
+  color: var(--admin-text-primary, #F0F0F0);
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -131,14 +131,14 @@ th {
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
-  color: #E0E0E0;
+  color: var(--admin-text-primary, #E0E0E0);
 }
 
 .pagination button {
   padding: 0.6rem 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--admin-border-color, rgba(255, 255, 255, 0.2));
   background: transparent;
-  color: #E0E0E0;
+  color: var(--admin-text-primary, #E0E0E0);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -164,10 +164,10 @@ th {
 }
 
 .modal-content {
-  background: rgba(30, 30, 45, 0.85);
+  background: var(--popup-bg, rgba(30, 30, 45, 0.85));
   backdrop-filter: blur(15px);
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--popup-border, rgba(255, 255, 255, 0.1));
   width: 90%;
   max-width: 550px;
   padding: 2.5rem;
@@ -180,13 +180,13 @@ th {
   top: 1.5rem;
   right: 1.5rem;
   font-size: 1.8rem;
-  color: #E0E0E0;
+  color: var(--admin-text-primary, #E0E0E0);
   cursor: pointer;
   transition: color 0.3s;
 }
 
 .close:hover {
-  color: #FFFFFF;
+  color: var(--admin-text-primary, #FFFFFF);
 }
 
 /* --- Form Group Styling in Modals --- */
@@ -198,21 +198,21 @@ th {
   display: block;
   margin-bottom: 0.6rem;
   font-weight: 500;
-  color: #B0B0B0;
+  color: var(--admin-text-secondary, #B0B0B0);
 }
 
 .form-group input {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(0, 0, 0, 0.2);
-  color: #FFFFFF;
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
+  background: var(--popup-input-bg, rgba(0, 0, 0, 0.2));
+  color: var(--popup-text-primary, #FFFFFF);
   border-radius: 8px;
   transition: all 0.3s;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: rgba(0, 196, 255, 0.8);
-  box-shadow: 0 0 15px rgba(0, 196, 255, 0.2);
+  border-color: var(--accent-primary, rgba(0, 196, 255, 0.8));
+  box-shadow: 0 0 15px var(--shadow-color, rgba(0, 196, 255, 0.2));
 }

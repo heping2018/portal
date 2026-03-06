@@ -5,54 +5,151 @@
   --bg-tertiary: #001A33;
   --bg-card: #001A33;
   --bg-card-hover: rgba(0, 30, 60, 0.6);
-  
+
   --text-primary: #ffffff;
   --text-secondary: #a0c3e6;
   --text-tertiary: #c0d8f0;
   --text-muted: #8ab4d6;
-  
+
   --accent-primary: #00c3ff;
   --accent-secondary: #9cffff;
   --accent-gradient: linear-gradient(45deg, #00c3ff, #9cffff);
-  
+
   --border-color: rgba(0, 195, 255, 0.2);
   --border-color-hover: #00c3ff;
-  
+
   --shadow-color: rgba(0, 195, 255, 0.2);
   --shadow-glow: 0 0 40px rgba(0, 195, 255, 0.4);
-  
+
   --overlay-dark: rgba(0, 10, 20, 0.95);
   --overlay-medium: rgba(0, 10, 20, 0.7);
-  
+
   --gradient-card: linear-gradient(to top, rgba(0, 10, 20, 0.95) 20%, rgba(0, 10, 20, 0.7) 60%, transparent 100%);
   --gradient-button: linear-gradient(45deg, #00c3ff, #9cffff);
+
+  /* Job Type Colors - Dark Theme */
+  --job-type-full-time-bg: rgba(76, 175, 80, 0.15);
+  --job-type-full-time-color: #4caf50;
+  --job-type-part-time-bg: rgba(255, 152, 0, 0.15);
+  --job-type-part-time-color: #ff9800;
+  --job-type-internship-bg: rgba(33, 150, 243, 0.15);
+  --job-type-internship-color: #2196f3;
+
+  /* Login/Register Popup - Dark Theme */
+  --popup-bg: rgba(0, 20, 40, 0.85);
+  --popup-border: rgba(0, 195, 255, 0.3);
+  --popup-text-primary: #ffffff;
+  --popup-text-secondary: #a0c3e6;
+  --popup-text-muted: rgba(255, 255, 255, 0.5);
+  --popup-input-bg: rgba(0, 30, 60, 0.6);
+  --popup-input-border: rgba(0, 195, 255, 0.3);
+  --popup-button-bg: linear-gradient(45deg, #007BFF, #00C4FF);
+  --popup-button-hover-shadow: 0 8px 25px rgba(0, 170, 255, 0.4);
+  --popup-error-bg: rgba(255, 100, 100, 0.15);
+  --popup-error-border: rgba(255, 100, 100, 0.3);
+  --popup-error-text: #FFCDD2;
+  --popup-link-color: #a0c3e6;
+  --popup-link-hover: #ffffff;
+
+  /* Admin Layout - Dark Theme */
+  --admin-bg-gradient: linear-gradient(170deg, #0A0F1E, #0D152A);
+  --admin-sidebar-bg: rgba(13, 21, 42, 0.7);
+  --admin-border-color: rgba(0, 150, 255, 0.2);
+  --admin-text-primary: #E0EFFF;
+  --admin-text-secondary: #B0C4DE;
+  --admin-nav-hover-bg: rgba(0, 191, 255, 0.1);
+  --admin-nav-active-bg: rgba(13, 21, 42, 0.9);
+  --admin-accent-color: #00BFFF;
+  --admin-accent-glow: inset 3px 0 10px -2px rgba(0, 191, 255, 0.3), 0 0 15px rgba(0, 191, 255, 0.5);
+  --admin-header-bg: rgba(13, 21, 42, 0.5);
+  --admin-scrollbar-thumb: rgba(0, 191, 255, 0.3);
+  --admin-scrollbar-thumb-hover: rgba(0, 191, 255, 0.5);
 }
 
 [data-theme="light"] {
-  --bg-primary: #bbdefb;
-  --bg-secondary: #90caf9;
-  --bg-tertiary: #64b5f6;
-  --bg-card: #e3f2fd;
-  --bg-card-hover: rgba(33, 150, 243, 0.08);
-  
-  --text-primary: #01579b;
-  --text-secondary: #0277bd;
-  --text-tertiary: #0288d1;
-  --text-muted: #039be5;
-  
-  --accent-primary: #1976d2;
-  --accent-secondary: #1e88e5;
-  --accent-gradient: linear-gradient(45deg, #1565c0, #1e88e5);
-  
-  --border-color: rgba(21, 101, 192, 0.35);
-  --border-color-hover: #1565c0;
-  
-  --shadow-color: rgba(21, 101, 192, 0.2);
-  --shadow-glow: 0 10px 30px rgba(21, 101, 192, 0.3);
-  
-  --overlay-dark: rgba(187, 222, 251, 0.98);
-  --overlay-medium: rgba(144, 202, 249, 0.92);
-  
-  --gradient-card: linear-gradient(to top, rgba(227, 242, 253, 0.98) 20%, rgba(227, 242, 253, 0.88) 60%, transparent 100%);
-  --gradient-button: linear-gradient(45deg, #1565c0, #1e88e5);
+  /* 🌤️ 天蓝色背景体系 */
+  --bg-primary: #f0f9ff;       /* 最浅的天蓝 - 页面背景 */
+  --bg-secondary: #e6f7ff;     /* 浅天蓝 - 次级背景 */
+  --bg-tertiary: #bae7ff;      /* 稍深的天蓝 - 用于高亮区域 */
+  --bg-card: #ffffff;          /* 纯白卡片 - 与背景分离 */
+  --bg-card-hover: #e6f7ff;    /* 悬停时浅天蓝 */
+
+  /* 🔤 文字配色 - 确保清晰可读（使用深天蓝色系） */
+  --text-primary: #004c8b;     /* 深天蓝 - 主文字（标题、正文）*/
+  --text-secondary: #096dd9;   /* 中天蓝 - 次要文字 */
+  --text-tertiary: #1890ff;    /* 天蓝色 - 三级/链接 */
+  --text-muted: #40a9ff;       /* 亮天蓝 - 弱化/辅助文字 */
+
+  /* ✨ 强调色 - 活力天蓝 */
+  --accent-primary: #1890ff;   /* 活泼的天蓝色 */
+  --accent-secondary: #40a9ff; /* 稍亮的天蓝 */
+  --accent-gradient: linear-gradient(45deg, #1890ff, #40a9ff);
+
+  /* ─ 边框与分割线 */
+  --border-color: rgba(24, 144, 255, 0.3);  /* 天蓝半透明边框 */
+  --border-color-hover: #1890ff;            /* 悬停时实心天蓝 */
+
+  /* 💫 阴影 - 天蓝色光晕 */
+  --shadow-color: rgba(24, 144, 255, 0.15);
+  --shadow-glow: 0 8px 30px rgba(24, 144, 255, 0.2);
+
+  /* 🌫️ 遮罩层 */
+  --overlay-dark: rgba(240, 249, 255, 0.98);
+  --overlay-medium: rgba(230, 247, 255, 0.92);
+
+  /* 🎨 渐变效果 */
+  --gradient-card: linear-gradient(to top, rgba(255, 255, 255, 0.95) 20%, rgba(230, 247, 255, 0.6) 60%, transparent 100%);
+  --gradient-button: linear-gradient(45deg, #1890ff, #40a9ff);
+
+  /* 🎯 Element Plus 变量覆盖 - 适配浅色主题 */
+  --el-text-color-primary: var(--text-primary);
+  --el-text-color-regular: var(--text-secondary);
+  --el-text-color-secondary: var(--text-secondary);
+  --el-text-color-placeholder: var(--text-muted);
+  --el-color-primary: var(--accent-primary);
+  --el-border-color: var(--border-color);
+  --el-border-color-lighter: var(--border-color);
+  --el-bg-color-page: var(--bg-primary);
+  --el-bg-color: var(--bg-card);
+  --el-fill-color: var(--bg-secondary);
+  --el-fill-color-light: var(--bg-tertiary);
+  --el-bg-color-overlay: var(--overlay-medium);
+
+  /* Job Type Colors - Light Theme */
+  --job-type-full-time-bg: #e8f5e9;
+  --job-type-full-time-color: #2e7d32;
+  --job-type-part-time-bg: #fff3e0;
+  --job-type-part-time-color: #ef6c00;
+  --job-type-internship-bg: #e3f2fd;
+  --job-type-internship-color: #1565c0;
+
+  /* Login/Register Popup - Light Theme */
+  --popup-bg: rgba(255, 255, 255, 0.85);
+  --popup-border: rgba(24, 144, 255, 0.3);
+  --popup-text-primary: #004c8b;
+  --popup-text-secondary: #096dd9;
+  --popup-text-muted: rgba(0, 76, 139, 0.6);
+  --popup-input-bg: rgba(255, 255, 255, 0.7);
+  --popup-input-border: rgba(24, 144, 255, 0.3);
+  --popup-button-bg: linear-gradient(45deg, #007BFF, #00C4FF);
+  --popup-button-hover-shadow: 0 8px 25px rgba(0, 170, 255, 0.4);
+  --popup-error-bg: rgba(255, 100, 100, 0.15);
+  --popup-error-border: rgba(255, 100, 100, 0.3);
+  --popup-error-text: #d32f2f;
+  --popup-link-color: #096dd9;
+  --popup-link-hover: #004c8b;
+
+  /* Admin Layout - Light Theme */
+  --admin-bg-gradient: linear-gradient(170deg, #f0f9ff, #e6f7ff);
+  --admin-sidebar-bg: #ffffff;
+  --admin-border-color: rgba(24, 144, 255, 0.25);
+  --admin-text-primary: #004c8b;
+  --admin-text-secondary: #096dd9;
+  --admin-nav-hover-bg: rgba(24, 144, 255, 0.12);
+  --admin-nav-active-bg: rgba(24, 144, 255, 0.2);
+  --admin-accent-color: #1890ff;
+  --admin-accent-glow: inset 3px 0 10px -2px rgba(24, 144, 255, 0.3), 0 0 15px rgba(24, 144, 255, 0.3);
+  --admin-header-bg: rgba(255, 255, 255, 0.9);
+  --admin-scrollbar-thumb: rgba(24, 144, 255, 0.3);
+  --admin-scrollbar-thumb-hover: rgba(24, 144, 255, 0.5);
 }

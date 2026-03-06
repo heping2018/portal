@@ -16,8 +16,25 @@ const props = defineProps({
 
 const getLocalizedField = (item, field) => {
   if (!item) return '';
-  const lang = locale.value.startsWith('zh') ? 'Zh' : 'En';
+  const suffix = getLangSuffix();
+  // 优先使用带语言后缀的字段，如 titleZh、titleEn、titlePt、titleEs
+  const localizedField = item[`${field}${suffix}`];
+  if (localizedField) {
+    return localizedField;
+  }
+  // 回退到基础字段
   return item[field] || '';
+};
+
+const getLangSuffix = () => {
+  const lang = locale.value.split('-')[0];
+  switch(lang) {
+    case 'zh': return 'Zh';
+    case 'en': return 'En';
+    case 'pt': return 'Pt';
+    case 'es': return 'Es';
+    default: return 'En';
+  }
 };
 
 const navigateToSolution = (solution) => {

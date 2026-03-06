@@ -45,7 +45,7 @@ const displayProducts = computed(() => {
     </div>
 
     <div class="category-tabs">
-      <button 
+      <button
         v-for="(cat, index) in categories"
         :key="cat.key"
         :class="['cat-btn', { active: activeCategory === index }]"
@@ -63,8 +63,8 @@ const displayProducts = computed(() => {
       </div>
 
       <div class="products-grid">
-        <div 
-          v-for="(product, index) in displayProducts" 
+        <div
+          v-for="(product, index) in displayProducts"
           :key="product.id || index"
           class="product-card"
           @click="navigateToProduct(product)"
@@ -129,7 +129,7 @@ h2 {
 
 .cat-btn:hover,
 .cat-btn.active {
-  color: #00c3ff;
+  color: var(--accent-primary);
 }
 
 .category-content {
@@ -172,7 +172,7 @@ h2 {
   background: var(--bg-card-hover);
   border-color: var(--accent-primary);
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
+  box-shadow: 0 10px 30px var(--shadow-glow);
 }
 
 .product-header {
@@ -212,7 +212,7 @@ h2 {
 }
 
 .product-link {
-  color: #00c3ff;
+  color: var(--accent-primary);
   font-size: 0.85rem;
   text-decoration: none;
   cursor: pointer;
@@ -221,7 +221,7 @@ h2 {
 }
 
 .product-link:hover {
-  color: #9cffff;
+  color: var(--accent-secondary);
   transform: translateX(5px);
 }
 

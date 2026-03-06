@@ -94,6 +94,7 @@
   },
   "admin": {
     "title": "Tablero",
+    "user_management": "Gestión de Usuarios",
     "product_management": "Gestión de Productos",
     "news_management": "Gestión de Noticias",
     "certificate_management": "Gestión de Certificados",
@@ -468,6 +469,15 @@
       "experience": "Experiencia",
       "hr_note": "Nota de RRHH",
       "edit_note": "Editar Nota"
+    }
+  },
+  "recruitment": {
+    "title": "Reclutamiento",
+    "culture": {
+      "title": "Cultura Corporativa"
+    },
+    "team": {
+      "title": "Equipo"
     }
   }
 }

@@ -29,10 +29,10 @@ const fetchProducts = async () => {
   loading.value = true;
   error.value = null;
   try {
-    
-    const response = await getProductList({ 
-      pageNo: pagination.value.pageNo, 
-      pageSize: pagination.value.pageSize 
+
+    const response = await getProductList({
+      pageNo: pagination.value.pageNo,
+      pageSize: pagination.value.pageSize
     });
     if (response) {
       products.value = response;
@@ -197,16 +197,16 @@ watch(products, (newProducts) => {
       <aside class="sidebar">
         <h2>{{ t('product.categories') }}</h2>
         <ul class="category-list">
-          <li 
-            @click="handleCategorySelect(null)" 
+          <li
+            @click="handleCategorySelect(null)"
             :class="{ active: selectedCategory === null }"
           >
             {{ t('product.all_products') }}
           </li>
-          <li 
-            v-for="cat in categories" 
-            :key="cat.id" 
-            @click="handleCategorySelect(cat.code)" 
+          <li
+            v-for="cat in categories"
+            :key="cat.id"
+            @click="handleCategorySelect(cat.code)"
             :class="{ active: selectedCategory === cat.code }"
           >
             {{ getLocalized(cat, 'name') }}
@@ -236,10 +236,10 @@ watch(products, (newProducts) => {
         </div>
 
             <div v-else-if="products.length > 0" class="bento-grid" ref="productGridRef">
-                <router-link 
-                    v-for="product in products" 
-                    :key="product.id" 
-                    :to="`/products/${product.id}`" 
+                <router-link
+                    v-for="product in products"
+                    :key="product.id"
+                    :to="`/products/${product.id}`"
                     class="bento-item"
                 >
                     <div class="card-background" :style="{ '--bg-image': `url(${product.imageUrl || 'https://via.placeholder.com/600x400'})` }"></div>
@@ -340,7 +340,8 @@ watch(products, (newProducts) => {
 }
 
 .category-list li.active {
-  background-color: rgba(0, 195, 255, 0.2);
+  background-color: var(--accent-primary);
+  opacity: 0.2;
   color: var(--text-primary);
   font-weight: 600;
 }
@@ -378,7 +379,8 @@ watch(products, (newProducts) => {
 
 .search-button {
   padding: 0.75rem 1.5rem;
-  background-color: rgba(0, 195, 255, 0.2);
+  background-color: var(--accent-primary);
+  opacity: 0.2;
   border: 1px solid var(--border-color-hover);
   color: var(--text-primary);
   border-radius: 8px;
@@ -387,7 +389,8 @@ watch(products, (newProducts) => {
 }
 
 .search-button:hover {
-  background-color: rgba(0, 195, 255, 0.3);
+  background-color: var(--accent-secondary);
+  opacity: 0.3;
   border-color: var(--accent-primary);
 }
 
@@ -450,10 +453,6 @@ watch(products, (newProducts) => {
   transform-style: preserve-3d;
 }
 
-[data-theme="light"] .bento-item {
-  color: #0d47a1;
-}
-
 .card-background {
   position: absolute;
   top: 0;
@@ -478,24 +477,17 @@ watch(products, (newProducts) => {
   border-top: 1px solid var(--border-color);
 }
 
-[data-theme="light"] .item-content {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 20%, rgba(255, 255, 255, 0.9) 60%, transparent 100%);
-}
-
 .item-content h3 {
   margin: 0.5rem 0;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.3;
-}
-
-[data-theme="light"] .item-content h3 {
-  color: #0d47a1;
+  color: var(--text-primary);
 }
 
 .item-content .description {
   font-size: 1rem;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -515,11 +507,11 @@ watch(products, (newProducts) => {
   }
 }
 @media (max-width: 768px) {  .bento-grid {    grid-template-columns: 1fr;  }  .bento-grid > *:only-child,  .bento-grid > *:first-child:nth-last-child(4) ~ *:nth-child(4) {    grid-column: 1;  }
-  
+
   .bento-item {
     min-height: 350px;
   }
-  
+
   .product-layout {
     flex-direction: column;
   }
@@ -559,7 +551,8 @@ watch(products, (newProducts) => {
 }
 
 .pagination button:hover:not(:disabled) {
-  background-color: rgba(0, 195, 255, 0.2);
+  background-color: var(--accent-primary);
+  opacity: 0.2;
   border-color: var(--accent-primary);
 }
 

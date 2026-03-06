@@ -1,5 +1,6 @@
 <template>
   <div class="solution-view">
+    <h1>{{ $t('solution.title') }}</h1>
     <div class="industry-tabs">
       <button
         v-for="industry in industries"
@@ -19,8 +20,8 @@
         >
           <div class="card-background" :style="{ '--bg-image': `url(${solution.imageUrl || solution.thumbnail || 'https://via.placeholder.com/600x400'})` }"></div>
           <div class="card-content">
-            <h3>{{ solution.title }}</h3>
-            <p class="summary">{{ solution.summary }}</p>
+            <h3>{{ getLocalized(solution, 'title') }}</h3>
+            <p class="summary">{{ getLocalized(solution, 'summary') }}</p>
           </div>
         </div>
       </div>
@@ -28,17 +29,42 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { getSolutionIndustries, getSolutionsByIndustry } from '@/services/solutionService';
 import { useI18n } from 'vue-i18n';
+import { getSolutionIndustries, getSolutionsByIndustry } from '@/services/solutionService';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const router = useRouter();
 
 const industries = ref([]);
 const selectedIndustry = ref(null);
 const solutions = ref([]);
+
+// 获取当前语言后缀（如 'zh-CN' -> 'Zh'）
+const getLangSuffix = () => {
+  const lang = locale.value.split('-')[0];
+  switch(lang) {
+    case 'zh': return 'Zh';
+    case 'en': return 'En';
+    case 'pt': return 'Pt';
+    case 'es': return 'Es';
+    default: return 'En';
+  }
+};
+
+// 获取本地化字段
+const getLocalized = (item, field) => {
+  if (!item) return '';
+  const suffix = getLangSuffix();
+  // 优先使用带语言后缀的字段，如 titleZh、titleEn
+  const localizedField = item[`${field}${suffix}`];
+  if (localizedField) {
+    return localizedField;
+  }
+  // 回退到基础字段
+  return item[field] || '';
+};
 
 const fetchIndustries = async () => {
   try {
@@ -84,6 +110,13 @@ onMounted(() => {
   margin: 0 auto;
 }
 
+h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .industry-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -94,9 +127,9 @@ onMounted(() => {
 
 .industry-tabs button {
   padding: 0.75rem 1.5rem;
-  border: 1px solid rgba(0, 195, 255, 0.3);
-  background-color: rgba(0, 20, 40, 0.5);
-  color: #a0c3e6;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
   cursor: pointer;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -104,15 +137,15 @@ onMounted(() => {
 }
 
 .industry-tabs button:hover {
-  background-color: rgba(0, 195, 255, 0.1);
-  border-color: rgba(0, 195, 255, 0.5);
-  color: #fff;
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-color-hover);
+  color: var(--text-primary);
 }
 
 .industry-tabs button.active {
-  background-color: rgba(0, 195, 255, 0.2);
-  border-color: #00c3ff;
-  color: #fff;
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -167,10 +200,6 @@ onMounted(() => {
   transform-style: preserve-3d;
 }
 
-[data-theme="light"] .solution-card {
-  color: #0d47a1;
-}
-
 .card-background {
   position: absolute;
   top: 0;
@@ -195,34 +224,27 @@ onMounted(() => {
   border-top: 1px solid var(--border-color);
 }
 
-[data-theme="light"] .card-content {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 20%, rgba(255, 255, 255, 0.9) 60%, transparent 100%);
-}
-
 .card-content h3 {
   margin: 0.5rem 0;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.3;
-}
-
-[data-theme="light"] .card-content h3 {
-  color: #0d47a1;
+  color: var(--text-primary);
 }
 
 .card-content .summary {
   font-size: 1rem;
-  color: #c0d8f0;
+  color: var(--text-secondary);
   line-height: 1.5;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .solution-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 5, 10, 0.5), 0 0 40px rgba(0, 195, 255, 0.4);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
 }
 
 /* 响应式调整 */
@@ -230,12 +252,12 @@ onMounted(() => {
   .solution-list {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .solution-list > *:only-child {
     grid-column: 1 / -1;
     max-width: 500px;
   }
-  
+
   .solution-list > *:first-child:nth-last-child(4) ~ *:nth-child(4) {
     grid-column: 1 / -1;
     max-width: 500px;
@@ -246,13 +268,13 @@ onMounted(() => {
   .solution-list {
     grid-template-columns: 1fr;
   }
-  
+
   .solution-list > *:only-child,
   .solution-list > *:first-child:nth-last-child(4) ~ *:nth-child(4) {
     grid-column: 1;
     max-width: 100%;
   }
-  
+
   .solution-card {
     min-height: 350px;
   }

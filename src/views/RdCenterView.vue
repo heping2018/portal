@@ -92,16 +92,10 @@ onMounted(() => {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  background: var(--gradient-button);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px var(--shadow-color);
 }
 
-.subtitle {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-}
 
 .loading-state, .error-state, .no-results {
   text-align: center;
@@ -147,19 +141,19 @@ onMounted(() => {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: #ecf0f1;
+  color: var(--text-primary);
 }
 
 .card-summary {
   font-size: 1rem;
-  color: #bdc3c7;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 1rem;
 }
 
 .card-read-more {
   font-weight: bold;
-  color: #3498db;
+  color: var(--accent-primary);
   transition: color 0.3s ease;
 }
 

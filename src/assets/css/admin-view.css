@@ -6,12 +6,12 @@
 
 .search-card,
 .table-card {
-  border: 1px solid var(--border-blue);
-  background-color: rgba(13, 21, 42, 0.7);
+  border: 1px solid var(--admin-border-color);
+  background-color: var(--admin-sidebar-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
-  color: var(--text-primary);
+  color: var(--admin-text-primary);
   margin-bottom: 24px;
   overflow: visible; /* For dropdowns etc. */
 }
@@ -29,77 +29,78 @@
 :deep(.el-card__header) {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--border-blue);
+  color: var(--admin-text-primary);
+  border-bottom: 1px solid var(--admin-border-color);
 }
 
 :deep(.el-form-item__label) {
-  color: var(--text-secondary);
+  color: var(--admin-text-secondary);
 }
 
 :deep(.el-input__wrapper),
 :deep(.el-select__wrapper) {
-  background-color: rgba(0,0,0,0.3);
+  background-color: var(--admin-sidebar-bg);
   box-shadow: none;
-  border: 1px solid var(--border-blue);
+  border: 1px solid var(--admin-border-color);
 }
 
 :deep(.el-input__inner) {
-  color: var(--text-primary);
+  color: var(--admin-text-primary);
 }
 
 :deep(.el-table) {
   background-color: transparent;
-  --el-table-border-color: var(--border-blue);
-  --el-table-header-bg-color: rgba(0, 191, 255, 0.1);
+  --el-table-border-color: var(--admin-border-color);
+  --el-table-header-bg-color: var(--admin-nav-active-bg);
   --el-table-tr-bg-color: transparent;
-  --el-table-row-hover-bg-color: rgba(0, 191, 255, 0.05);
+  --el-table-row-hover-bg-color: var(--admin-nav-hover-bg);
 }
 
 :deep(.el-table th) {
-  color: var(--glow-blue);
+  color: var(--admin-accent-color);
 }
 
 :deep(.el-table td),
 :deep(.el-table th.is-leaf) {
-  border-bottom: 1px solid var(--border-blue);
+  border-bottom: 1px solid var(--admin-border-color);
 }
 
 :deep(.el-table--border .el-table__inner-wrapper:after),
 :deep(.el-table--border:after),
 :deep(.el-table--border:before),
 :deep(.el-table__inner-wrapper:before) {
-  background-color: var(--border-blue);
+  background-color: var(--admin-border-color);
 }
 
 :deep(.el-pagination) {
   margin-top: 24px;
   justify-content: flex-end;
-  --el-pagination-button-bg-color: rgba(0,0,0,0.3);
-  --el-color-primary: var(--glow-blue);
-  --el-text-color-primary: var(--text-secondary);
+  --el-pagination-button-bg-color: var(--admin-sidebar-bg);
+  --el-color-primary: var(--admin-accent-color);
+  --el-text-color-primary: var(--admin-text-secondary);
 }
 
 :deep(.el-pagination button:disabled) {
-  background-color: rgba(0,0,0,0.2);
+  background-color: var(--admin-sidebar-bg);
 }
 
 :deep(.el-button--primary) {
-  background-color: var(--glow-blue);
-  border-color: var(--glow-blue);
-  color: var(--deep-navy-blue);
+  background-color: var(--admin-accent-color) !important;
+  border-color: var(--admin-accent-color) !important;
+  color: var(--text-primary);
   font-weight: bold;
 }
 :deep(.el-button--primary:hover) {
-  background-color: #33cfff;
-  border-color: #33cfff;
+  background-color: var(--accent-primary) !important;
+  border-color: var(--accent-primary) !important;
 }
 :deep(.el-button--danger) {
-  background-color: #F56C6C;
-  border-color: #F56C6C;
+  background-color: #F56C6C !important;
+  border-color: #F56C6C !important;
 }
 :deep(.el-button.is-plain) {
-   --el-button-hover-text-color: var(--glow-blue);
-   --el-button-hover-border-color: var(--glow-blue);
-   --el-button-hover-bg-color: rgba(0, 191, 255, 0.1);
+   --el-button-hover-text-color: var(--admin-accent-color);
+   --el-button-hover-border-color: var(--admin-accent-color);
+   --el-button-hover-bg-color: var(--admin-nav-hover-bg);
 }
+

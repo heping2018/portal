@@ -437,20 +437,12 @@ onMounted(() => {
 </script>
 
 <style scoped>
-:root {
-  --glow-blue: #00BFFF;
-  --border-blue: rgba(0, 150, 255, 0.2);
-  --text-primary: #E0EFFF;
-  --text-secondary: #B0C4DE;
-  --bg-dark-transparent: rgba(13, 21, 42, 0.7);
-}
-
 .admin-view {
-  color: var(--text-primary);
+  color: var(--admin-text-primary);
 }
 
 h1 {
-  color: var(--glow-blue);
+  color: var(--admin-accent-color);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
@@ -463,20 +455,20 @@ h1 {
 }
 
 .add-button, .save-button {
-  border: 1px solid var(--border-blue);
-  background: var(--bg-dark-transparent);
-  color: var(--text-secondary);
+  border: 1px solid var(--admin-border-color);
+  background: var(--admin-sidebar-bg);
+  color: var(--admin-text-secondary);
   cursor: pointer;
   font-size: 1rem;
   padding: 10px 20px;
   border-radius: 8px;
-  transition: box-shadow 0.3s, color 0.3s, transform 0.3s;
+  transition: all 0.3s;
   font-weight: bold;
 }
 
 .add-button:hover, .save-button:hover {
-  color: var(--glow-blue);
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+  color: var(--admin-accent-color);
+  box-shadow: var(--admin-accent-glow);
   transform: translateY(-2px);
 }
 
@@ -485,7 +477,7 @@ h1 {
   text-align: center;
   font-size: 1.2rem;
   padding: 3rem 0;
-  color: var(--text-secondary);
+  color: var(--admin-text-secondary);
 }
 
 .error-indicator {
@@ -501,23 +493,24 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   margin-bottom: 2rem;
-  border: 1px solid var(--border-blue);
+  border: 1px solid var(--admin-border-color);
   border-radius: 8px;
-  background-color: var(--bg-dark-transparent);
+  background-color: var(--admin-sidebar-bg);
 }
 
 th, td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid var(--border-blue);
+  border-bottom: 1px solid var(--admin-border-color);
 }
 
 th {
-  color: var(--glow-blue);
+  color: var(--admin-accent-color);
   font-weight: bold;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  background-color: var(--admin-nav-active-bg);
 }
 
 tbody tr:last-child td {
@@ -529,7 +522,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background-color: rgba(0, 191, 255, 0.05);
+  background-color: var(--admin-nav-hover-bg);
 }
 
 td.action-buttons {
@@ -537,30 +530,30 @@ td.action-buttons {
 }
 
 .action-buttons button {
-  border: 1px solid var(--border-blue);
+  border: 1px solid var(--admin-border-color);
   background: transparent;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--admin-text-secondary);
   transition: all 0.3s;
   margin-right: 6px;
   margin-bottom: 6px;
 }
 
 .action-buttons button:hover {
-  color: var(--glow-blue);
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
-  border-color: var(--glow-blue);
+  color: var(--admin-accent-color);
+  box-shadow: var(--admin-accent-glow);
+  border-color: var(--admin-accent-color);
 }
 
 .view-btn {
-  background: rgba(23, 162, 184, 0.1);
+  background: var(--admin-nav-hover-bg);
 }
 
 .view-btn:hover {
-  color: #17a2b8;
-  border-color: #17a2b8;
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .edit-btn {
@@ -608,8 +601,8 @@ td.action-buttons {
 }
 
 .status-badge.draft {
-  background: rgba(226, 227, 229, 0.2);
-  color: #e2e3e5;
+  background: var(--admin-nav-hover-bg);
+  color: var(--admin-text-secondary);
 }
 
 .status-badge.open {
@@ -644,12 +637,12 @@ td.action-buttons {
   overflow-y: auto;
   padding: 32px;
   position: relative;
-  background-color: var(--bg-dark-transparent);
+  background-color: var(--admin-sidebar-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
-  border: 1px solid var(--border-blue);
-  box-shadow: 0 0 25px rgba(0, 191, 255, 0.2);
+  border: 1px solid var(--admin-border-color);
+  box-shadow: var(--admin-accent-glow);
 }
 
 .detail-content {
@@ -657,7 +650,7 @@ td.action-buttons {
 }
 
 .close {
-  color: var(--text-secondary);
+  color: var(--admin-text-secondary);
   position: absolute;
   top: 15px;
   right: 20px;
@@ -668,19 +661,19 @@ td.action-buttons {
 }
 
 .close:hover, .close:focus {
-  color: var(--glow-blue);
+  color: var(--admin-accent-color);
 }
 
 .modal-content h2 {
   text-align: center;
-  color: var(--glow-blue);
+  color: var(--admin-accent-color);
   margin-bottom: 2rem;
 }
 
 .form-section {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border-blue);
+  border-bottom: 1px solid var(--admin-border-color);
 }
 
 .form-section:last-child {
@@ -688,7 +681,7 @@ td.action-buttons {
 }
 
 .form-section h3 {
-  color: var(--glow-blue);
+  color: var(--admin-accent-color);
   margin: 0 0 1.5rem 0;
   font-size: 1.2rem;
 }
@@ -700,7 +693,7 @@ td.action-buttons {
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--text-secondary);
+  color: var(--admin-text-secondary);
   font-size: 0.9rem;
 }
 
@@ -713,10 +706,10 @@ td.action-buttons {
 .form-group textarea {
   width: 100%;
   padding: 10px;
-  background-color: rgba(13, 21, 42, 0.8);
-  border: 1px solid var(--border-blue);
+  background-color: var(--admin-sidebar-bg);
+  border: 1px solid var(--admin-border-color);
   border-radius: 8px;
-  color: var(--text-primary);
+  color: var(--admin-text-primary);
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
   resize: vertical;
@@ -726,8 +719,8 @@ td.action-buttons {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--glow-blue);
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+  border-color: var(--admin-accent-color);
+  box-shadow: var(--admin-accent-glow);
 }
 
 .detail-info {
@@ -738,7 +731,7 @@ td.action-buttons {
   display: flex;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-blue);
+  border-bottom: 1px solid var(--admin-border-color);
 }
 
 .detail-row:last-child {
@@ -748,13 +741,13 @@ td.action-buttons {
 .detail-row label {
   font-weight: 600;
   width: 140px;
-  color: var(--text-secondary);
+  color: var(--admin-text-secondary);
   flex-shrink: 0;
 }
 
 .detail-row span {
   flex: 1;
-  color: var(--text-primary);
+  color: var(--admin-text-primary);
 }
 
 .detail-section {
@@ -763,16 +756,16 @@ td.action-buttons {
 }
 
 .detail-section h4 {
-  color: var(--glow-blue);
+  color: var(--admin-accent-color);
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
 }
 
 .detail-text {
-  background: rgba(13, 21, 42, 0.5);
+  background: var(--admin-nav-hover-bg);
   padding: 1rem;
   border-radius: 8px;
   line-height: 1.8;
-  color: var(--text-primary);
+  color: var(--admin-text-primary);
 }
 </style>

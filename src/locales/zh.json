@@ -112,6 +112,9 @@
     },
     "related_products": "相关产品"
   },
+  "solution": {
+    "title": "解决方案"
+  },
   "product": {
     "title": "产品中心",
     "subtitle": "探索我们多样化的工业自动化产品线，找到满足您特定需求的完美解决方案。",
@@ -617,5 +620,14 @@
     "copy_error": "复制链接失败。",
     "delete": "删除",
     "no_files": "未找到任何文件，快去上传吧。"
+  },
+  "recruitment": {
+    "title": "人才招聘",
+    "culture": {
+      "title": "企业文化"
+    },
+    "team": {
+      "title": "团队介绍"
+    }
   }
 }

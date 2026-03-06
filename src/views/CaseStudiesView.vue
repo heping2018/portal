@@ -36,9 +36,9 @@
       >
         <div class="card-background" :style="{ '--bg-image': `url(${study.imageUrl || 'https://via.placeholder.com/600x400'})` }"></div>
         <div class="card-content">
-          <p class="industry-label">{{ study.industry }}</p>
-          <h3>{{ study.title }}</h3>
-          <p class="summary">{{ study.summary }}</p>
+          <p class="industry-label">{{ getLocalized(study, 'industry') }}</p>
+          <h3>{{ getLocalized(study, 'title') }}</h3>
+          <p class="summary">{{ getLocalized(study, 'summary') }}</p>
         </div>
       </router-link>
     </div>
@@ -47,17 +47,43 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { getCaseStudyIndustries, getCaseStudies, getCaseStudiesByIndustry } from '../services/caseStudyService';
+
+const { locale } = useI18n();
 
 const industries = ref([]);
 const caseStudies = ref([]);
 const activeIndustry = ref('All');
 const loading = ref(true);
 
+// 获取当前语言后缀
+const getLangSuffix = () => {
+  const lang = locale.value.split('-')[0];
+  switch(lang) {
+    case 'zh': return 'Zh';
+    case 'en': return 'En';
+    case 'pt': return 'Pt';
+    case 'es': return 'Es';
+    default: return 'En';
+  }
+};
+
+// 获取本地化字段
+const getLocalized = (item, field) => {
+  if (!item) return '';
+  const suffix = getLangSuffix();
+  const localizedField = item[`${field}${suffix}`];
+  if (localizedField) {
+    return localizedField;
+  }
+  return item[field] || '';
+};
+
 const fetchIndustries = async () => {
   try {
     const response = await getCaseStudyIndustries();
-    industries.value = ['All', ...response]; 
+    industries.value = ['All', ...response];
   } catch (error) {
     console.error('Error fetching industries:', error);
   }
@@ -107,13 +133,14 @@ onMounted(() => {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 15px rgba(0, 195, 255, 0.6);
-  color: #fff;
+  text-shadow: 0 0 15px var(--shadow-glow);
+  color: var(--text-primary);
 }
 
 .subtitle {
   font-size: 1.3rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
+  margin: 10px 0 0 0;
 }
 
 .controls {
@@ -131,9 +158,9 @@ onMounted(() => {
 
 .filter-tabs button {
   padding: 0.75rem 1.5rem;
-  border: 1px solid rgba(0, 195, 255, 0.3);
-  background-color: rgba(0, 20, 40, 0.5);
-  color: #a0c3e6;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
   cursor: pointer;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -141,14 +168,14 @@ onMounted(() => {
 }
 
 .filter-tabs button:hover {
-  background-color: rgba(0, 195, 255, 0.1);
-  border-color: rgba(0, 195, 255, 0.5);
-  color: #fff;
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-color-hover);
+  color: var(--text-primary);
 }
 
 .filter-tabs button.active {
-  background-color: rgba(0, 195, 255, 0.2);
-  border-color: #00c3ff;
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
   color: #fff;
   font-weight: 600;
 }
@@ -157,13 +184,13 @@ onMounted(() => {
   text-align: center;
   padding: 6rem 0;
   font-size: 1.3rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
 }
 
 .loading-spinner {
   margin: 0 auto 2rem;
-  border: 4px solid rgba(0, 195, 255, 0.2);
-  border-left-color: #00c3ff;
+  border: 4px solid var(--shadow-color);
+  border-left-color: var(--accent-primary);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -224,10 +251,6 @@ onMounted(() => {
   transform-style: preserve-3d;
 }
 
-[data-theme="light"] .case-study-card {
-  color: #0d47a1;
-}
-
 .card-background {
   position: absolute;
   top: 0;
@@ -252,31 +275,24 @@ onMounted(() => {
   border-top: 1px solid var(--border-color);
 }
 
-[data-theme="light"] .card-content {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 20%, rgba(255, 255, 255, 0.9) 60%, transparent 100%);
-}
-
 .card-content h3 {
   margin: 0.5rem 0;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.3;
-}
-
-[data-theme="light"] .card-content h3 {
-  color: #0d47a1;
+  color: var(--text-primary);
 }
 
 .card-content .industry-label {
   font-size: 0.9rem;
-  color: #a0c3e6;
+  color: var(--text-muted);
   opacity: 0.9;
   margin-bottom: 0.5rem;
 }
 
 .card-content .summary {
   font-size: 1rem;
-  color: #c0d8f0;
+  color: var(--text-secondary);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -286,7 +302,7 @@ onMounted(() => {
 
 .case-study-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 5, 10, 0.5), 0 0 40px rgba(0, 195, 255, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 5, 10, 0.5), 0 0 40px var(--shadow-glow);
 }
 
 /* 响应式调整 */
@@ -294,12 +310,12 @@ onMounted(() => {
   .case-studies-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .case-studies-grid > *:only-child {
     grid-column: 1 / -1;
     max-width: 500px;
   }
-  
+
   .case-studies-grid > *:first-child:nth-last-child(4) ~ *:nth-child(4) {
     grid-column: 1 / -1;
     max-width: 500px;
@@ -310,13 +326,13 @@ onMounted(() => {
   .case-studies-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .case-studies-grid > *:only-child,
   .case-studies-grid > *:first-child:nth-last-child(4) ~ *:nth-child(4) {
     grid-column: 1;
     max-width: 100%;
   }
-  
+
   .case-study-card {
     min-height: 350px;
   }

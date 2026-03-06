@@ -81,27 +81,19 @@ onMounted(fetchCertificates);
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
-  color: #f0f0f0;
+  color: var(--text-primary);
 }
 
 .view-header {
   text-align: center;
   margin-bottom: 4rem;
 }
+.view-header h1 {  font-size: 3.5rem;  font-weight: 800;  margin-bottom: 0.5rem;  color: var(--text-primary);  text-shadow: 0 0 10px var(--shadow-color);}
 
-.view-header h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #fff;
-  background: linear-gradient(45deg, #00c3ff, #9cffff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 .subtitle {
   font-size: 1.3rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
   max-width: 700px;
   margin: 0 auto;
 }
@@ -110,7 +102,7 @@ onMounted(fetchCertificates);
   text-align: center;
   padding: 5rem 0;
   font-size: 1.2rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
 }
 
 .state-feedback.error {
@@ -125,8 +117,8 @@ onMounted(fetchCertificates);
 }
 
 .certification-card {
-  background: rgba(0, 20, 40, 0.6);
-  border: 1px solid rgba(0, 195, 255, 0.25);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 2rem;
   backdrop-filter: blur(8px);
@@ -145,20 +137,20 @@ onMounted(fetchCertificates);
 
 .certification-card:hover {
   transform: translateY(-10px);
-  border-color: rgba(0, 195, 255, 0.6);
-  box-shadow: 0 10px 25px rgba(0, 25, 45, 0.5);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .card-title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
 }
 
 .card-issuer, .card-date {
   font-size: 1rem;
-  color: #a0c3e6;
+  color: var(--text-secondary);
   margin-bottom: 0.75rem;
 }
 </style>
