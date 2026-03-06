@@ -80,7 +80,7 @@ const fetchJobs = async () => {
   try {
     loading.value = true;
     const response = await getJobs();
-    jobs.value = response;
+    jobs.value = response.list || [];
   } catch (err) {
     console.error('Error fetching jobs:', err);
     error.value = true;
